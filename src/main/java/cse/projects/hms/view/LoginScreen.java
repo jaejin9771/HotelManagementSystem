@@ -126,7 +126,6 @@ public class LoginScreen extends javax.swing.JFrame {
             MainScreen ms = new MainScreen();
             ms.setVisible(true);
         }
-
     }//GEN-LAST:event_loginBtnActionPerformed
 
     /**

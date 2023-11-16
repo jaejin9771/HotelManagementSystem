@@ -20,7 +20,7 @@ public class UserDao {
     public UserDto findByIdAndPw(UserLoginDto loginDto) {
         UserDto userDto = new UserDto();
 
-        String fileName = "user.txt";
+        String fileName = "data/user.txt";
         File file = new File(fileName);
 
         try {
@@ -52,10 +52,14 @@ public class UserDao {
                         }
                     }
                 }
+                else { //없다면
+                    return null;
+                }
 
             }
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
         return userDto;
     }

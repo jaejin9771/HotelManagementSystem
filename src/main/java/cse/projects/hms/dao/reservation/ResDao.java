@@ -19,7 +19,7 @@ public class ResDao {
 
     public void insert(ResDto resDto) {
         // 예약 정보 저장하는 파일 입출력 코드
-        String fileName = "UserData.txt";
+        String fileName = "data/UserData.txt";
         File file = new File(fileName);
         try (BufferedWriter output = new BufferedWriter(new FileWriter(file, true))) {
             output.write(resDto.toString());
@@ -30,7 +30,7 @@ public class ResDao {
     }
     
     public String[] readAll() {
-        String fileName = "UserData.txt";
+        String fileName = "data/UserData.txt";
         File file = new File(fileName);
         List<String> userDataList=new ArrayList<>();
         try(BufferedReader output = new BufferedReader(new FileReader(file))){
