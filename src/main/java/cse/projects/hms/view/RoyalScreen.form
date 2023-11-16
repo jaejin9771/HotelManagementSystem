@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.JButton" name="jButton21">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jButton1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton22">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jButton1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton23">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jButton1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton24">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jButton1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton25">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jButton1"/>
+      </Properties>
+    </Component>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="R_201" min="-2" pref="125" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="R_202" min="-2" pref="125" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                      <Component id="R_203" min="-2" pref="125" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="R_211" min="-2" pref="125" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="R_212" min="-2" pref="125" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                      <Component id="R_213" min="-2" pref="125" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="R_221" min="-2" pref="125" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="R_222" min="-2" pref="125" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                      <Component id="R_223" min="-2" pref="125" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="R_231" min="-2" pref="125" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="R_232" min="-2" pref="125" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                      <Component id="R_233" min="-2" pref="125" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="R_241" min="-2" pref="125" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="R_242" min="-2" pref="125" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                      <Component id="R_243" min="-2" pref="125" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="64" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="R_204" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+                  <Component id="R_214" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+                  <Component id="R_224" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+                  <Component id="R_234" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+                  <Component id="R_244" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="R_245" min="-2" pref="125" max="-2" attributes="0"/>
+                  <Component id="R_235" min="-2" pref="125" max="-2" attributes="0"/>
+                  <Component id="R_225" min="-2" pref="125" max="-2" attributes="0"/>
+                  <Component id="R_215" min="-2" pref="125" max="-2" attributes="0"/>
+                  <Component id="R_205" min="-2" pref="125" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="BUTT_goback" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="BUTT_goback" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="R_201" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="R_202" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="R_203" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="R_204" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="R_205" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="R_211" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="R_212" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="R_213" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="R_214" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="R_215" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="R_221" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="R_222" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="R_223" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="R_224" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="R_225" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="R_231" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="R_232" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="R_233" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="R_234" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="R_235" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="R_241" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="R_242" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="R_243" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="R_244" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="R_245" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="85" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JButton" name="R_201">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="201"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_202">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="202"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_203">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="203"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_204">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="204"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_205">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="205"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_211">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="211"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_212">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="212"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_213">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="213"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_214">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="214"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_215">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="215"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_221">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="221"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_222">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="222"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_223">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="223"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_224">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="224"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="R_224ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_225">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="225"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_234">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="234"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_235">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="235"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_231">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="231"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_232">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="232"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_233">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="233"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_244">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="244"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_245">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="245"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_241">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="241"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_242">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="242"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="R_243">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="243"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="BUTT_goback">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xb4a4;&#xb85c;&#xac00;&#xae30;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUTT_gobackActionPerformed"/>
+      </Events>
+    </Component>
+  </SubComponents>
+</Form>
