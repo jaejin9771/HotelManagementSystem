@@ -33,7 +33,7 @@ public class UserController {
     }
     
     public boolean isRegister(String inputId, String inputPw) {
-        File file = new File("user.txt");
+        File file = new File("data/user.txt");
         String split = ",";
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file,true))) {
             bw.newLine();
