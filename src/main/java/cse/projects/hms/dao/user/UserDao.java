@@ -6,10 +6,7 @@ package cse.projects.hms.dao.user;
 
 import cse.projects.hms.dto.user.*;
 import cse.projects.hms.dto.user.UserDto.UserBuilder;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 /**
  *
@@ -67,6 +64,23 @@ public class UserDao {
             }
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("findById 오류");
+        }
+        return false;
+    }
+    
+    public boolean insert(UserDto userDto) {
+        String fileName = "data/user.txt";
+        File file = new File(fileName);
+        
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file,true))) {
+            String line = userDto.getId() +","+ userDto.getPw() +","+ userDto.getUsertype();
+            bw.newLine();
+            bw.write(line);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("UserDao.insert() 오류");
         }
         return false;
     }
