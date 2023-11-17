@@ -114,7 +114,6 @@ public class LoginScreen extends javax.swing.JFrame {
 
         String inputId = ID.getText(); // 입력한 ID
         String inputPw = new String(Password.getPassword()); // 입력한 PW
-        System.out.println(inputPw);
         
         this.user = userController.login(inputId, inputPw);
         

@@ -33,6 +33,10 @@ public class RegisterScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
+        buttonGroup4 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         idField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -44,6 +48,8 @@ public class RegisterScreen extends javax.swing.JFrame {
         pwField = new javax.swing.JPasswordField();
         register = new javax.swing.JButton();
         goback = new javax.swing.JButton();
+        managerRadio = new javax.swing.JRadioButton();
+        staffRadio = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,6 +90,13 @@ public class RegisterScreen extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(managerRadio);
+        managerRadio.setText("manager");
+
+        buttonGroup1.add(staffRadio);
+        staffRadio.setSelected(true);
+        staffRadio.setText("staff");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,8 +122,12 @@ public class RegisterScreen extends javax.swing.JFrame {
                                 .addGap(54, 54, 54)
                                 .addComponent(pwCheck))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(345, 345, 345)
-                        .addComponent(register)))
+                        .addGap(342, 342, 342)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(register)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(staffRadio)
+                                .addComponent(managerRadio)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(300, 300, 300)
@@ -131,7 +148,7 @@ public class RegisterScreen extends javax.swing.JFrame {
                     .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(idCheck))
-                .addGap(53, 53, 53)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(pwField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -140,7 +157,11 @@ public class RegisterScreen extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(pwCheck)
                     .addComponent(checkPwField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(86, 86, 86)
+                .addGap(29, 29, 29)
+                .addComponent(managerRadio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(staffRadio)
+                .addGap(38, 38, 38)
                 .addComponent(register)
                 .addContainerGap(95, Short.MAX_VALUE))
         );
@@ -149,7 +170,8 @@ public class RegisterScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void idCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idCheckActionPerformed
-        // TODO add your handling code here:
+        userDao = new UserDao();
+        
         String inputId = idField.getText();
         
         if (userDao.findById(inputId)==true) {
@@ -163,19 +185,8 @@ public class RegisterScreen extends javax.swing.JFrame {
 
     private void pwCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwCheckActionPerformed
         // TODO add your handling code here:
-        String inputPw = "";
-        String checkPw = "";
-        char[] secretPw = pwField.getPassword(); // 입력한 PW
-        for(char cha : secretPw){
-            Character.toString(cha); // cha 에 저장된 값 string으로 변환
-            inputPw += (inputPw.equals("")) ? ""+cha+"" : ""+cha+"";
-        }
-        
-        char[] secretCheckPw = checkPwField.getPassword();
-        for(char cha : secretCheckPw){
-            Character.toString(cha); // cha 에 저장된 값 string으로 변환
-            checkPw += (inputPw.equals("")) ? ""+cha+"" : ""+cha+"";
-        }
+        String inputPw = new String(pwField.getPassword());
+        String checkPw = new String(checkPwField.getPassword());
         
         if(inputPw.equals(checkPw)) {
             JOptionPane.showMessageDialog(null, "비밀번호가 일치합니다");
@@ -189,16 +200,12 @@ public class RegisterScreen extends javax.swing.JFrame {
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
         // TODO add your handling code here:
         String inputId = idField.getText();
-        String inputPw = "";
-        
-        char[] secretPw = pwField.getPassword(); // 입력한 PW
-        for(char cha : secretPw){
-            Character.toString(cha); // cha 에 저장된 값 string으로 변환
-            inputPw += (inputPw.equals("")) ? ""+cha+"" : ""+cha+"";
-        }
-        
+        String inputPw = new String(pwField.getPassword());
+        String inputUsertype = "";
+        if(managerRadio.isSelected()) { inputUsertype = managerRadio.getText(); }
+        if(staffRadio.isSelected()) { inputUsertype = staffRadio.getText(); }
         if((isOkId == true && isOkPw == true)){
-            if(userController.isRegister(inputId,inputPw)){
+            if(userController.signUp(inputId,inputPw,inputUsertype)){
                 JOptionPane.showMessageDialog(null, "성공적으로 사용자 등록이 되었습니다.");
                 
                 // 여기에 화면 전환 함수.
@@ -224,6 +231,10 @@ public class RegisterScreen extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JPasswordField checkPwField;
     private javax.swing.JButton goback;
     private javax.swing.JButton idCheck;
@@ -232,8 +243,10 @@ public class RegisterScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JRadioButton managerRadio;
     private javax.swing.JButton pwCheck;
     private javax.swing.JPasswordField pwField;
     private javax.swing.JButton register;
+    private javax.swing.JRadioButton staffRadio;
     // End of variables declaration//GEN-END:variables
 }
