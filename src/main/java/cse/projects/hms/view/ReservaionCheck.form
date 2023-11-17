@@ -23,8 +23,8 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="searchdata" min="-2" pref="168" max="-2" attributes="0"/>
@@ -129,6 +129,7 @@
                 </Column>
               </TableColumnModel>
             </Property>
+            <Property name="rowSelectionAllowed" type="boolean" value="true"/>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
@@ -140,7 +141,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xac80;&#xc0c9;:"/>
+        <Property name="text" type="java.lang.String" value="&#xac1d;&#xc2e4;&#xac80;&#xc0c9;:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="BUTT_reservation">
