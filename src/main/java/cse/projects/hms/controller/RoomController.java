@@ -15,7 +15,7 @@ import javax.swing.JButton;
 public class RoomController {
     public boolean isEmptyRoom(String e) { //e가 방 번호 string
         ResDao res = new ResDao();
-        String fileName = "UserData.txt";
+        String fileName = "data/UserData.txt";
         File file = new File(fileName);
         try(BufferedReader br = new BufferedReader(new FileReader(file))){
             

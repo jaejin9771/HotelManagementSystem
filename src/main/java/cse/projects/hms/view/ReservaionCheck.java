@@ -39,6 +39,43 @@ public class ReservaionCheck extends javax.swing.JFrame {
             Model.addRow(dataRow);
         }
     }
+    private boolean roomDataCheck() {
+        ResDao res = new ResDao();
+        String roomnum = null;
+        if (searchdata.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "빈 객실입니다.");
+            return false;
+        }
+
+        for (int i = 0; i < res.resroomCheck().size(); i++) {
+            if (res.resroomCheck().get(i).equals(searchdata.getText())) {
+                roomnum = searchdata.getText();
+                return true;
+            }
+        }
+
+        JOptionPane.showMessageDialog(null, "해당 객실이 없습니다.");
+        return false;
+    }
+    String search = null;
+    public String txt_searchroomnum() {
+        search = searchdata.getText();
+        System.out.println(search);
+        return search;
+    }
+
+//    private void settablesearchdata() {
+//        ResDao res = new ResDao();
+//        DefaultTableModel Model = (DefaultTableModel) customerdatatable.getModel();
+//        if (roomDataCheck() == true) {
+//            Model.setRowCount(0);
+//            String[] Line = res.roomSearch();
+//            for (int i = 0; i < Line.length; i++) {
+//                String[] dataRow = Line[i].toString().split(",");
+//                Model.addRow(dataRow);
+//            }
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,12 +88,12 @@ public class ReservaionCheck extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         customerdatatable = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
+        searchdata = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         BUTT_reservation = new javax.swing.JButton();
         BUTT_reservationcancel = new javax.swing.JButton();
         BUTT_goback = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        BUTT_enter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,7 +133,12 @@ public class ReservaionCheck extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("enter");
+        BUTT_enter.setText("enter");
+        BUTT_enter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTT_enterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,9 +148,9 @@ public class ReservaionCheck extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(searchdata, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(BUTT_enter)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BUTT_goback)
                 .addContainerGap())
@@ -125,10 +167,10 @@ public class ReservaionCheck extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(BUTT_goback)
-                    .addComponent(jButton1))
+                    .addComponent(BUTT_enter))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -159,18 +201,26 @@ public class ReservaionCheck extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BUTT_gobackActionPerformed
 
+    private void BUTT_enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_enterActionPerformed
+        // TODO add your handling code here:
+        roomDataCheck();
+        //settablesearchdata();
+        ResDao res = new ResDao();
+        res.roomSearch();
+    }//GEN-LAST:event_BUTT_enterActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BUTT_enter;
     private javax.swing.JButton BUTT_goback;
     private javax.swing.JButton BUTT_reservation;
     private javax.swing.JButton BUTT_reservationcancel;
     private javax.swing.JTable customerdatatable;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField searchdata;
     // End of variables declaration//GEN-END:variables
 }
