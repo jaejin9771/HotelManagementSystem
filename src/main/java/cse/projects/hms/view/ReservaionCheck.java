@@ -5,6 +5,7 @@
  */
 package cse.projects.hms.view;
 
+import cse.projects.hms.controller.RoomController;
 import cse.projects.hms.dao.reservation.ResDao;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -15,6 +16,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ReservaionCheck extends javax.swing.JFrame {
 
+    String roomnum = null;
+
     /**
      * Creates new form ReservaionCheck
      */
@@ -22,25 +25,29 @@ public class ReservaionCheck extends javax.swing.JFrame {
         initComponents();
         initializeCoustomerData();
     }
-    private void controlColummSize(){
+
+    private void controlColummSize() {
         customerdatatable.getColumnModel().getColumn(0).setPreferredWidth(100);
         customerdatatable.getColumnModel().getColumn(5).setPreferredWidth(350);
         customerdatatable.getColumnModel().getColumn(6).setPreferredWidth(350);
         customerdatatable.getColumnModel().getColumn(1).setPreferredWidth(180);
         customerdatatable.getColumnModel().getColumn(2).setPreferredWidth(130);
     }
-    private void initializeCoustomerData(){
+
+
+    private void initializeCoustomerData() {
         ResDao res = new ResDao();
         controlColummSize();
-        DefaultTableModel Model = (DefaultTableModel)customerdatatable.getModel();
-        String[] Line =res.readAll(); //=데이터
-        for(int i=0;i <Line.length; i++){
-            String[]dataRow=Line[i].toString().split(",");
+        DefaultTableModel Model = (DefaultTableModel) customerdatatable.getModel();
+        String[] Line = res.readAll(); //=데이터
+        for (int i = 0; i < Line.length; i++) {
+            String[] dataRow = Line[i].toString().split(",");
             Model.addRow(dataRow);
         }
     }
+
     private boolean roomDataCheck() {
-        ResDao res = new ResDao();
+        RoomController res = new RoomController();
         String roomnum = null;
         if (searchdata.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "빈 객실입니다.");
@@ -57,25 +64,20 @@ public class ReservaionCheck extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "해당 객실이 없습니다.");
         return false;
     }
-    String search = null;
-    public String txt_searchroomnum() {
-        search = searchdata.getText();
-        System.out.println(search);
-        return search;
-    }
 
-//    private void settablesearchdata() {
-//        ResDao res = new ResDao();
-//        DefaultTableModel Model = (DefaultTableModel) customerdatatable.getModel();
-//        if (roomDataCheck() == true) {
-//            Model.setRowCount(0);
-//            String[] Line = res.roomSearch();
-//            for (int i = 0; i < Line.length; i++) {
-//                String[] dataRow = Line[i].toString().split(",");
-//                Model.addRow(dataRow);
-//            }
-//        }
-//    }
+    private void settablesearchdata() {
+        String txtsearchroomnum = searchdata.getText();
+        RoomController res = new RoomController(txtsearchroomnum);
+        DefaultTableModel Model = (DefaultTableModel) customerdatatable.getModel();
+        if (roomDataCheck() == true) {
+            Model.setRowCount(0);
+            String[] Line = res.roomdatasearch();
+            for (int i = 0; i < Line.length; i++) {
+                String[] dataRow = Line[i].toString().split(",");
+                Model.addRow(dataRow);
+            }
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -106,9 +108,10 @@ public class ReservaionCheck extends javax.swing.JFrame {
                 "예약자", "전화번호", "객실 타입", "객실 호수", "객실 인원", "체크인", "체크아웃"
             }
         ));
+        customerdatatable.setRowSelectionAllowed(true);
         jScrollPane1.setViewportView(customerdatatable);
 
-        jLabel1.setText("검색:");
+        jLabel1.setText("객실검색:");
 
         BUTT_reservation.setFont(new java.awt.Font("굴림", 0, 20)); // NOI18N
         BUTT_reservation.setText("예약");
@@ -145,7 +148,7 @@ public class ReservaionCheck extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(searchdata, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -202,11 +205,10 @@ public class ReservaionCheck extends javax.swing.JFrame {
     }//GEN-LAST:event_BUTT_gobackActionPerformed
 
     private void BUTT_enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_enterActionPerformed
-        // TODO add your handling code here:
+        String txtsearchroomnum = searchdata.getText();
+        RoomController res = new RoomController(txtsearchroomnum);
         roomDataCheck();
-        //settablesearchdata();
-        ResDao res = new ResDao();
-        res.roomSearch();
+        settablesearchdata();
     }//GEN-LAST:event_BUTT_enterActionPerformed
 
     /**
@@ -223,4 +225,5 @@ public class ReservaionCheck extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField searchdata;
     // End of variables declaration//GEN-END:variables
+
 }
