@@ -13,7 +13,6 @@ import lombok.*;
 //빌더 패턴 사용
 @ToString
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
 public class UserDto {
 
@@ -52,6 +51,11 @@ public class UserDto {
         this.usertype = builder.usertype;
     }
     
+    public UserDto(String id,String pw, String usertype){
+        this.id = id;
+        this.pw = pw;
+        this.usertype = usertype;
+    }
 //    public static UserDto createDto(UserDto entity) {
 //        return new UserBuilder()
 //                .id(entity.getId())
@@ -59,4 +63,5 @@ public class UserDto {
 //                .usertype (entity.getUsertype())
 //                .build();
 //    }
+    
 }

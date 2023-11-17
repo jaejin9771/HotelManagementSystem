@@ -13,11 +13,35 @@ import lombok.*;
 @ToString
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserLoginDto {
+
     private String id;
     private String pw;
+
+    public static class UserLoginDtoBuilder {
+
+        private String id;
+        private String pw;
+
+        public UserLoginDtoBuilder id(String id) {
+            this.id = id;
+            return this;
+        }
+
+        public UserLoginDtoBuilder pw(String pw) {
+            this.pw = pw;
+            return this;
+        }
+        
+        public UserLoginDto build() {
+            return new UserLoginDto(this);
+        }
+    }
     
+    private UserLoginDto(UserLoginDtoBuilder builder) {
+        this.id = builder.id;
+        this.pw = builder.pw;
+    }
 }

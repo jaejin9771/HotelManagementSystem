@@ -17,33 +17,33 @@ import java.util.logging.Logger;
  * @author 재진
  */
 public class UserController {
+
     public static UserController userController = new UserController();
-    public static UserController getInstance(){ return userController; }
+
+    public static UserController getInstance() {
+        return userController;
+    }
     private static UserDao userDao;
+
     public UserController() {
         userDao = new UserDao();
     }
 
     public UserDto login(String inputId, String inputPw) {
-        UserLoginDto dto = new UserLoginDto(inputId,inputPw);
-        
+        UserLoginDto dto = new UserLoginDto(inputId, inputPw);
+
         UserDto user = userDao.findByIdAndPw(dto);
-        
+
         return user;
     }
-    
-    public boolean isRegister(String inputId, String inputPw) {
-        File file = new File("data/user.txt");
-        String split = ",";
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file,true))) {
-            bw.newLine();
-            bw.write(inputId);
-            bw.write(split);
-            bw.write(inputPw);
-            
+
+    public boolean signUp(String inputId, String inputPw, String usertype) {
+        UserDto dto = new UserDto(inputId, inputPw, usertype);
+        
+        if(userDao.insert(dto)){
             return true;
-        } catch (IOException e) {
-            e.printStackTrace();
+        }
+        else {
             return false;
         }
     }

@@ -108,6 +108,7 @@ public class ReservaionCheck extends javax.swing.JFrame {
                 "예약자", "전화번호", "객실 타입", "객실 호수", "객실 인원", "체크인", "체크아웃"
             }
         ));
+
         customerdatatable.setRowHeight(35);
         jScrollPane1.setViewportView(customerdatatable);
 
