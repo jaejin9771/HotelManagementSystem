@@ -8,8 +8,10 @@ package cse.projects.hms.view;
 import cse.projects.hms.controller.ResCheckController;
 import cse.projects.hms.controller.RoomController;
 import cse.projects.hms.dao.reservation.ResDao;
+import cse.projects.hms.dto.reservation.CustomertableClickcellDto;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -81,14 +83,14 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
     }
 //--------------------------------------------------------------------------------------------------- 예약취소기능
 
-    public String selectrow() {//JTable에서 선택한 행의 객실번호를 리턴함
+    public String selectRow() {//JTable에서 선택한 행의 객실번호를 리턴함
         int rowcount = customerdatatable.getSelectedRow();
         String selectroomnum = customerdatatable.getValueAt(rowcount, 3).toString();
         System.out.println(selectroomnum);
         return selectroomnum;
     }
 
-    public void removeseltable() {
+    /*public void removeSelectedtable() {
         ResCheckController canceldata = new ResCheckController();
         if (canceldata.cancelData() == true) {
             DefaultTableModel Model = (DefaultTableModel) customerdatatable.getModel();
@@ -96,7 +98,7 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
                 Model.removeRow(customerdatatable.getSelectedRow());
             }
         }
-    }
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -228,10 +230,11 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                    .addComponent(BUTT_reservation, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BUTT_reservationcancel, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                    .addComponent(BUTT_modify, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BUTT_reservationcancel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(BUTT_reservation, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BUTT_modify, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(15, 15, 15))
         );
 
@@ -246,6 +249,7 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_BUTT_reservationActionPerformed
 
     private void BUTT_reservationcancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_reservationcancelActionPerformed
+        selectRow();
         JOptionPane.showMessageDialog(null, "예약이 성공적으로 취소 되었습니다.");
     }//GEN-LAST:event_BUTT_reservationcancelActionPerformed
 
@@ -272,7 +276,18 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
 
     private void BUTT_modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_modifyActionPerformed
         // TODO add your handling code here:
-        ReservationModifyScreen res = new ReservationModifyScreen();
+        int row = customerdatatable.getSelectedRow();
+        TableModel data = customerdatatable.getModel();
+
+        String name = (String) data.getValueAt(row, 0);
+        String phone = (String) data.getValueAt(row, 1);
+        String roomtype = (String) data.getValueAt(row, 2);
+        String roomnumber = (String) data.getValueAt(row, 3);
+        String people = (String) data.getValueAt(row, 4);
+        String checkin = (String) data.getValueAt(row, 5);
+        String checkout = (String) data.getValueAt(row, 6);
+        CustomertableClickcellDto selectUser = new CustomertableClickcellDto(name, phone, roomtype, roomnumber, people, checkin, checkout);
+        ReservationModifyScreen res = new ReservationModifyScreen(selectUser);
         res.setVisible(true);
         dispose();
     }//GEN-LAST:event_BUTT_modifyActionPerformed
