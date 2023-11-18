@@ -17,6 +17,7 @@ public class PaymentScreen extends javax.swing.JFrame {
      */
     public PaymentScreen() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

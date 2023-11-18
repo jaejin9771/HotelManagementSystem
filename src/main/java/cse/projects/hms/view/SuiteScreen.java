@@ -24,6 +24,7 @@ public class SuiteScreen extends javax.swing.JFrame implements ActionListener {
     public SuiteScreen() {
         initComponents();
         initializeRoomButtons();
+        setLocationRelativeTo(null);
     }
 
     private void initializeRoomButtons() {

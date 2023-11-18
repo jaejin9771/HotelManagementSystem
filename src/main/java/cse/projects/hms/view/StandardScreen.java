@@ -24,6 +24,7 @@ public class StandardScreen extends javax.swing.JFrame implements ActionListener
     public StandardScreen() {
         initComponents();
         initializeRoomButtons();
+        setLocationRelativeTo(null);
     }
 
     private void initializeRoomButtons() {

@@ -24,6 +24,7 @@ public class RoyalSuiteScreen extends javax.swing.JFrame implements ActionListen
     public RoyalSuiteScreen() {
         initComponents();
         initializeRoomButtons();
+        setLocationRelativeTo(null);
     }
 
     private void initializeRoomButtons() {

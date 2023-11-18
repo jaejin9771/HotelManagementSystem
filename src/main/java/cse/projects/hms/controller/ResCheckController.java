@@ -5,10 +5,7 @@
 package cse.projects.hms.controller;
 
 import cse.projects.hms.view.ReservationCheckScreen;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -85,25 +82,36 @@ public class ResCheckController {
     }
 
     public boolean cancelData() {
-        int linecount = -1;
         ReservationCheckScreen res = new ReservationCheckScreen();
-        System.out.println(res.selectjtable());
+        String line;
         String fileName = "data/UserData.txt";
         File file = new File(fileName);
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line;
+        List<String> lines = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             while ((line = br.readLine()) != null) {
                 line = br.readLine();
-                if(line == "\n"){
-                    linecount++;
+                String[] row = line.split(",");
+                if (row[3].equals(res.selectrow())) {
+                    continue;
                 }
-                if(linecount == res.selectjtable()){
-                }
+                lines.add(line);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return true;
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            for (String lineToWrite : lines) {
+                writer.write(lineToWrite);
+                writer.newLine();
+            }
+            System.out.println("예약이 성공적으로 취소 되었습니다.");
+            return true;
+        } catch (IOException ex) {
+            Logger.getLogger(ResCheckController.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            System.out.println("예약 취소 중 오류가 발생했습니다.");
+        }
+        return false;
     }
 }
