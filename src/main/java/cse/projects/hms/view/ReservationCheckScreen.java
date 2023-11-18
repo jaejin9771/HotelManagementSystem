@@ -21,7 +21,6 @@ import javax.swing.table.TableModel;
  */
 public class ReservationCheckScreen extends javax.swing.JFrame {
 
-    private String roomnum;
 
     /**
      * Creates new form ReservaionCheck
@@ -85,15 +84,6 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
     }
 //--------------------------------------------------------------------------------------------------- 예약취소기능
 
-    /*public void removeSelectedtable() {
-        ResCheckController canceldata = new ResCheckController();
-        if (canceldata.cancelData() == true) {
-            DefaultTableModel Model = (DefaultTableModel) customerdatatable.getModel();
-            if (customerdatatable.getSelectedRow() != -1) {
-                Model.removeRow(customerdatatable.getSelectedRow());
-            }
-        }
-    }*/
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -247,7 +237,7 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
     private void BUTT_reservationcancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_reservationcancelActionPerformed
         ResCheckController res = new ResCheckController();
         int rowcount = customerdatatable.getSelectedRow();
-        res.handleRowSelection(customerdatatable.getValueAt(ERROR, 3).toString());
+        res.handleRowSelection(customerdatatable.getValueAt(rowcount, 3).toString());
         res.cancelData();
         JOptionPane.showMessageDialog(null, "예약이 성공적으로 취소 되었습니다.");
     }//GEN-LAST:event_BUTT_reservationcancelActionPerformed

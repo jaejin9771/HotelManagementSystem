@@ -81,6 +81,7 @@ public class ResCheckController {
         }
         return userDataList.toArray(new String[0]);
     }
+    
     private String selectedRoomnum;
     public void handleRowSelection(String roomnum) {
         selectedRoomnum = roomnum;
@@ -89,6 +90,7 @@ public class ResCheckController {
     public boolean cancelData() {
         ReservationCheckScreen res = new ReservationCheckScreen();
         String line;
+        System.out.println(selectedRoomnum);
         String fileName = "data/UserData.txt";
         File file = new File(fileName);
         List<String> lines = new ArrayList<>();
