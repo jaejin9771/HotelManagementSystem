@@ -25,6 +25,7 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
     public ReservationCheckScreen() {
         initComponents();
         initializeCoustomerData();
+        setLocationRelativeTo(null);
     }
 
     private void controlColummSize() {
@@ -34,7 +35,6 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
         customerdatatable.getColumnModel().getColumn(1).setPreferredWidth(180);
         customerdatatable.getColumnModel().getColumn(2).setPreferredWidth(130);
     }
-
 
     private void initializeCoustomerData() {
         ResDao res = new ResDao();
@@ -81,9 +81,11 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
     }
 //--------------------------------------------------------------------------------------------------- 예약취소기능
 
-    public int selectjtable() {
-        System.out.println(customerdatatable.getSelectedRow());
-        return customerdatatable.getSelectedRow();
+    public String selectrow() {//JTable에서 선택한 행의 객실번호를 리턴함
+        int rowcount = customerdatatable.getSelectedRow();
+        String selectroomnum = customerdatatable.getValueAt(rowcount, 3).toString();
+        System.out.println(selectroomnum);
+        return selectroomnum;
     }
 
     public void removeseltable() {
@@ -95,6 +97,7 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
             }
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -113,6 +116,7 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
         BUTT_goback = new javax.swing.JButton();
         BUTT_enter = new javax.swing.JButton();
         BUTT_reset = new javax.swing.JButton();
+        BUTT_modify = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -167,6 +171,14 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
             }
         });
 
+        BUTT_modify.setFont(new java.awt.Font("굴림", 0, 20)); // NOI18N
+        BUTT_modify.setText("예약수정");
+        BUTT_modify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTT_modifyActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -183,13 +195,15 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BUTT_goback)
                 .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BUTT_reservation, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
+                .addComponent(BUTT_modify, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(BUTT_reservationcancel)
-                .addGap(18, 18, 18))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+                .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,17 +221,18 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
                                     .addComponent(jLabel1))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 6, Short.MAX_VALUE)
+                        .addGap(0, 5, Short.MAX_VALUE)
                         .addComponent(BUTT_enter)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BUTT_reset)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BUTT_reservationcancel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BUTT_reservation, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(BUTT_reservation, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BUTT_reservationcancel, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                    .addComponent(BUTT_modify, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15))
         );
 
         pack();
@@ -255,6 +270,13 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
         initializeCoustomerData();
     }//GEN-LAST:event_BUTT_resetActionPerformed
 
+    private void BUTT_modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_modifyActionPerformed
+        // TODO add your handling code here:
+        ReservationModifyScreen res = new ReservationModifyScreen();
+        res.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BUTT_modifyActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -262,6 +284,7 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BUTT_enter;
     private javax.swing.JButton BUTT_goback;
+    private javax.swing.JButton BUTT_modify;
     private javax.swing.JButton BUTT_reservation;
     private javax.swing.JButton BUTT_reservationcancel;
     private javax.swing.JButton BUTT_reset;

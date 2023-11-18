@@ -39,6 +39,7 @@ public class ReservationScreen extends javax.swing.JFrame {
         initComponents();
         initializeroom();
         initializerestriction();
+        setLocationRelativeTo(null);
     }
 
     private void initializeroom() {

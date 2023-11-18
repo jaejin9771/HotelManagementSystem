@@ -19,6 +19,7 @@ public class RoomServiceScreen extends javax.swing.JFrame {
      */
     public RoomServiceScreen() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

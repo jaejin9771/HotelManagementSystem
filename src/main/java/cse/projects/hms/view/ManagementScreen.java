@@ -18,6 +18,7 @@ public class ManagementScreen extends javax.swing.JFrame {
      */
     public ManagementScreen() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
