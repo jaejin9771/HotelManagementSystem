@@ -5,7 +5,7 @@
 package cse.projects.hms.dao.reservation;
 
 import cse.projects.hms.dto.reservation.ResDto;
-import cse.projects.hms.view.ReservaionCheck;
+import cse.projects.hms.view.ReservationCheckScreen;
 import java.io.*;
 import java.util.*;
 
