@@ -10,6 +10,8 @@ import cse.projects.hms.controller.RoomController;
 import cse.projects.hms.dao.reservation.ResDao;
 import cse.projects.hms.dto.reservation.CustomertableClickcellDto;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -19,7 +21,7 @@ import javax.swing.table.TableModel;
  */
 public class ReservationCheckScreen extends javax.swing.JFrame {
 
-    String roomnum = null;
+    private String roomnum;
 
     /**
      * Creates new form ReservaionCheck
@@ -83,13 +85,6 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
     }
 //--------------------------------------------------------------------------------------------------- 예약취소기능
 
-    public String selectRow() {//JTable에서 선택한 행의 객실번호를 리턴함
-        int rowcount = customerdatatable.getSelectedRow();
-        String selectroomnum = customerdatatable.getValueAt(rowcount, 3).toString();
-        System.out.println(selectroomnum);
-        return selectroomnum;
-    }
-
     /*public void removeSelectedtable() {
         ResCheckController canceldata = new ResCheckController();
         if (canceldata.cancelData() == true) {
@@ -99,7 +94,6 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
             }
         }
     }*/
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -131,6 +125,8 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
                 "예약자", "전화번호", "객실 타입", "객실 호수", "객실 인원", "체크인", "체크아웃"
             }
         ));
+        customerdatatable.setEditingColumn(0);
+        customerdatatable.setEditingRow(0);
         customerdatatable.setRowHeight(35);
         jScrollPane1.setViewportView(customerdatatable);
 
@@ -249,7 +245,10 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_BUTT_reservationActionPerformed
 
     private void BUTT_reservationcancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_reservationcancelActionPerformed
-        selectRow();
+        ResCheckController res = new ResCheckController();
+        int rowcount = customerdatatable.getSelectedRow();
+        res.handleRowSelection(customerdatatable.getValueAt(ERROR, 3).toString());
+        res.cancelData();
         JOptionPane.showMessageDialog(null, "예약이 성공적으로 취소 되었습니다.");
     }//GEN-LAST:event_BUTT_reservationcancelActionPerformed
 
