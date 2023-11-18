@@ -16,6 +16,7 @@ import java.util.logging.Logger;
  * @author ij944
  */
 public class ResCheckController {
+
     private String txtsearchroomnum;
 
     public ResCheckController() {
@@ -81,7 +82,7 @@ public class ResCheckController {
         return userDataList.toArray(new String[0]);
     }
 
-    public boolean cancelData() {
+    /*public boolean cancelData() {
         ReservationCheckScreen res = new ReservationCheckScreen();
         String line;
         String fileName = "data/UserData.txt";
@@ -89,9 +90,9 @@ public class ResCheckController {
         List<String> lines = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             while ((line = br.readLine()) != null) {
-                line = br.readLine();
                 String[] row = line.split(",");
-                if (row[3].equals(res.selectrow())) {
+                if (res.selectRow().equals(row[3])) {
+                    System.out.println("너 되고잇냐?");
                     continue;
                 }
                 lines.add(line);
@@ -113,5 +114,5 @@ public class ResCheckController {
             System.out.println("예약 취소 중 오류가 발생했습니다.");
         }
         return false;
-    }
+    }*/
 }
