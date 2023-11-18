@@ -81,8 +81,12 @@ public class ResCheckController {
         }
         return userDataList.toArray(new String[0]);
     }
+    private String selectedRoomnum;
+    public void handleRowSelection(String roomnum) {
+        selectedRoomnum = roomnum;
+    }
 
-    /*public boolean cancelData() {
+    public boolean cancelData() {
         ReservationCheckScreen res = new ReservationCheckScreen();
         String line;
         String fileName = "data/UserData.txt";
@@ -91,8 +95,7 @@ public class ResCheckController {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
-                if (res.selectRow().equals(row[3])) {
-                    System.out.println("너 되고잇냐?");
+                if (selectedRoomnum.equals(row[3])) {
                     continue;
                 }
                 lines.add(line);
@@ -114,5 +117,5 @@ public class ResCheckController {
             System.out.println("예약 취소 중 오류가 발생했습니다.");
         }
         return false;
-    }*/
+    }
 }
