@@ -19,6 +19,7 @@ public class MainScreen extends javax.swing.JFrame {
      */
     public MainScreen() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -134,7 +135,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void BUTT_reservationviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_reservationviewActionPerformed
         // TODO add your handling code here:
-        ReservaionCheck reservaioncheck = new ReservaionCheck();
+        ReservationCheckScreen reservaioncheck = new ReservationCheckScreen();
         reservaioncheck.setVisible(true);
         dispose();
     }//GEN-LAST:event_BUTT_reservationviewActionPerformed

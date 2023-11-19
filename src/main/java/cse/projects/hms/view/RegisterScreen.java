@@ -22,6 +22,7 @@ public class RegisterScreen extends javax.swing.JFrame {
      */
     public RegisterScreen() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

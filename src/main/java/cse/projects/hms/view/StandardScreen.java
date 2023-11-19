@@ -24,6 +24,7 @@ public class StandardScreen extends javax.swing.JFrame implements ActionListener
     public StandardScreen() {
         initComponents();
         initializeRoomButtons();
+        setLocationRelativeTo(null);
     }
 
     private void initializeRoomButtons() {
@@ -42,7 +43,10 @@ public class StandardScreen extends javax.swing.JFrame implements ActionListener
 
         // 각 버튼에 대해 예약 상태 확인 및 비활성화 처리
         for (int i = 0; i < roomButtons.length; i++) {
-            if (rc.isEmptyRoom( Integer.toString((i / 5 + 1) * 100 + i % 5 + 1))){ 
+            int tensDigit = i / 5;
+            // 101부터 시작하도록 수정
+            int roomNumber = 101 + tensDigit * 10 + i % 5;
+            if (rc.isEmptyRoom( Integer.toString(roomNumber))){ 
             } else {
                roomButtons[i].setEnabled(false);
            }

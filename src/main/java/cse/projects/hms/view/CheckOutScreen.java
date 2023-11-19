@@ -16,6 +16,7 @@ public class CheckOutScreen extends javax.swing.JFrame {
      */
     public CheckOutScreen() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

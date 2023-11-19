@@ -16,6 +16,7 @@ public class CheckInScreen extends javax.swing.JFrame {
      */
     public CheckInScreen() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

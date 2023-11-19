@@ -20,6 +20,7 @@ public class RoomScreen extends javax.swing.JFrame {
      */
     public RoomScreen() {
         initComponents();
+        setLocationRelativeTo(null);
         //initializeRadioButtons();
     }
 //     private void initializeRadioButtons() {
