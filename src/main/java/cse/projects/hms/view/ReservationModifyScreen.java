@@ -5,6 +5,7 @@
 package cse.projects.hms.view;
 
 import cse.projects.hms.dto.reservation.CustomertableClickcellDto;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,13 +15,39 @@ public class ReservationModifyScreen extends javax.swing.JFrame {
 
     /**
      * Creates new form ReservationModifyScreen
+     *
      * @param clickcell
      */
     public ReservationModifyScreen(CustomertableClickcellDto clickcell) {
         initComponents();
         setLocationRelativeTo(null);
-        txtname.setText("얘 왜 출력안되냐");
         setSelectedcell(clickcell);
+    }
+    private void setSelectedcell(CustomertableClickcellDto clickcell) {
+        txtname.setText(clickcell.getName());
+        txtphone.setText(clickcell.getPhone());
+        txtroomtype.setText(clickcell.getRoomtype());
+        txtroomnum.setText(clickcell.getRoomnum());
+        txtpeople.setText(clickcell.getPeople());
+        txtcheckin.setText(clickcell.getCheckin());
+        txtcheckout.setText(clickcell.getCheckout());
+    }
+    private String m_name;
+    private String m_phone;
+    private String m_roomtype;
+    private String m_roomnumber;
+    private String m_people;
+    private String m_checkin;
+    private String m_checkout;
+
+    private void modifydata() {
+        m_name = txtname.getText();
+        m_phone = txtphone.getText();
+        m_roomtype = txtroomtype.getText();
+        m_roomnumber = txtroomnum.getText();
+        m_people = txtpeople.getText();
+        m_checkin = txtcheckin.getText();
+        m_checkout = txtcheckout.getText();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -84,6 +111,11 @@ public class ReservationModifyScreen extends javax.swing.JFrame {
 
         BUTT_mofify.setFont(new java.awt.Font("맑은 고딕", 0, 18)); // NOI18N
         BUTT_mofify.setText("수정");
+        BUTT_mofify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTT_mofifyActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -171,18 +203,15 @@ public class ReservationModifyScreen extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BUTT_gobackActionPerformed
 
+    private void BUTT_mofifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_mofifyActionPerformed
+        // TODO add your handling code here:
+        modifydata();
+        JOptionPane.showMessageDialog(null, "예약정보가 성공적으로 수정되었습니다.");
+    }//GEN-LAST:event_BUTT_mofifyActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    private void setSelectedcell(CustomertableClickcellDto clickcell) {
-        txtname.setText(clickcell.getName());
-        txtphone.setText(clickcell.getPhone());
-        txtroomtype.setText(clickcell.getRoomtype());
-        txtroomnum.setText(clickcell.getRoomnum());
-        txtpeople.setText(clickcell.getPeople());
-        txtcheckin.setText(clickcell.getCheckin());
-        txtcheckout.setText(clickcell.getCheckout());
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BUTT_goback;
     private javax.swing.JButton BUTT_mofify;
