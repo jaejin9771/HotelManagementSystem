@@ -4,6 +4,7 @@
  */
 package cse.projects.hms.controller;
 
+import cse.projects.hms.dto.reservation.CustomertableClickcellDto;
 import cse.projects.hms.view.ReservationCheckScreen;
 import java.io.*;
 import java.util.ArrayList;
@@ -16,15 +17,21 @@ import java.util.logging.Logger;
  * @author ij944
  */
 public class ResCheckController {
-
+    private CustomertableClickcellDto selectusers;
     private String txtsearchroomnum;
-
+    private String selectuser;
+    //private String selectedM_Roomnum;
     public ResCheckController() {
 
     }
-
+//    public ResCheckController(String roomnum) {
+//        this.selectedM_Roomnum = roomnum;
+//    }
     public ResCheckController(String txtsearchroomnum) {
         this.txtsearchroomnum = txtsearchroomnum;
+    }
+    public ResCheckController(CustomertableClickcellDto ctcDto){
+        selectuser = ctcDto.getName()+","+ ctcDto.getPhone()+","+ctcDto.getRoomtype()+","+ctcDto.getRoomnum()+","+ctcDto.getPeople()+","+ctcDto.getCheckin()+","+ctcDto.getCheckout()+"\n";
     }
 
     public List<String> checkResroom() { //예약된 객실호수만 읽는 메서드
@@ -83,14 +90,12 @@ public class ResCheckController {
     }
     
     private String selectedRoomnum;
-    public void handleRowSelection(String roomnum) {
+    public void CancelSelectedcell(String roomnum) {
         selectedRoomnum = roomnum;
     }
 
     public boolean cancelData() {
-        ReservationCheckScreen res = new ReservationCheckScreen();
         String line;
-        System.out.println(selectedRoomnum);
         String fileName = "data/UserData.txt";
         File file = new File(fileName);
         List<String> lines = new ArrayList<>();
@@ -119,5 +124,44 @@ public class ResCheckController {
             System.out.println("예약 취소 중 오류가 발생했습니다.");
         }
         return false;
+    }
+    
+    private String selectedM_Roomnum;
+    public void modifySelectedcell(String roomnum) {
+        this.selectedM_Roomnum = roomnum;
+        System.out.println(selectedM_Roomnum); // 실행됨.
+    }
+    //public void modifyUserdata(CustomertableClickcellDto ctcDto,String selectedValue)
+    public boolean modifyUserdata(String selectedValue){
+        String line;
+        System.out.println(this.selectedM_Roomnum); 
+        
+        String fileName = "data/UserData.txt";
+        File file = new File(fileName);
+        List<String> lines = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            while ((line = br.readLine()) != null) {
+                String[] row = line.split(",");
+                if (selectedM_Roomnum.equals(row[3])) {
+                    continue;
+                }
+                lines.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            for (String lineToWrite : lines) {
+                writer.write(lineToWrite);
+                writer.newLine();
+                writer.write(selectuser);
+            }
+            System.out.println("예약정보가 성공적으로 수정되었습니다.");
+        } catch (IOException ex) {
+            Logger.getLogger(ResCheckController.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            System.out.println("예약정보 수정 중 오류가 발생했습니다.");
+        }
+        return true;
     }
 }

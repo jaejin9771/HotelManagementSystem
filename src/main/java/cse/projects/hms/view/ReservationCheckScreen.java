@@ -9,6 +9,8 @@ import cse.projects.hms.controller.ResCheckController;
 import cse.projects.hms.controller.RoomController;
 import cse.projects.hms.dao.reservation.ResDao;
 import cse.projects.hms.dto.reservation.CustomertableClickcellDto;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -19,8 +21,7 @@ import javax.swing.table.TableModel;
  *
  * @author ij944
  */
-public class ReservationCheckScreen extends javax.swing.JFrame {
-
+public class ReservationCheckScreen extends javax.swing.JFrame implements ActionListener{
 
     /**
      * Creates new form ReservaionCheck
@@ -83,7 +84,6 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
         }
     }
 //--------------------------------------------------------------------------------------------------- 예약취소기능
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -237,7 +237,7 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
     private void BUTT_reservationcancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_reservationcancelActionPerformed
         ResCheckController res = new ResCheckController();
         int rowcount = customerdatatable.getSelectedRow();
-        res.handleRowSelection(customerdatatable.getValueAt(rowcount, 3).toString());
+        res.CancelSelectedcell(customerdatatable.getValueAt(rowcount, 3).toString());
         res.cancelData();
         JOptionPane.showMessageDialog(null, "예약이 성공적으로 취소 되었습니다.");
     }//GEN-LAST:event_BUTT_reservationcancelActionPerformed
@@ -275,6 +275,10 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
         String people = (String) data.getValueAt(row, 4);
         String checkin = (String) data.getValueAt(row, 5);
         String checkout = (String) data.getValueAt(row, 6);
+
+        ResCheckController ress = new ResCheckController();
+        ress.modifySelectedcell(customerdatatable.getValueAt(row, 3).toString()); //modifyUserdata()가 여기서 실행되면 객실번호가 나옴
+
         CustomertableClickcellDto selectUser = new CustomertableClickcellDto(name, phone, roomtype, roomnumber, people, checkin, checkout);
         ReservationModifyScreen res = new ReservationModifyScreen(selectUser);
         res.setVisible(true);
@@ -298,4 +302,13 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
     private javax.swing.JTextField searchdata;
     // End of variables declaration//GEN-END:variables
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        int selectedRow = customerdatatable.getSelectedRow();
+        String selectedValue = customerdatatable.getValueAt(selectedRow, 3).toString();
+
+        ResCheckController otherObj = new ResCheckController();
+        otherObj.modifyUserdata(selectedValue);
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

@@ -4,6 +4,7 @@
  */
 package cse.projects.hms.view;
 
+import cse.projects.hms.controller.ResCheckController;
 import cse.projects.hms.dto.reservation.CustomertableClickcellDto;
 import javax.swing.JOptionPane;
 
@@ -23,6 +24,7 @@ public class ReservationModifyScreen extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setSelectedcell(clickcell);
     }
+
     private void setSelectedcell(CustomertableClickcellDto clickcell) {
         txtname.setText(clickcell.getName());
         txtphone.setText(clickcell.getPhone());
@@ -39,16 +41,8 @@ public class ReservationModifyScreen extends javax.swing.JFrame {
     private String m_people;
     private String m_checkin;
     private String m_checkout;
+    
 
-    private void modifydata() {
-        m_name = txtname.getText();
-        m_phone = txtphone.getText();
-        m_roomtype = txtroomtype.getText();
-        m_roomnumber = txtroomnum.getText();
-        m_people = txtpeople.getText();
-        m_checkin = txtcheckin.getText();
-        m_checkout = txtcheckout.getText();
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -204,8 +198,16 @@ public class ReservationModifyScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_BUTT_gobackActionPerformed
 
     private void BUTT_mofifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_mofifyActionPerformed
-        // TODO add your handling code here:
-        modifydata();
+        m_name = txtname.getText();
+        m_phone = txtphone.getText();
+        m_roomtype = txtroomtype.getText();
+        m_roomnumber = txtroomnum.getText();
+        m_people = txtpeople.getText();
+        m_checkin = txtcheckin.getText();
+        m_checkout = txtcheckout.getText();
+        CustomertableClickcellDto selectuser = new CustomertableClickcellDto(m_name, m_phone, m_roomtype, m_roomnumber, m_people, m_checkin, m_checkout);
+        ResCheckController res = new ResCheckController();
+        //res.modifyUserdata();//modifyUserdata()가 여기서 실행되면 null이 나옴
         JOptionPane.showMessageDialog(null, "예약정보가 성공적으로 수정되었습니다.");
     }//GEN-LAST:event_BUTT_mofifyActionPerformed
 
