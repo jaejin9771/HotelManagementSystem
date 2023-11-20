@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author ij944
  */
 public class MainScreen extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form MainFrame
      */
@@ -37,6 +37,7 @@ public class MainScreen extends javax.swing.JFrame {
         BUTT_checkin = new javax.swing.JButton();
         BUTT_checkout = new javax.swing.JButton();
         BUTT_management = new javax.swing.JButton();
+        logOutBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -89,6 +90,13 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
 
+        logOutBtn.setText("로그아웃");
+        logOutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,11 +115,17 @@ public class MainScreen extends javax.swing.JFrame {
                     .addComponent(BUTT_service, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BUTT_management, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(187, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logOutBtn)
+                .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(175, 175, 175)
+                .addGap(23, 23, 23)
+                .addComponent(logOutBtn)
+                .addGap(125, 125, 125)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(BUTT_service, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BUTT_reservationview, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -169,6 +183,13 @@ public class MainScreen extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BUTT_managementActionPerformed
 
+    private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        LoginScreen loginScreen = new LoginScreen();
+        loginScreen.setVisible(true);
+    }//GEN-LAST:event_logOutBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -180,5 +201,6 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JButton BUTT_reservation;
     private javax.swing.JButton BUTT_reservationview;
     private javax.swing.JButton BUTT_service;
+    private javax.swing.JButton logOutBtn;
     // End of variables declaration//GEN-END:variables
 }

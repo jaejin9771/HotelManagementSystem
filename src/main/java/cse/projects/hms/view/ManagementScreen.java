@@ -33,6 +33,7 @@ public class ManagementScreen extends javax.swing.JFrame {
         registerBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         goback = new javax.swing.JButton();
+        reportBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,12 +46,20 @@ public class ManagementScreen extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("굴림", 1, 36)); // NOI18N
-        jLabel1.setText("Manager System");
+        jLabel1.setText("Management");
 
         goback.setText("goback");
         goback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gobackActionPerformed(evt);
+            }
+        });
+
+        reportBtn.setFont(new java.awt.Font("굴림", 0, 18)); // NOI18N
+        reportBtn.setText("보고서");
+        reportBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportBtnActionPerformed(evt);
             }
         });
 
@@ -60,30 +69,33 @@ public class ManagementScreen extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(285, 285, 285)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(166, 166, 166)
-                                .addComponent(registerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 305, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(goback)))
+                        .addComponent(goback))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(197, 197, 197)
+                        .addComponent(registerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(213, 213, 213)
+                        .addComponent(reportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 211, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(327, 327, 327)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(goback)
-                .addGap(5, 5, 5)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(registerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(385, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(registerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(373, Short.MAX_VALUE))
         );
 
         pack();
@@ -103,6 +115,11 @@ public class ManagementScreen extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_gobackActionPerformed
 
+    private void reportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportBtnActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_reportBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -112,5 +129,6 @@ public class ManagementScreen extends javax.swing.JFrame {
     private javax.swing.JButton goback;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton registerBtn;
+    private javax.swing.JButton reportBtn;
     // End of variables declaration//GEN-END:variables
 }
