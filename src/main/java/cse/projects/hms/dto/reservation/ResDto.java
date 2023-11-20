@@ -9,6 +9,7 @@ package cse.projects.hms.dto.reservation;
  * @author 재진
  */
 public class ResDto {
+
     private String name; // 이름
     private String phonenumber; // 전화번호
     private String roomtype; // 객실 등급
@@ -16,14 +17,15 @@ public class ResDto {
     private String peoplenum; // 인원 수
     private String checkin; // 체크인 시간
     private String checkout; // 체크아웃 시간
+    private String money;
     //private String userdata; //유저정보모음
 
     @Override
     public String toString() {
-        return name +',' + phonenumber + ','+roomtype+','+ roomnum+','+peoplenum+','+checkin+','+checkout+'\n';
+        return name + ',' + phonenumber + ',' + roomtype + ',' + roomnum + ',' + peoplenum + ',' + checkin + ',' + checkout + ',' + money;
     }
     
-    public ResDto(String name, String phonenumber, String roomtype, String roomnum, String peoplenum, String checkin, String checkout) {
+    public ResDto(String name, String phonenumber, String roomtype, String roomnum, String peoplenum, String checkin, String checkout, String money) {
         this.name = name;
         this.phonenumber = phonenumber;
         this.roomtype = roomtype;
@@ -31,11 +33,19 @@ public class ResDto {
         this.peoplenum = peoplenum;
         this.checkin = checkin;
         this.checkout = checkout;
+        this.money = money;
         //this.userdata = name +',' + phonenumber + ','+roomtype+','+ roomnum+','+peoplenum+','+checkin+','+checkout+'\n';
     }
 //    public String getUserdata() {
 //        return userdata;
 //    }
+    public String getMoney() {
+        return money;
+    }
+
+    public void setMoney(String money) {
+        this.money = money;
+    }
 
     public String getName() {
         return name;
@@ -92,5 +102,5 @@ public class ResDto {
     public void setCheckout(String checkout) {
         this.checkout = checkout;
     }
-    
+
 }

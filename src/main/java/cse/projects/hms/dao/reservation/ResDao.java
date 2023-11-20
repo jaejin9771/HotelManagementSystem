@@ -25,6 +25,7 @@ public class ResDao {
         File file = new File(fileName);
         try (BufferedWriter output = new BufferedWriter(new FileWriter(file, true))) {
             output.write(resDto.toString());
+            output.newLine();
         } catch (Exception e) {
             e.getStackTrace();
             System.out.println("insert 오류");
