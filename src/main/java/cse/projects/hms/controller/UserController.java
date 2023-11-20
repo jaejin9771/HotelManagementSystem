@@ -28,15 +28,17 @@ public class UserController {
     public UserController() {
         userDao = new UserDao();
     }
-    
+    public String getUserType() {
+        return userController.userType;
+    }
     public void setUserType(String userType) {
-        this.userType = userType;
+        userController.userType = userType;
     }
     public UserDto login(String inputId, String inputPw) {
         UserLoginDto dto = new UserLoginDto(inputId, inputPw);
 
         UserDto user = userDao.findByIdAndPw(dto);
-
+        
         return user;
     }
 
