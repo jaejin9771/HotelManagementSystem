@@ -117,7 +117,9 @@ public class ManagementScreen extends javax.swing.JFrame {
 
     private void reportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportBtnActionPerformed
         // TODO add your handling code here:
-        
+        dispose();
+        ReportScreen reportScreen = new ReportScreen();
+        reportScreen.setVisible(true);
     }//GEN-LAST:event_reportBtnActionPerformed
 
     /**

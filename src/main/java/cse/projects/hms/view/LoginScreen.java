@@ -9,6 +9,7 @@ import cse.projects.hms.controller.UserController;
 import cse.projects.hms.dto.user.UserDto;
 import java.util.HashSet;
 import javax.swing.JOptionPane;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -112,6 +113,7 @@ public class LoginScreen extends javax.swing.JFrame {
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
+        System.out.println("Today is " + LocalDateTime.now());
 
         String inputId = ID.getText(); // 입력한 ID
         String inputPw = new String(Password.getPassword()); // 입력한 PW

@@ -42,28 +42,8 @@ public class UserController {
         
         if(userDao.insert(dto)){
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
-//    public int findByIdAndPw(String inputId){
-//        File file = new File("user.txt");
-//        int check = 0;
-//        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-//            String line;
-//            while ((line = br.readLine()) != null) {
-//                String[] userInfo = line.split(","); // txt파일에 저장되어있는 아이디와 비밀번호를 나눠서 저장.
-//                String storedId = userInfo[0]; // txt파일에 있는 ID
-//                
-//                if(inputId.equals(storedId)){
-//                    check = 1;
-//                   return check; 
-//                }
-//            }
-//        } catch (IOException e) {
-//            System.out.println("아이디 찾기 오류");
-//        }
-//        return check;
-//    }
 }

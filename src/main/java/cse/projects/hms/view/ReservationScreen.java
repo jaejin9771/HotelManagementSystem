@@ -10,6 +10,9 @@ import cse.projects.hms.dto.reservation.ResDto;
 import java.awt.event.ActionEvent;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -252,11 +255,13 @@ public class ReservationScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BUTT_insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_insertActionPerformed
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String selectedpeopleNumber = TEXT_peopleNumber.getSelectedItem().toString();
         String username = name.getText();
         String phonenumber = phoneNumber.getText();
-        String checkintime = checkinTime.getDate().toString();
-        String checkouttime = checkoutTime.getDate().toString();
+        
+        String checkintime = dateFormat.format(checkinTime.getDate());
+        String checkouttime = dateFormat.format(checkoutTime.getDate());
         
         ResDto res;
         res = new ResDto(username, phonenumber, roomtype, roomnum, selectedpeopleNumber, checkintime, checkouttime);
