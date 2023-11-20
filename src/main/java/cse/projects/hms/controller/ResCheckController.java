@@ -20,6 +20,7 @@ public class ResCheckController {
     private CustomertableClickcellDto selectusers;
     private String txtsearchroomnum;
     private String selectuser;
+    private String selectuserr;
     //private String selectedM_Roomnum;
     public ResCheckController() {
 
@@ -31,7 +32,7 @@ public class ResCheckController {
         this.txtsearchroomnum = txtsearchroomnum;
     }
     public ResCheckController(CustomertableClickcellDto ctcDto){
-        selectuser = ctcDto.getName()+","+ ctcDto.getPhone()+","+ctcDto.getRoomtype()+","+ctcDto.getRoomnum()+","+ctcDto.getPeople()+","+ctcDto.getCheckin()+","+ctcDto.getCheckout()+"\n";
+        selectuserr = ctcDto.getName()+","+ ctcDto.getPhone()+","+ctcDto.getRoomtype()+","+ctcDto.getRoomnum()+","+ctcDto.getPeople()+","+ctcDto.getCheckin()+","+ctcDto.getCheckout()+"\n";
     }
 
     public List<String> checkResroom() { //예약된 객실호수만 읽는 메서드
@@ -126,23 +127,18 @@ public class ResCheckController {
         return false;
     }
     
-    private String selectedM_Roomnum;
-    public void modifySelectedcell(String roomnum) {
-        this.selectedM_Roomnum = roomnum;
-        System.out.println(selectedM_Roomnum); // 실행됨.
-    }
     //public void modifyUserdata(CustomertableClickcellDto ctcDto,String selectedValue)
-    public boolean modifyUserdata(String selectedValue){
+    public void modifyUserdata(String selectedValue, String modifysell){
+        System.out.println(selectedValue);
+        System.out.println(modifysell);
         String line;
-        System.out.println(this.selectedM_Roomnum); 
-        
         String fileName = "data/UserData.txt";
         File file = new File(fileName);
         List<String> lines = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
-                if (selectedM_Roomnum.equals(row[3])) {
+                if (selectedValue.equals(row[3])) {
                     continue;
                 }
                 lines.add(line);
@@ -154,14 +150,13 @@ public class ResCheckController {
             for (String lineToWrite : lines) {
                 writer.write(lineToWrite);
                 writer.newLine();
-                writer.write(selectuser);
             }
+            writer.write(modifysell);
             System.out.println("예약정보가 성공적으로 수정되었습니다.");
         } catch (IOException ex) {
             Logger.getLogger(ResCheckController.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
             System.out.println("예약정보 수정 중 오류가 발생했습니다.");
         }
-        return true;
     }
 }
