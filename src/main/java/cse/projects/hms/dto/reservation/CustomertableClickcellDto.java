@@ -18,6 +18,14 @@ public class CustomertableClickcellDto {
     private String checkin;
     private String checkout;
 
+    public CustomertableClickcellDto() {
+
+    }
+
+    public CustomertableClickcellDto(String roomnumber) {
+        this.roomnumber = roomnumber;
+    }
+
     public CustomertableClickcellDto(String name, String phone, String roomtype, String roomnumber, String people, String checkin, String checkout) {
         this.name = name;
         this.phone = phone;

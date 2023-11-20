@@ -36,6 +36,7 @@ public class ReservationScreen extends javax.swing.JFrame {
         this.roomnum = roomnum;
         initializeroom();
         initializerestriction();
+        setLocationRelativeTo(null);
     }
 
     public ReservationScreen() {
@@ -53,8 +54,9 @@ public class ReservationScreen extends javax.swing.JFrame {
         TEXT_roomnum.setText(roomnum);
         TEXT_roomnum.setEditable(false);
     }
-    private void initializerestriction(){
-        if(roomtype == "Standard" || roomtype == "Royal"){
+
+    private void initializerestriction() {
+        if (roomtype == "Standard" || roomtype == "Royal") {
             TEXT_peopleNumber.removeItemAt(4);
             TEXT_peopleNumber.removeItemAt(4);
         }
@@ -182,7 +184,8 @@ public class ReservationScreen extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel5)
                                         .addGap(18, 18, 18)
-                                        .addComponent(TEXT_peopleNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(TEXT_peopleNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(136, 136, 136))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jLabel6)
@@ -258,15 +261,13 @@ public class ReservationScreen extends javax.swing.JFrame {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String selectedpeopleNumber = TEXT_peopleNumber.getSelectedItem().toString();
         String username = name.getText();
-        String phonenumber = phoneNumber.getText();
-        
+        String phonenumber = phoneNumber.getText();     
         String checkintime = dateFormat.format(checkinTime.getDate());
         String checkouttime = dateFormat.format(checkoutTime.getDate());
         
         ResDto res;
         res = new ResDto(username, phonenumber, roomtype, roomnum, selectedpeopleNumber, checkintime, checkouttime);
         resdao.insert(res);
-
 
         JOptionPane.showMessageDialog(null, "예약이 성공적으로 되었습니다.");
     }//GEN-LAST:event_BUTT_insertActionPerformed
@@ -279,7 +280,37 @@ public class ReservationScreen extends javax.swing.JFrame {
 
     private void BUTT_paymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_paymentActionPerformed
         // TODO add your handling code here:
-        PaymentScreen paymentscreen = new PaymentScreen();
+        int money=0;
+        if (TEXT_roomtype.getText().equals("Standard")) {
+            money = 100000;
+        } else if (TEXT_roomtype.getText().equals("Royal")) {
+            money = 150000;
+        } else if (TEXT_roomtype.getText().equals("Suite")) {
+            money = 250000;
+        } else if (TEXT_roomtype.getText().equals("Royal Suite")) {
+            money = 400000;
+        }
+
+        switch (TEXT_peopleNumber.getSelectedIndex()) {
+            case 1:
+                money += 30000;
+                break;
+            case 2:
+                money += 60000;
+                break;
+            case 3:
+                money += 90000;
+                break;
+            case 4:
+                money += 120000;
+                break;
+            case 5:
+                money += 150000;
+                break;
+            default:
+                break;
+        }
+        PaymentScreen paymentscreen = new PaymentScreen(roomnum,money);
         paymentscreen.setVisible(true);
         dispose();
     }//GEN-LAST:event_BUTT_paymentActionPerformed
