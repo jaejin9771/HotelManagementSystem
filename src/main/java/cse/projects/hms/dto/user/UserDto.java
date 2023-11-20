@@ -56,6 +56,10 @@ public class UserDto {
         this.pw = pw;
         this.usertype = usertype;
     }
+    
+    public String getUsertype() {
+        return usertype;
+    }
 //    public static UserDto createDto(UserDto entity) {
 //        return new UserBuilder()
 //                .id(entity.getId())
