@@ -49,21 +49,21 @@ public class PaymentScreen extends javax.swing.JFrame {
         jLabel1.setText("Payment");
 
         jLabel2.setFont(new java.awt.Font("맑은 고딕", 0, 18)); // NOI18N
-        jLabel2.setText("예약자:");
+        jLabel2.setText("성명 :");
 
         jComboBox1.setFont(new java.awt.Font("맑은 고딕", 0, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Creditcard", "Cash" }));
 
         jLabel3.setFont(new java.awt.Font("맑은 고딕", 0, 18)); // NOI18N
-        jLabel3.setText("결제금액:");
+        jLabel3.setText("결제금액 :");
 
         jTextField1.setEditable(false);
 
         jLabel4.setFont(new java.awt.Font("맑은 고딕", 0, 18)); // NOI18N
-        jLabel4.setText("결제수단:");
+        jLabel4.setText("결제수단 :");
 
         jLabel5.setFont(new java.awt.Font("맑은 고딕", 0, 18)); // NOI18N
-        jLabel5.setText("객실호수:");
+        jLabel5.setText("객실호수 :");
 
         jTextField3.setEditable(false);
 
@@ -76,7 +76,7 @@ public class PaymentScreen extends javax.swing.JFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("맑은 고딕", 0, 18)); // NOI18N
-        jLabel6.setText("카드번호:");
+        jLabel6.setText("카드번호 :");
 
         BUTT_goback.setText("뒤로 가기");
         BUTT_goback.addActionListener(new java.awt.event.ActionListener() {
@@ -93,18 +93,17 @@ public class PaymentScreen extends javax.swing.JFrame {
                 .addGap(185, 185, 185)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1))
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addGap(32, 32, 32)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
