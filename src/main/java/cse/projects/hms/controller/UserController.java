@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 public class UserController {
 
     public static UserController userController = new UserController();
-
+    private String userType;
     public static UserController getInstance() {
         return userController;
     }
@@ -28,7 +28,10 @@ public class UserController {
     public UserController() {
         userDao = new UserDao();
     }
-
+    
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
     public UserDto login(String inputId, String inputPw) {
         UserLoginDto dto = new UserLoginDto(inputId, inputPw);
 
