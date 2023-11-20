@@ -5,6 +5,7 @@
  */
 package cse.projects.hms.view;
 
+import cse.projects.hms.controller.PaymentController;
 import cse.projects.hms.controller.RoomServiceController;
 import java.io.IOException;
 import javax.swing.JOptionPane;
@@ -294,7 +295,6 @@ public class RoomServiceScreen extends javax.swing.JFrame {
                 resultmoney.setText("" + sum);
             }
             else{
-            System.out.println("예약된 객실이 아닙니다.");
             JOptionPane.showMessageDialog(null, "예약된 객실이 아닙니다.");
             }
     }//GEN-LAST:event_BUTT_okActionPerformed
@@ -309,12 +309,17 @@ public class RoomServiceScreen extends javax.swing.JFrame {
 
     private void BUTT_laterpaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_laterpaymentActionPerformed
         // TODO add your handling code here:
+        PaymentController pay = new PaymentController();
+        pay.payLaterRoomservice(RoomNumber.getText(),Integer.toString(sum));
         JOptionPane aa = new JOptionPane();
         aa.showMessageDialog(null, "룸서비스 결제금액이 추가되었습니다.");
     }//GEN-LAST:event_BUTT_laterpaymentActionPerformed
 
     private void BUTT_paymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_paymentActionPerformed
         // TODO add your handling code here:
+        
+//        PaymentController pay = new PaymentController();
+//        pay.payAlreadyRoomservice(RoomNumber.getText(),Integer.toString(sum));
         new PaymentScreen().setVisible(true);
         dispose();
     }//GEN-LAST:event_BUTT_paymentActionPerformed
@@ -351,7 +356,4 @@ public class RoomServiceScreen extends javax.swing.JFrame {
     private javax.swing.JTextArea userdata;
     // End of variables declaration//GEN-END:variables
 
-    private Object checkRoomService(String text) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }
