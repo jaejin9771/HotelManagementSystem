@@ -4,6 +4,8 @@
  */
 package cse.projects.hms.view;
 
+import cse.projects.hms.controller.PaymentController;
+import cse.projects.hms.dto.reservation.ResDto;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,16 +17,30 @@ public class PaymentScreen extends javax.swing.JFrame {
     /**
      * Creates new form PaymentScreen
      */
+    public String roomnum;
+    public String userdata;
+
     public PaymentScreen() {
         initComponents();
         setLocationRelativeTo(null);
     }
-    public PaymentScreen(String roomnum,int money){
+
+//    public PaymentScreen(String userdata) {
+//        initComponents();
+//        setLocationRelativeTo(null);
+//        this.userdata = userdata;
+//    }
+
+    public PaymentScreen(String userdata,String roomnum, int money) {
+        this.userdata=userdata;
+        this.roomnum = roomnum;
         initComponents();
         setLocationRelativeTo(null);
-        TEXT_money.setText(""+money);
+        TEXT_money.setText("" + money);
         TEXT_roomnum.setText(roomnum);
     }
+    private int money;
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -179,6 +195,9 @@ public class PaymentScreen extends javax.swing.JFrame {
 
     private void BUTT_paymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_paymentActionPerformed
         // TODO add your handling code here:
+        money = 0;
+        PaymentController pay = new PaymentController();
+        pay.changeMoney(userdata, roomnum, Integer.toString(money));
         JOptionPane.showMessageDialog(null, "결제되었습니다.");
     }//GEN-LAST:event_BUTT_paymentActionPerformed
 
@@ -191,7 +210,6 @@ public class PaymentScreen extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BUTT_goback;
