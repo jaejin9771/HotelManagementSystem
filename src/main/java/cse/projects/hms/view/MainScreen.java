@@ -5,6 +5,7 @@
  */
 package cse.projects.hms.view;
 
+import cse.projects.hms.controller.UserController;
 import cse.projects.hms.view.CheckInScreen;
 import javax.swing.JOptionPane;
 
@@ -13,7 +14,9 @@ import javax.swing.JOptionPane;
  * @author ij944
  */
 public class MainScreen extends javax.swing.JFrame {
-    
+
+    UserController userController = UserController.getInstance();
+
     /**
      * Creates new form MainFrame
      */
@@ -176,11 +179,15 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_BUTT_checkoutActionPerformed
 
     private void BUTT_managementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_managementActionPerformed
-        JOptionPane aa= new JOptionPane();
-        aa.showMessageDialog(null,"관리자가 아닌 다른 사용자는 사용이 제한됩니다.");
+        JOptionPane aa = new JOptionPane();
         ManagementScreen managementscreen = new ManagementScreen();
-        managementscreen.setVisible(true);
-        dispose();
+        System.out.println("mainscreen UserController : " + userController.getUserType());
+        if (userController.getUserType().equals("manager")) {
+            managementscreen.setVisible(true);
+            dispose();
+        } else {
+            aa.showMessageDialog(null, "관리자가 아닌 다른 사용자는 사용이 제한됩니다.");
+        }
     }//GEN-LAST:event_BUTT_managementActionPerformed
 
     private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
