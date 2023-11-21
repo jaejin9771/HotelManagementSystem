@@ -181,7 +181,7 @@ public class MainScreen extends javax.swing.JFrame {
     private void BUTT_managementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_managementActionPerformed
         JOptionPane aa = new JOptionPane();
         ManagementScreen managementscreen = new ManagementScreen();
-        System.out.println("mainscreen UserController : " + userController.getUserType());
+        
         if (userController.getUserType().equals("manager")) {
             managementscreen.setVisible(true);
             dispose();
