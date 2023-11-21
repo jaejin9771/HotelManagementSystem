@@ -316,7 +316,6 @@ public class RoomServiceScreen extends javax.swing.JFrame {
             sum += Integer.parseInt(ServiceMenu.getValueAt(rowcount, 1).toString()); //룸서비스 취소기능은 cancel버튼 눌렀을 때
             resultmoney.setText("" + sum);
         } else {
-
             JOptionPane.showMessageDialog(null, "예약된 객실이 아닙니다.");
         }
     }//GEN-LAST:event_BUTT_okActionPerformed

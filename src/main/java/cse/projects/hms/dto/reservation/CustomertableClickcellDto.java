@@ -17,6 +17,9 @@ public class CustomertableClickcellDto {
     private String people;
     private String checkin;
     private String checkout;
+    private String money;
+    private String payment;
+    private String cardnum;
 
     public CustomertableClickcellDto() {
 
@@ -26,7 +29,7 @@ public class CustomertableClickcellDto {
         this.roomnumber = roomnumber;
     }
 
-    public CustomertableClickcellDto(String name, String phone, String roomtype, String roomnumber, String people, String checkin, String checkout) {
+    public CustomertableClickcellDto(String name, String phone, String roomtype, String roomnumber, String people, String checkin, String checkout, String money, String payment, String cardnum) {
         this.name = name;
         this.phone = phone;
         this.roomtype = roomtype;
@@ -34,6 +37,41 @@ public class CustomertableClickcellDto {
         this.people = people;
         this.checkin = checkin;
         this.checkout = checkout;
+        this.money = money;
+        this.payment = payment;
+        this.cardnum = cardnum;
+    }
+
+    public String getRoomnumber() {
+        return roomnumber;
+    }
+
+    public void setRoomnumber(String roomnumber) {
+        this.roomnumber = roomnumber;
+    }
+
+    public String getMoney() {
+        return money;
+    }
+
+    public void setMoney(String money) {
+        this.money = money;
+    }
+
+    public String getPayment() {
+        return payment;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
+    }
+
+    public String getCardnum() {
+        return cardnum;
+    }
+
+    public void setCardnum(String cardnum) {
+        this.cardnum = cardnum;
     }
 
     public String getName() {
