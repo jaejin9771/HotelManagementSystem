@@ -25,14 +25,14 @@ public class UserController {
     }
     private static UserDao userDao;
 
-    public UserController() {
+    private UserController() {
         userDao = new UserDao();
     }
     public String getUserType() {
-        return userController.userType;
+        return this.userType;
     }
     public void setUserType(String userType) {
-        userController.userType = userType;
+        this.userType = userType;
     }
     public UserDto login(String inputId, String inputPw) {
         UserLoginDto dto = new UserLoginDto(inputId, inputPw);
