@@ -35,8 +35,8 @@ public class ReservationCheckScreen extends javax.swing.JFrame{
 
     private void controlColummSize() {
         customerdatatable.getColumnModel().getColumn(0).setPreferredWidth(100);
-        customerdatatable.getColumnModel().getColumn(5).setPreferredWidth(350);
-        customerdatatable.getColumnModel().getColumn(6).setPreferredWidth(350);
+        customerdatatable.getColumnModel().getColumn(5).setPreferredWidth(140);
+        customerdatatable.getColumnModel().getColumn(6).setPreferredWidth(140);
         customerdatatable.getColumnModel().getColumn(1).setPreferredWidth(180);
         customerdatatable.getColumnModel().getColumn(2).setPreferredWidth(130);
     }
@@ -118,7 +118,7 @@ public class ReservationCheckScreen extends javax.swing.JFrame{
 
             },
             new String [] {
-                "예약자", "전화번호", "객실 타입", "객실 호수", "객실 인원", "체크인", "체크아웃"
+                "예약자", "전화번호", "객실 타입", "객실 호수", "객실 인원", "체크인", "체크아웃", "누적요금"
             }
         ));
         customerdatatable.setEditingColumn(0);
@@ -189,7 +189,7 @@ public class ReservationCheckScreen extends javax.swing.JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BUTT_goback)
                 .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 840, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BUTT_reservation, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
