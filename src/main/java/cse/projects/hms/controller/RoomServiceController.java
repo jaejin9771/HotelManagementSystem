@@ -28,8 +28,8 @@ public class RoomServiceController {
         }
         return true;
     }
-    public String sendRoomService(String roomnum){ //룸서비스화면에서 받은 객실호수와 데이터파일이 같은지 확인한 후 고객정보 리턴
-        String roomdataList=null;
+    public String[] sendRoomService(String roomnum){ //룸서비스화면에서 받은 객실호수와 데이터파일이 같은지 확인한 후 고객정보 리턴
+        String[] roomdataList=null;
         String fileName = "data/UserData.txt";
         File file = new File(fileName);
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -37,12 +37,12 @@ public class RoomServiceController {
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
                 if(roomnum.equals(row[3])){
-                    roomdataList = line;
+                    return row;
                 }
             }
         }catch(IOException e){
             e.printStackTrace();
         }
-        return roomdataList;
+        return null;
     }
 }
