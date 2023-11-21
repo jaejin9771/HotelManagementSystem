@@ -51,7 +51,6 @@ public class RoomServiceScreen extends javax.swing.JFrame {
         BUTT_ok = new javax.swing.JButton();
         BUTT_cancel = new javax.swing.JButton();
         resultmoney = new javax.swing.JTextField();
-        BUTT_payment = new javax.swing.JButton();
         BUTT_enter = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -107,7 +106,7 @@ public class RoomServiceScreen extends javax.swing.JFrame {
         ServiceMenu.setRowHeight(30);
         jScrollPane1.setViewportView(ServiceMenu);
 
-        BUTT_laterpayment.setText("나중에 결제");
+        BUTT_laterpayment.setText("메뉴 추가");
         BUTT_laterpayment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BUTT_laterpaymentActionPerformed(evt);
@@ -144,13 +143,6 @@ public class RoomServiceScreen extends javax.swing.JFrame {
         });
 
         resultmoney.setFont(new java.awt.Font("맑은 고딕", 0, 18)); // NOI18N
-
-        BUTT_payment.setText("선결제");
-        BUTT_payment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BUTT_paymentActionPerformed(evt);
-            }
-        });
 
         BUTT_enter.setText("enter");
         BUTT_enter.addActionListener(new java.awt.event.ActionListener() {
@@ -192,23 +184,24 @@ public class RoomServiceScreen extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BUTT_ok, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(BUTT_allcancel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(BUTT_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(RoomNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(BUTT_enter))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(BUTT_ok, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BUTT_allcancel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BUTT_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(RoomNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BUTT_enter)
+                                .addGap(195, 195, 195))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(147, 147, 147)
@@ -216,26 +209,22 @@ public class RoomServiceScreen extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BUTT_goback))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(24, 24, 24)
-                                .addComponent(jLabel1))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(216, 216, 216)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(BUTT_laterpayment, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(BUTT_payment, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(resultmoney, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jLabel5)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 17, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(BUTT_laterpayment, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(24, 24, 24)
+                                    .addComponent(jLabel1))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(233, 233, 233)
+                                    .addComponent(jLabel6)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(resultmoney, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel5)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 12, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -270,23 +259,19 @@ public class RoomServiceScreen extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
                                 .addComponent(jLabel6)
                                 .addGap(6, 6, 6))
                             .addComponent(resultmoney, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(BUTT_laterpayment, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BUTT_payment, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(BUTT_laterpayment, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
+                        .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                             .addComponent(BUTT_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BUTT_allcancel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BUTT_ok, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(BUTT_ok, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -303,31 +288,32 @@ public class RoomServiceScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         RoomServiceController res = new RoomServiceController();
         boolean check = res.checkRoomService(RoomNumber.getText());
-
         if (check == true) { //예약자 이름과 예약된 객실로 바꿔야 함
+
             DefaultTableModel Model = (DefaultTableModel) ServiceMenu.getModel();
             DefaultTableModel model = (DefaultTableModel) order.getModel();
             int rowcount = ServiceMenu.getSelectedRow();
             result = Model.getValueAt(rowcount, 0).toString();
             result1 = Model.getValueAt(rowcount, 1).toString();
-            Object[] resultArray = {result,result1};
+            Object[] resultArray = {result, result1};
             model.addRow(resultArray);
-            
+
             sum += Integer.parseInt(ServiceMenu.getValueAt(rowcount, 1).toString()); //룸서비스 취소기능은 cancel버튼 눌렀을 때
             resultmoney.setText("" + sum);
         } else {
             JOptionPane.showMessageDialog(null, "예약된 객실이 아닙니다.");
         }
+
     }//GEN-LAST:event_BUTT_okActionPerformed
 
     private void BUTT_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_cancelActionPerformed
-        if(order.getSelectedRow()!=-1){
-        int rowcount = order.getSelectedRow();
-        sum -= Integer.parseInt(order.getValueAt(rowcount, 1).toString());
-        resultmoney.setText("" + sum);
-        DefaultTableModel model = (DefaultTableModel) order.getModel();
-        model.removeRow(order.getSelectedRow());
-        }else
+        if (order.getSelectedRow() != -1) {
+            int rowcount = order.getSelectedRow();
+            sum -= Integer.parseInt(order.getValueAt(rowcount, 1).toString());
+            resultmoney.setText("" + sum);
+            DefaultTableModel model = (DefaultTableModel) order.getModel();
+            model.removeRow(order.getSelectedRow());
+        } else
             JOptionPane.showMessageDialog(null, "취소할 메뉴를 선택해주세요.");
     }//GEN-LAST:event_BUTT_cancelActionPerformed
 
@@ -341,33 +327,25 @@ public class RoomServiceScreen extends javax.swing.JFrame {
         aa.showMessageDialog(null, "룸서비스 결제금액이 추가되었습니다.");
     }//GEN-LAST:event_BUTT_laterpaymentActionPerformed
 
-    private void BUTT_paymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_paymentActionPerformed
-        // TODO add your handling code here:
-
-//        PaymentController pay = new PaymentController();
-//        pay.payAlreadyRoomservice(RoomNumber.getText(),Integer.toString(sum));
-        new PaymentScreen().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_BUTT_paymentActionPerformed
-
     private void BUTT_enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_enterActionPerformed
-        // TODO add your handling code here:
         RoomServiceController room = new RoomServiceController();
-        if(room.checkRoomService(RoomNumber.getText())==true){
-        RoomServiceController res = new RoomServiceController();
-        String[] result = res.sendRoomService(RoomNumber.getText());
-        String data = "이름 : "+ result[0] + " 객실 등급 : " + result[2]+ " 객실 호수 : " + result[3];
-        userdata.setText(data);
-        }
-        else 
-            JOptionPane.showMessageDialog(null, "예약된 객실이 아닙니다.");
+        if (RoomNumber.getText() != null) {
+            if (room.checkRoomService(RoomNumber.getText())) {
+                String[] result = room.sendRoomService(RoomNumber.getText());
+                String data = "이름 : " + result[0] + " 객실 등급 : " + result[2] + " 객실 호수 : " + result[3];
+                userdata.setText(data);
+            } else {
+                JOptionPane.showMessageDialog(null, "예약된 객실이 아닙니다.");
+            }
+        } else
+            JOptionPane.showMessageDialog(null, "객실호수를 입력해주세요.");
     }//GEN-LAST:event_BUTT_enterActionPerformed
 
     private void BUTT_allcancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_allcancelActionPerformed
         DefaultTableModel model = (DefaultTableModel) order.getModel();
         model.setRowCount(0);
-        sum=0;
-        resultmoney.setText(""+sum);
+        sum = 0;
+        resultmoney.setText("" + sum);
         JOptionPane.showMessageDialog(null, "주문이 전체 삭제되었습니다");
     }//GEN-LAST:event_BUTT_allcancelActionPerformed
 
@@ -381,7 +359,6 @@ public class RoomServiceScreen extends javax.swing.JFrame {
     private javax.swing.JButton BUTT_goback;
     private javax.swing.JButton BUTT_laterpayment;
     private javax.swing.JButton BUTT_ok;
-    private javax.swing.JButton BUTT_payment;
     private javax.swing.JTextField RoomNumber;
     private javax.swing.JTable ServiceMenu;
     private javax.swing.JLabel jLabel1;
