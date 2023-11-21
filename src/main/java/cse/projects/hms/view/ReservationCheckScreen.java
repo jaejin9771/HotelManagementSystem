@@ -283,7 +283,10 @@ public class ReservationCheckScreen extends javax.swing.JFrame{
         String people = (String) data.getValueAt(row, 4);
         String checkin = (String) data.getValueAt(row, 5);
         String checkout = (String) data.getValueAt(row, 6);
-        CustomertableClickcellDto selectUser = new CustomertableClickcellDto(name, phone, roomtype, roomnumber, people, checkin, checkout);
+        String money = (String) data.getValueAt(row, 7);
+        String payment = (String) data.getValueAt(row, 8);
+        String cardnum = (String) data.getValueAt(row, 9);
+        CustomertableClickcellDto selectUser = new CustomertableClickcellDto(name, phone, roomtype, roomnumber, people, checkin, checkout,money,payment,cardnum);
         
         
         ReservationModifyScreen res = new ReservationModifyScreen(selectUser);
