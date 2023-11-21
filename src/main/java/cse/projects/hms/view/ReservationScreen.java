@@ -74,6 +74,7 @@ public class ReservationScreen extends javax.swing.JFrame {
         } else if (TEXT_roomtype.getText().equals("Royal Suite")) {
             money = 400000;
         }
+
         switch (TEXT_peopleNumber.getSelectedIndex()) {//인원수에 따른 추가요금 설정
             case 2:
                 money += 30000;
@@ -99,6 +100,7 @@ public class ReservationScreen extends javax.swing.JFrame {
                 break;
             case 4:
                 money += 150000;
+
                 break;
             case 5:
                 money += 200000;
@@ -156,6 +158,7 @@ public class ReservationScreen extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -224,13 +227,14 @@ public class ReservationScreen extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+
                 .addGap(118, 118, 118)
+
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
@@ -261,6 +265,7 @@ public class ReservationScreen extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(checkinTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+
                                     .addComponent(checkoutTime, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -334,12 +339,14 @@ public class ReservationScreen extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BUTT_insert, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(11, Short.MAX_VALUE))
+
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BUTT_insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_insertActionPerformed
+
         RoomController room = new RoomController();
         if (room.isEmptyRoom(roomnum) == true) {//빈방인지 확인하는 메서드 호출
             if (name.getText() != null && phoneNumber.getText() != null && checkinTime.getDate() != null && checkoutTime.getDate() != null) {//모든 정보가 입력되었으면 if문 들어감
@@ -362,6 +369,7 @@ public class ReservationScreen extends javax.swing.JFrame {
             }
         } else
             JOptionPane.showMessageDialog(null, "이미 예약된 객실입니다.");
+
     }//GEN-LAST:event_BUTT_insertActionPerformed
 
     private void BUTT_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_cancelActionPerformed
@@ -369,6 +377,7 @@ public class ReservationScreen extends javax.swing.JFrame {
         roomscreen.setVisible(true);
         dispose();
     }//GEN-LAST:event_BUTT_cancelActionPerformed
+
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -383,6 +392,7 @@ public class ReservationScreen extends javax.swing.JFrame {
         pay.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
 
     /**
      * @param args the command line arguments
