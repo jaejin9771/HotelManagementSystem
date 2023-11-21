@@ -6,17 +6,17 @@
 package cse.projects.hms.view;
 
 import cse.projects.hms.controller.PaymentController;
+import cse.projects.hms.controller.RoomController;
 import cse.projects.hms.dao.reservation.ResDao;
 import cse.projects.hms.dto.reservation.ResDto;
-import java.awt.event.ActionEvent;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.Date;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
  *
@@ -57,15 +57,15 @@ public class ReservationScreen extends javax.swing.JFrame {
         TEXT_roomnum.setEditable(false);
     }
 
-    private void initializerestriction() {
+    private void initializerestriction() {//객실등급에 따른 인원제한
         if (roomtype == "Standard" || roomtype == "Royal") {
             TEXT_peopleNumber.removeItemAt(4);
             TEXT_peopleNumber.removeItemAt(4);
         }
     }
 
-    private String payRoomfare() {
-        if (TEXT_roomtype.getText().equals("Standard")) {
+    private String calculateRoomMoney() {//총 결제금액 계산함
+        if (TEXT_roomtype.getText().equals("Standard")) {//객실등급에 따른 기본요금 설정
             money = 100000;
         } else if (TEXT_roomtype.getText().equals("Royal")) {
             money = 150000;
@@ -75,7 +75,7 @@ public class ReservationScreen extends javax.swing.JFrame {
             money = 400000;
         }
 
-        switch (TEXT_peopleNumber.getSelectedIndex()) {
+        switch (TEXT_peopleNumber.getSelectedIndex()) {//인원수에 따른 추가요금 설정
             case 2:
                 money += 30000;
                 break;
@@ -91,7 +91,41 @@ public class ReservationScreen extends javax.swing.JFrame {
             default:
                 break;
         }
-        return Integer.toString(money);
+        switch (calculateDate()) { //체크인 날짜와 체크아웃 날짜 간의 차이 계산 후 추가요금 설정
+            case 2:
+                money += 50000;
+                break;
+            case 3:
+                money += 100000;
+                break;
+            case 4:
+                money += 150000;
+
+                break;
+            case 5:
+                money += 200000;
+                break;
+            default:
+                break;
+        }
+        return Integer.toString(money);//총 결제금액 반환(예약이 완료되었을 때 메시지로 뜸)
+    }
+
+    public int calculateDate() {//예상 체크인 날짜와 체크아웃 날짜를 계산하는 메서드
+        // 첫번째 JCalendar에서 선택된 날짜 가져오기
+        Calendar calendar1SelectedDateCalendar = checkinTime.getCalendar();
+        Date calendar1SelectedDate = calendar1SelectedDateCalendar.getTime();
+        LocalDate localDate1 = calendar1SelectedDate.toInstant().atZone(Calendar.getInstance().getTimeZone().toZoneId()).toLocalDate();
+
+        // 첫번째 JCalendar에서 선택된 날짜 가져오기
+        Calendar calendar2SelectedDateCalendar = checkoutTime.getCalendar();
+        Date calendar2SelectedDate = calendar2SelectedDateCalendar.getTime();
+        LocalDate localDate2 = calendar2SelectedDate.toInstant().atZone(Calendar.getInstance().getTimeZone().toZoneId()).toLocalDate();
+
+        // 날짜 차이 계산
+        long daysDifference = Math.abs(localDate2.toEpochDay() - localDate1.toEpochDay());
+        System.out.println(daysDifference);
+        return (int) daysDifference;
     }
 
     /**
@@ -121,9 +155,10 @@ public class ReservationScreen extends javax.swing.JFrame {
         checkoutTime = new com.toedter.calendar.JDateChooser();
         TEXT_roomtype = new javax.swing.JTextField();
         TEXT_roomnum = new javax.swing.JTextField();
-        BUTT_payment = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -156,7 +191,7 @@ public class ReservationScreen extends javax.swing.JFrame {
         TEXT_peopleNumber.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6" }));
 
         BUTT_insert.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
-        BUTT_insert.setText("확인");
+        BUTT_insert.setText("예약");
         BUTT_insert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BUTT_insertActionPerformed(evt);
@@ -180,43 +215,26 @@ public class ReservationScreen extends javax.swing.JFrame {
 
         TEXT_roomnum.setText("");
 
-        BUTT_payment.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
-        BUTT_payment.setText("선결제");
-        BUTT_payment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BUTT_paymentActionPerformed(evt);
-            }
-        });
-
         jLabel9.setFont(new java.awt.Font("맑은 고딕", 0, 18)); // NOI18N
         jLabel9.setText("*인원 수 추가에 따른 요금: 30000");
 
         jLabel10.setFont(new java.awt.Font("맑은 고딕", 0, 18)); // NOI18N
         jLabel10.setText("* 기본 인원: 2명");
 
+        jButton1.setText("선결제");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(237, 237, 237)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
-                        .addComponent(BUTT_cancel))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BUTT_payment, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(BUTT_insert, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(109, 109, 109)
+
+                .addGap(118, 118, 118)
+
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
@@ -247,9 +265,31 @@ public class ReservationScreen extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(checkinTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(checkoutTime, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(47, 47, 47)))
+
+                                    .addComponent(checkoutTime, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(237, 237, 237)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BUTT_cancel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(196, 196, 196)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BUTT_insert, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,39 +331,45 @@ public class ReservationScreen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(checkoutTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(BUTT_payment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BUTT_insert, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9)))
-                .addGap(14, 14, 14))
+                .addGap(28, 28, 28)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BUTT_insert, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(11, Short.MAX_VALUE))
+
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BUTT_insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_insertActionPerformed
-        if (name.getText() != null && phoneNumber.getText()!=null&&checkinTime.getDate()!=null&&checkoutTime.getDate()!=null) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String selectedpeopleNumber = TEXT_peopleNumber.getSelectedItem().toString();
-        String username = name.getText();
-        String phonenumber = phoneNumber.getText();
-        String checkintime = dateFormat.format(checkinTime.getDate());
-        String checkouttime = dateFormat.format(checkoutTime.getDate());
 
-        ResDto res;
-        res = new ResDto(username, phonenumber, roomtype, roomnum, selectedpeopleNumber, checkintime, checkouttime, payRoomfare());
-        resdao.insert(res);
-        JOptionPane.showMessageDialog(null, "예약이 성공적으로 되었습니다.");
-        }
-        else 
-            JOptionPane.showMessageDialog(null, "예약정보를 입력해주세요.");
+        RoomController room = new RoomController();
+        if (room.isEmptyRoom(roomnum) == true) {//빈방인지 확인하는 메서드 호출
+            if (name.getText() != null && phoneNumber.getText() != null && checkinTime.getDate() != null && checkoutTime.getDate() != null) {//모든 정보가 입력되었으면 if문 들어감
+                if (calculateDate() <= 5) {//체크인 날짜와 체크아웃 날짜의 차이를 계산했을 때 5이거나 5보다 작을 때 
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    String selectedpeopleNumber = TEXT_peopleNumber.getSelectedItem().toString();
+                    String username = name.getText();
+                    String phonenumber = phoneNumber.getText();
+                    String checkintime = dateFormat.format(checkinTime.getDate());
+                    String checkouttime = dateFormat.format(checkoutTime.getDate());
+                    ResDto res;
+                    res = new ResDto(username, phonenumber, roomtype, roomnum, selectedpeopleNumber, checkintime, checkouttime, calculateRoomMoney());
+                    resdao.insert(res);
+                    JOptionPane.showMessageDialog(null, "기본객실요금은 " + calculateRoomMoney() + "원입니다.");
+                } else {
+                    JOptionPane.showMessageDialog(null, "객실이용제한은 5일입니다.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "예약정보를 입력해주세요.");
+            }
+        } else
+            JOptionPane.showMessageDialog(null, "이미 예약된 객실입니다.");
+
     }//GEN-LAST:event_BUTT_insertActionPerformed
 
     private void BUTT_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_cancelActionPerformed
@@ -332,23 +378,21 @@ public class ReservationScreen extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BUTT_cancelActionPerformed
 
-    private void BUTT_paymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_paymentActionPerformed
-        if (name.getText() != null && phoneNumber.getText()!=null&&checkinTime.getDate()!=null&&checkoutTime.getDate()!=null) {
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String selectedpeopleNumber = TEXT_peopleNumber.getSelectedItem().toString();
-            String username = name.getText();
-            String phonenumber = phoneNumber.getText();
-            String checkintime = dateFormat.format(checkinTime.getDate());
-            String checkouttime = dateFormat.format(checkoutTime.getDate());
 
-            String userdata = username + ',' + phonenumber + ',' + roomtype + ',' + roomnum + ',' + selectedpeopleNumber + ',' + checkintime + ',' + checkouttime+',';
-            PaymentScreen paymentscreen = new PaymentScreen(userdata, roomnum, money);
-            paymentscreen.setVisible(true);
-            dispose();
-        } else{
-            JOptionPane.showMessageDialog(null, "예약정보를 입력해주세요.");
-        }
-    }//GEN-LAST:event_BUTT_paymentActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String selectedpeopleNumber = TEXT_peopleNumber.getSelectedItem().toString();
+        String username = name.getText();
+        String phonenumber = phoneNumber.getText();
+        String checkintime = dateFormat.format(checkinTime.getDate());
+        String checkouttime = dateFormat.format(checkoutTime.getDate());
+        String userdata=username+','+phonenumber+','+roomtype+','+roomnum+','+selectedpeopleNumber+','+checkintime+','+checkouttime;
+        PaymentScreen pay = new PaymentScreen(userdata, roomnum, calculateRoomMoney());
+        pay.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -358,12 +402,12 @@ public class ReservationScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BUTT_cancel;
     private javax.swing.JButton BUTT_insert;
-    private javax.swing.JButton BUTT_payment;
     private javax.swing.JComboBox<String> TEXT_peopleNumber;
     private javax.swing.JTextField TEXT_roomnum;
     private javax.swing.JTextField TEXT_roomtype;
     private com.toedter.calendar.JDateChooser checkinTime;
     private com.toedter.calendar.JDateChooser checkoutTime;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
