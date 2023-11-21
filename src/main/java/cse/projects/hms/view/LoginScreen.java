@@ -120,16 +120,15 @@ public class LoginScreen extends javax.swing.JFrame {
         String inputPw = new String(Password.getPassword()); // 입력한 PW
         
         this.user = userController.login(inputId, inputPw);
-        System.out.println("loginscreen user.getUsertype() : " + this.user.getUsertype());
+        
         if (this.user == null) {
             JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호가 일치하지 않습니다."); 
             return;
-        } else { System.out.println("loginscreen user.getUsertype() : " + this.user.getUsertype());
+        } else { 
             if(this.user.getUsertype().equals("manager")){
                 userController.setUserType("manager");
             } else {
                 userController.setUserType("staff");
-                System.out.println("login if문 아님.");
             }
             JOptionPane.showMessageDialog(null, "로그인 성공!"); // 로그인 성공
             dispose();
