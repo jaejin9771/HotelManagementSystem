@@ -53,11 +53,13 @@
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtroomtype" max="32767" attributes="0"/>
-                          <Component id="txtroomnum" max="32767" attributes="0"/>
-                          <Component id="txtphone" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                          <Component id="txtpeople" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txtroomtype" max="32767" attributes="0"/>
+                              <Component id="txtroomnum" max="32767" attributes="0"/>
+                              <Component id="txtphone" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="txtpeople" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                   </Group>
@@ -72,11 +74,11 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="txtcheckout" max="32767" attributes="0"/>
-                  <Component id="txtcheckin" max="32767" attributes="0"/>
-                  <Component id="txtpayment" max="32767" attributes="0"/>
                   <Component id="txtcardnum" alignment="0" pref="145" max="32767" attributes="0"/>
                   <Component id="txtmoney" max="32767" attributes="0"/>
+                  <Component id="txtpayment" max="32767" attributes="0"/>
+                  <Component id="txtcheckin" max="32767" attributes="0"/>
+                  <Component id="txtcheckout" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
           </Group>
@@ -97,29 +99,26 @@
               </Group>
               <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel6" min="-2" pref="37" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtname" max="32767" attributes="0"/>
-                          <Component id="jLabel1" min="-2" pref="37" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txtname" max="32767" attributes="0"/>
+                              <Component id="jLabel1" min="-2" pref="37" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="txtcheckin" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jLabel2" min="-2" pref="37" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtphone" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                                  <Component id="txtcheckout" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                                  <Component id="jLabel7" alignment="3" pref="37" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtcheckout" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jLabel2" min="-2" pref="37" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel7" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                                  <Component id="txtphone" min="-2" pref="31" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel6" pref="37" max="32767" attributes="0"/>
-                          <Component id="txtcheckin" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -129,21 +128,21 @@
                   <Component id="jLabel11" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                   <Component id="txtmoney" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="29" max="32767" attributes="0"/>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel4" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                  <Component id="txtroomnum" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                  <Component id="jLabel9" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                  <Component id="txtpayment" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel4" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                          <Component id="txtroomnum" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                          <Component id="jLabel9" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                          <Component id="txtpayment" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel5" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                          <Component id="txtpeople" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="jLabel10" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                           <Component id="txtcardnum" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="txtpeople" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                   </Group>
@@ -226,10 +225,14 @@
     <Component class="javax.swing.JTextField" name="txtphone">
     </Component>
     <Component class="javax.swing.JTextField" name="txtroomtype">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtroomnum">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtpeople">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="BUTT_goback">
       <Properties>
@@ -250,10 +253,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUTT_mofifyActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtcheckin">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtcheckout">
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -270,8 +269,6 @@
         <Property name="text" type="java.lang.String" value="&#xce74;&#xb4dc;&#xbc88;&#xd638;:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtpayment">
-    </Component>
     <Component class="javax.swing.JTextField" name="txtcardnum">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">
@@ -283,6 +280,46 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtmoney">
+    </Component>
+    <Component class="javax.swing.JComboBox" name="txtpayment">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515;" size="14" style="0"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="CreditCard"/>
+            <StringItem index="1" value="Cash"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="txtpeople">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xb9d1;&#xc740; &#xace0;&#xb515;" size="14" style="0"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="6">
+            <StringItem index="0" value="1"/>
+            <StringItem index="1" value="2"/>
+            <StringItem index="2" value="3"/>
+            <StringItem index="3" value="4"/>
+            <StringItem index="4" value="5"/>
+            <StringItem index="5" value="6"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="txtcheckin">
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="txtcheckout">
     </Component>
   </SubComponents>
 </Form>
