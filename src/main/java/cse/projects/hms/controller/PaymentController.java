@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class PaymentController {
 
-    public void changeMoney(String userdata, String roomnum, String money) {//요금 0으로 바꾸기 
+    public void changeMoney(String userdata,String roomnum, String money) {//요금 0으로 바꾸기 
         String line;
         String fileName = "data/UserData.txt";
         File file = new File(fileName);
@@ -37,7 +37,7 @@ public class PaymentController {
                 writer.write(lineToWrite);
                 writer.newLine();
             }
-            writer.write(userdata + ',' + money);
+            writer.write(userdata+','+money);
         } catch (IOException ex) {
             ex.printStackTrace();
             System.out.println("선결제 요금 수정 중 오류가 발생했습니다.");
