@@ -44,7 +44,7 @@ public class PaymentController {
         }
     }
 
-    public void payLaterRoomservice(String roomnum, String sum) {
+    public void payLaterRoomservice(String roomnum, String sum) { //룸서비스 나중에 결제 메서드
         List<String> lines = new ArrayList<>();
         String fileName = "data/UserData.txt";
         String userdata = null;
@@ -82,7 +82,7 @@ public class PaymentController {
         }
     }
 
-    public void payAlreadyRoomservice(String roomnum, String sum) {
+    public void payAlreadyRoomservice(String roomnum, String sum) {//룸서비스 선결제 메서드 
         List<String> lines = new ArrayList<>();
         String fileName = "data/UserData.txt";
         String userdata = null;

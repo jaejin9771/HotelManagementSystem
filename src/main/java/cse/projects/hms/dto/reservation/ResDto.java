@@ -18,14 +18,16 @@ public class ResDto {
     private String checkin; // 체크인 시간
     private String checkout; // 체크아웃 시간
     private String money;
+    private String selectedpayment;
+    private String cardnumbers;
     //private String userdata; //유저정보모음
 
     @Override
     public String toString() {
-        return name + ',' + phonenumber + ',' + roomtype + ',' + roomnum + ',' + peoplenum + ',' + checkin + ',' + checkout + ',' + money;
+        return name + ',' + phonenumber + ',' + roomtype + ',' + roomnum + ',' + peoplenum + ',' + checkin + ',' + checkout + ','+ money + ',' + selectedpayment + ',' + cardnumbers;
     }
-    
-    public ResDto(String name, String phonenumber, String roomtype, String roomnum, String peoplenum, String checkin, String checkout, String money) {
+
+    public ResDto(String name, String phonenumber, String roomtype, String roomnum, String peoplenum, String checkin, String checkout,String selectedpayment,String cardnumbers, String money) {
         this.name = name;
         this.phonenumber = phonenumber;
         this.roomtype = roomtype;
@@ -33,12 +35,15 @@ public class ResDto {
         this.peoplenum = peoplenum;
         this.checkin = checkin;
         this.checkout = checkout;
+        this.selectedpayment=selectedpayment;
+        this.cardnumbers=cardnumbers;
         this.money = money;
         //this.userdata = name +',' + phonenumber + ','+roomtype+','+ roomnum+','+peoplenum+','+checkin+','+checkout+'\n';
     }
 //    public String getUserdata() {
 //        return userdata;
 //    }
+
     public String getMoney() {
         return money;
     }

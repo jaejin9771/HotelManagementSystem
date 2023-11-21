@@ -353,10 +353,15 @@ public class RoomServiceScreen extends javax.swing.JFrame {
 
     private void BUTT_enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_enterActionPerformed
         // TODO add your handling code here:
+        RoomServiceController room = new RoomServiceController();
+        if(room.checkRoomService(RoomNumber.getText())==true){
         RoomServiceController res = new RoomServiceController();
         String[] result = res.sendRoomService(RoomNumber.getText());
         String data = "이름 : "+ result[0] + " 객실 등급 : " + result[2]+ " 객실 호수 : " + result[3];
         userdata.setText(data);
+        }
+        else 
+            JOptionPane.showMessageDialog(null, "예약된 객실이 아닙니다.");
     }//GEN-LAST:event_BUTT_enterActionPerformed
 
     private void BUTT_allcancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_allcancelActionPerformed
