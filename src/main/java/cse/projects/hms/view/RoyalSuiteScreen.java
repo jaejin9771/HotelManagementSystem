@@ -88,6 +88,7 @@ public class RoyalSuiteScreen extends javax.swing.JFrame implements ActionListen
         R_422 = new javax.swing.JButton();
         R_423 = new javax.swing.JButton();
         BUTT_goback = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -149,6 +150,9 @@ public class RoyalSuiteScreen extends javax.swing.JFrame implements ActionListen
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("맑은 고딕", 0, 18)); // NOI18N
+        jLabel1.setText("*Royal Suite 객실 기본요금 : 400,000");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -199,7 +203,9 @@ public class RoyalSuiteScreen extends javax.swing.JFrame implements ActionListen
                     .addComponent(R_405, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(84, 84, 84))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BUTT_goback)
                 .addContainerGap())
         );
@@ -207,8 +213,10 @@ public class RoyalSuiteScreen extends javax.swing.JFrame implements ActionListen
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(BUTT_goback)
-                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BUTT_goback)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(R_401, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(R_402, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -302,5 +310,6 @@ public class RoyalSuiteScreen extends javax.swing.JFrame implements ActionListen
     private javax.swing.JButton R_443;
     private javax.swing.JButton R_444;
     private javax.swing.JButton R_445;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
