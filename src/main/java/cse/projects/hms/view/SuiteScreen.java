@@ -41,16 +41,16 @@ public class SuiteScreen extends javax.swing.JFrame implements ActionListener {
             roomButton.addActionListener(this);
         }
 
-        // 각 버튼에 대해 예약 상태 확인 및 비활성화 처리
-        for (int i = 0; i < roomButtons.length; i++) {
-            int tensDigit = i / 5;
-            // 101부터 시작하도록 수정
-            int roomNumber = 301 + tensDigit * 10 + i % 5;
-            if (rc.isEmptyRoom(Integer.toString(roomNumber))) { 
-            } else {
-               roomButtons[i].setEnabled(false);
-           }
-        }
+//        // 각 버튼에 대해 예약 상태 확인 및 비활성화 처리
+//        for (int i = 0; i < roomButtons.length; i++) {
+//            int tensDigit = i / 5;
+//            // 101부터 시작하도록 수정
+//            int roomNumber = 301 + tensDigit * 10 + i % 5;
+//            if (rc.isEmptyRoom(Integer.toString(roomNumber))) { 
+//            } else {
+//               roomButtons[i].setEnabled(false);
+//           }
+//        }
     }
 
     /**
@@ -273,12 +273,6 @@ public class SuiteScreen extends javax.swing.JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton clickedButton = (JButton) e.getSource();
-
-        if (!clickedButton.isEnabled()) {
-            // 버튼이 비활성화되어 있으면(이미 예약된 방)
-            // 아무 동작도 하지 않음
-            return;
-        }
         String roomtype = "Suite";
         String roomnum = clickedButton.getText();
         ReservationScreen reservationscreen = new ReservationScreen(roomtype,roomnum);
