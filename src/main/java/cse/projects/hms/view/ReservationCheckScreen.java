@@ -22,7 +22,7 @@ import javax.swing.table.TableModel;
  *
  * @author ij944
  */
-public class ReservationCheckScreen extends javax.swing.JFrame{
+public class ReservationCheckScreen extends javax.swing.JFrame {
 
     /**
      * Creates new form ReservaionCheck
@@ -92,6 +92,7 @@ public class ReservationCheckScreen extends javax.swing.JFrame{
     public JTable getCustomerDataTable() {
         return customerdatatable;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -273,25 +274,27 @@ public class ReservationCheckScreen extends javax.swing.JFrame{
 
     private void BUTT_modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_modifyActionPerformed
         // TODO add your handling code here:
-        int row = customerdatatable.getSelectedRow();
-        TableModel data = customerdatatable.getModel();
-        
-        String name = (String) data.getValueAt(row, 0);
-        String phone = (String) data.getValueAt(row, 1);
-        String roomtype = (String) data.getValueAt(row, 2);
-        String roomnumber = (String) data.getValueAt(row, 3);
-        String people = (String) data.getValueAt(row, 4);
-        String checkin = (String) data.getValueAt(row, 5);
-        String checkout = (String) data.getValueAt(row, 6);
-        String money = (String) data.getValueAt(row, 7);
-        String payment = (String) data.getValueAt(row, 8);
-        String cardnum = (String) data.getValueAt(row, 9);
-        CustomertableClickcellDto selectUser = new CustomertableClickcellDto(name, phone, roomtype, roomnumber, people, checkin, checkout,money,payment,cardnum);
-        
-        
-        ReservationModifyScreen res = new ReservationModifyScreen(selectUser);
-        res.setVisible(true);
-        setVisible(false);
+        if (customerdatatable.getSelectedRow() != -1) {
+            int row = customerdatatable.getSelectedRow();
+            TableModel data = customerdatatable.getModel();
+
+            String name = (String) data.getValueAt(row, 0);
+            String phone = (String) data.getValueAt(row, 1);
+            String roomtype = (String) data.getValueAt(row, 2);
+            String roomnumber = (String) data.getValueAt(row, 3);
+            String people = (String) data.getValueAt(row, 4);
+            String checkin = (String) data.getValueAt(row, 5);
+            String checkout = (String) data.getValueAt(row, 6);
+            String money = (String) data.getValueAt(row, 7);
+            String payment = (String) data.getValueAt(row, 8);
+            String cardnum = (String) data.getValueAt(row, 9);
+            CustomertableClickcellDto selectUser = new CustomertableClickcellDto(name, phone, roomtype, roomnumber, people, checkin, checkout, money, payment, cardnum);
+
+            ReservationModifyScreen res = new ReservationModifyScreen(selectUser);
+            res.setVisible(true);
+            setVisible(false);
+        } else
+            JOptionPane.showMessageDialog(null, "수정할 테이블을 클릭해주세요.");
     }//GEN-LAST:event_BUTT_modifyActionPerformed
 
     /**

@@ -28,12 +28,20 @@ public class ReservationModifyScreen extends javax.swing.JFrame {
      *
      * @param clickcell
      */
+    public ReservationModifyScreen(int calculateDate) {
+        initComponents();
+        blockCardnumber();
+        setLocationRelativeTo(null);
+        initializerestriction();
+        this.calculate = calculateDate;
+    }
+
     public ReservationModifyScreen(CustomertableClickcellDto clickcell) {
         initComponents();
+        blockCardnumber();
         setLocationRelativeTo(null);
         setSelectedcell(clickcell);
         initializerestriction();
-        blockCardnumber();
     }
 
     private void initializerestriction() {//객실등급에 따른 인원제한
@@ -57,6 +65,7 @@ public class ReservationModifyScreen extends javax.swing.JFrame {
             }
         });
     }
+
     public int calculateDate() {//예상 체크인 날짜와 체크아웃 날짜를 계산하는 메서드
         // 첫번째 JCalendar에서 선택된 날짜 가져오기
         Calendar calendar1SelectedDateCalendar = txtcheckin.getCalendar();
@@ -82,7 +91,10 @@ public class ReservationModifyScreen extends javax.swing.JFrame {
         txtmoney.setText(clickcell.getMoney());
         txtpayment.setSelectedItem(clickcell.getPayment());
         txtcardnum.setText(clickcell.getCardnum());
+
+        moneydata = Integer.parseInt(clickcell.getMoney());
         roomnumber = clickcell.getRoomnum();
+        people = Integer.parseInt(clickcell.getPeople());
     }
     private String m_name;
     private String m_phone;
@@ -96,11 +108,105 @@ public class ReservationModifyScreen extends javax.swing.JFrame {
     private String m_cardnum;
 
     private String roomnumber; // 수정전 호수
+    private int people; //수정전 인원수
+    private int moneydata; //수정전 누적요금
+    private int calculate;
 
     public String getroomnum() {
         String vau = txtroomnum.getText();
         return vau;
     }
+
+    public int modifymoney() {
+        int money = 0;
+        int difference = people - Integer.parseInt(txtpeople.getSelectedItem().toString());
+        if (difference > 0) { //수정 전 인원수가 더 높을 때
+            switch (difference) {//인원수에 따른 추가요금 설정
+                case 1:
+                    money -= 30000;
+                    break;
+                case 2:
+                    money -= 60000;
+                    break;
+                case 3:
+                    money -= 90000;
+                    break;
+                case 4:
+                    money -= 120000;
+                    break;
+                case 5:
+                    money -= 150000;
+                    break;
+            }
+        } else if (difference < 0) { //수정 후 인원수가 더 높을 때
+            switch (difference) {//인원수에 따른 추가요금 설정
+                case -1:
+                    money += 30000;
+                    break;
+                case -2:
+                    money += 60000;
+                    break;
+                case -3:
+                    money += 90000;
+                    break;
+                case -4:
+                    money += 120000;
+                    break;
+                case -5:
+                    money += 150000;
+                    break;
+            }    //인원수에 따른 추가요금 설정
+        } else if (difference == 0) {
+            money = 0;
+        }
+        return money;
+    }
+
+    private int calculateDateMoney() {
+        int money = 0;
+        int difference = calculate - calculateDate();
+        if (difference < 0) { //수정 후 날짜 차이가 더 큰 경우
+            switch (difference) {
+                case -2:
+                    money += 50000;
+                    break;
+                case -3:
+                    money += 100000;
+                    break;
+                case -4:
+                    money += 150000;
+                    break;
+                case -5:
+                    money += 200000;
+                    break;
+            }
+        } else if (difference > 0) {//수정 후 날짜 차이가 더 작은 경우
+            switch (difference) {
+                case 2:
+                    money -= 50000;
+                    break;
+                case 3:
+                    money -= 100000;
+                    break;
+                case 4:
+                    money -= 150000;
+                    break;
+                case 5:
+                    money -= 200000;
+                    break;
+            }
+        } else if (difference == 0) {
+            money = 0;
+        }
+        return money;
+    }
+
+    private String calculateMoney() {
+        int money = moneydata;
+        money += modifymoney() + calculateDateMoney();
+        return Integer.toString(money);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -313,26 +419,29 @@ public class ReservationModifyScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_BUTT_gobackActionPerformed
 
     private void BUTT_mofifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_mofifyActionPerformed
-        if(calculateDate()<=5){
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        m_name = txtname.getText();
-        m_phone = txtphone.getText();
-        m_roomtype = txtroomtype.getText();
-        m_roomnumber = txtroomnum.getText();
-        m_people = txtpeople.getSelectedItem().toString();
-        m_checkin = dateFormat.format(txtcheckin.getDate());
-        m_checkout = dateFormat.format(txtcheckout.getDate());
-        m_money = txtmoney.getText();
-        m_payment = txtpayment.getSelectedItem().toString();
-        m_cardnum = txtcardnum.getText();
-        String modifysell;
-        modifysell = m_name + ',' + m_phone + ',' + m_roomtype + ',' + m_roomnumber + ',' + m_people + ',' + m_checkin + ',' + m_checkout + ',' + m_money + ',' + m_payment + ',' + m_cardnum;
-        ResCheckController res = new ResCheckController();
-        res.modifyUserdata(roomnumber, modifysell);
-        JOptionPane.showMessageDialog(null, "예약정보가 성공적으로 수정되었습니다.");
-        }
-        else
-            JOptionPane.showMessageDialog(null, "객실이용제한은 5일입니다.");
+        if (txtcheckin.getDate() != null && txtcheckout.getDate() != null) {
+            if (calculateDate() <= 5) {
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                m_name = txtname.getText();
+                m_phone = txtphone.getText();
+                m_roomtype = txtroomtype.getText();
+                m_roomnumber = txtroomnum.getText();
+                m_people = txtpeople.getSelectedItem().toString();
+                m_checkin = dateFormat.format(txtcheckin.getDate());
+                m_checkout = dateFormat.format(txtcheckout.getDate());
+                m_money = calculateMoney();
+                m_payment = txtpayment.getSelectedItem().toString();
+                m_cardnum = txtcardnum.getText();
+                String modifysell;
+                modifysell = m_name + ',' + m_phone + ',' + m_roomtype + ',' + m_roomnumber + ',' + m_people + ',' + m_checkin + ',' + m_checkout + ',' + m_money + ',' + m_payment + ',' + m_cardnum;
+                ResCheckController res = new ResCheckController();
+                res.modifyUserdata(roomnumber, modifysell);
+                JOptionPane.showMessageDialog(null, "예약정보가 성공적으로 수정되었습니다.");
+            } else {
+                JOptionPane.showMessageDialog(null, "객실이용제한은 5일입니다.");
+            }
+        } else
+            JOptionPane.showMessageDialog(null, "체크인과 체크아웃 시간을 설정해주세요.");
     }//GEN-LAST:event_BUTT_mofifyActionPerformed
 
     /**
