@@ -288,7 +288,7 @@ public class RoomServiceScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         RoomServiceController res = new RoomServiceController();
         boolean check = res.checkRoomService(RoomNumber.getText());
-        if (check == false) { //예약자 이름과 예약된 객실로 바꿔야 함
+        if (check == true) { //예약자 이름과 예약된 객실로 바꿔야 함
 
             DefaultTableModel Model = (DefaultTableModel) ServiceMenu.getModel();
             DefaultTableModel model = (DefaultTableModel) order.getModel();
@@ -301,7 +301,7 @@ public class RoomServiceScreen extends javax.swing.JFrame {
             sum += Integer.parseInt(ServiceMenu.getValueAt(rowcount, 1).toString()); //룸서비스 취소기능은 cancel버튼 눌렀을 때
             resultmoney.setText("" + sum);
         } else {
-            JOptionPane.showMessageDialog(null, "예약된 객실이 아닙니다.");
+            JOptionPane.showMessageDialog(null, "점유중인 객실이 아닙니다.");
         }
 
     }//GEN-LAST:event_BUTT_okActionPerformed
