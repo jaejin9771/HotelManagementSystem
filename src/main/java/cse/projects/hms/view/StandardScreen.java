@@ -42,32 +42,16 @@ public class StandardScreen extends javax.swing.JFrame implements ActionListener
         }
 
         // 각 버튼에 대해 예약 상태 확인 및 비활성화 처리
-        for (int i = 0; i < roomButtons.length; i++) {
-            int tensDigit = i / 5;
-            // 101부터 시작하도록 수정
-            int roomNumber = 101 + tensDigit * 10 + i % 5;
-            if (rc.isEmptyRoom( Integer.toString(roomNumber))){ 
-            } else {
-               roomButtons[i].setEnabled(false);
-           }
-        }
+//        for (int i = 0; i < roomButtons.length; i++) {
+//            int tensDigit = i / 5;
+//            // 101부터 시작하도록 수정
+//            int roomNumber = 101 + tensDigit * 10 + i % 5;
+//            if (rc.isEmptyRoom( Integer.toString(roomNumber))){ 
+//            } else {
+//               roomButtons[i].setEnabled(false);
+//           }
+//        }
     }
-
-    /*@Override
-     public void actionPerformed(ActionEvent e) {
-        JButton clickedButton = (JButton) e.getSource();
-        
-        String roomnum = (String)e.getSource();
-        rc.isEmptyRoom(roomnum);
-        
-        if(rc.isEmptyRoom(roomnum)==true){
-            clickedButton.setEnabled(false);
-        }
-        else  {
-            clickedButton.setEnabled(true);
-        }
-        throw new UnsupportedOperationException("Not supported yet.");
-    }*/
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -358,10 +342,6 @@ public class StandardScreen extends javax.swing.JFrame implements ActionListener
         dispose();
     }//GEN-LAST:event_BUTT_gobackActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BUTT_goback;
     private javax.swing.JButton R_101;
@@ -420,18 +400,11 @@ public class StandardScreen extends javax.swing.JFrame implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton clickedButton = (JButton) e.getSource();
-
-        if (!clickedButton.isEnabled()) {
-            // 버튼이 비활성화되어 있으면(이미 예약된 방)
-            // 아무 동작도 하지 않음
-            return;
-        }
+        
         String roomtype = "Standard";
         String roomnum = clickedButton.getText();
         ReservationScreen reservationscreen = new ReservationScreen(roomtype,roomnum);
         reservationscreen.setVisible(true);
         dispose();
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
 }
