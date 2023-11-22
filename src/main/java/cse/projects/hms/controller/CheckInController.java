@@ -18,6 +18,12 @@ public class CheckInController {
     private String phone;
     private String roomnum;
 
+    
+    public CheckInController(){
+        
+    }
+
+
     public CheckInController(String name, String phone, String roomnum) {
         this.name = name;
         this.phone = phone;
@@ -53,4 +59,40 @@ public class CheckInController {
             System.out.println("체크인 중 오류가 발생했습니다.");
         }
     }
+
+
+    public boolean checkFullroom() {
+        String line;
+        String fileName = "data/UserData.txt";
+        File file = new File(fileName);
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            while ((line = br.readLine()) != null) {
+                String[] row = line.split(",");
+                if ("full room".equals(row[10])) {
+                    return false;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+    public boolean checkResroom(){
+        String line;
+        String fileName = "data/UserData.txt";
+        File file = new File(fileName);
+        System.out.println(name + "," + phone + "," + roomnum);
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            while ((line = br.readLine()) != null) {
+                String[] row = line.split(",");
+                if (row[0].equals(name) && row[1].equals(phone) && row[3].equals(roomnum)) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }
