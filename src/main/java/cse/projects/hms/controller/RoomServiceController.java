@@ -21,12 +21,14 @@ public class RoomServiceController {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
+
                 if (roomnum.equals(row[3]) && "full room".equals(row[10])) {
                     return true;
                 }
             }
         } catch (IOException e) {
             System.out.println("룸서비스 오류");
+
         }
         return false;
     }

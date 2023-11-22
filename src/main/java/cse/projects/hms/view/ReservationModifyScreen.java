@@ -456,6 +456,7 @@ public class ReservationModifyScreen extends javax.swing.JFrame {
                 m_money = calculateMoney();
                 m_payment = txtpayment.getSelectedItem().toString();
                 m_cardnum = txtcardnum.getText();
+
                 m_roomstate = jComboBox1.getSelectedItem().toString();
                 
                 String modifysell;
@@ -463,6 +464,7 @@ public class ReservationModifyScreen extends javax.swing.JFrame {
                 ResCheckController res = new ResCheckController();
                 res.modifyUserdata(roomnumber, modifysell);
                 JOptionPane.showMessageDialog(null, "예약정보가 성공적으로 수정되었습니다.  "+"결제요금은"+m_money+"입니다.");
+
             } else {
                 JOptionPane.showMessageDialog(null, "객실이용제한은 5일입니다.");
             }

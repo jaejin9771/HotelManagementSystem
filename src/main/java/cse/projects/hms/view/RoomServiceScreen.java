@@ -326,19 +326,23 @@ public class RoomServiceScreen extends javax.swing.JFrame {
 
             JOptionPane aa = new JOptionPane();
             aa.showMessageDialog(null, "룸서비스 결제금액이 추가되었습니다.");
+
         } else
+
             JOptionPane.showMessageDialog(null, "추가할 메뉴를 선택해주세요.");
     }//GEN-LAST:event_BUTT_laterpaymentActionPerformed
 
     private void BUTT_enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_enterActionPerformed
         RoomServiceController room = new RoomServiceController();
         if (RoomNumber.getText() != null) {
+
             if (room.checkRoomService(RoomNumber.getText())) {
                 String[] result = room.sendRoomService(RoomNumber.getText());
                 String data = "이름 : " + result[0] + " 객실 등급 : " + result[2] + " 객실 호수 : " + result[3];
                 userdata.setText(data);
             } else {
                 JOptionPane.showMessageDialog(null, "점유중인 객실이 아닙니다.");
+
             }
         } else
             JOptionPane.showMessageDialog(null, "객실호수를 입력해주세요.");
