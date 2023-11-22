@@ -17,10 +17,12 @@ public class CheckInController {
     private String name;
     private String phone;
     private String roomnum;
+
     
     public CheckInController(){
         
     }
+
 
     public CheckInController(String name, String phone, String roomnum) {
         this.name = name;
@@ -58,6 +60,7 @@ public class CheckInController {
         }
     }
 
+
     public boolean checkFullroom() {
         String line;
         String fileName = "data/UserData.txt";
@@ -91,4 +94,5 @@ public class CheckInController {
         }
         return false;
     }
+
 }
