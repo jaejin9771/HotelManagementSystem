@@ -17,22 +17,23 @@ import java.util.logging.Logger;
  * @author ij944
  */
 public class ResCheckController {
+
     private CustomertableClickcellDto selectusers;
     private String txtsearchroomnum;
     private String selectuser;
     private String selectuserr;
+
     //private String selectedM_Roomnum;
     public ResCheckController() {
 
     }
-//    public ResCheckController(String roomnum) {
-//        this.selectedM_Roomnum = roomnum;
-//    }
+
     public ResCheckController(String txtsearchroomnum) {
         this.txtsearchroomnum = txtsearchroomnum;
     }
-    public ResCheckController(CustomertableClickcellDto ctcDto){
-        selectuserr = ctcDto.getName()+","+ ctcDto.getPhone()+","+ctcDto.getRoomtype()+","+ctcDto.getRoomnum()+","+ctcDto.getPeople()+","+ctcDto.getCheckin()+","+ctcDto.getCheckout()+"\n";
+
+    public ResCheckController(CustomertableClickcellDto ctcDto) {
+        selectuserr = ctcDto.getName() + "," + ctcDto.getPhone() + "," + ctcDto.getRoomtype() + "," + ctcDto.getRoomnum() + "," + ctcDto.getPeople() + "," + ctcDto.getCheckin() + "," + ctcDto.getCheckout() + "\n";
     }
 
     public List<String> checkResroom() { //예약된 객실호수만 읽는 메서드
@@ -89,8 +90,9 @@ public class ResCheckController {
         }
         return userDataList.toArray(new String[0]);
     }
-    
+
     private String selectedRoomnum;
+
     public void CancelSelectedcell(String roomnum) {
         selectedRoomnum = roomnum;
     }
@@ -126,11 +128,8 @@ public class ResCheckController {
         }
         return false;
     }
-    
-    //public void modifyUserdata(CustomertableClickcellDto ctcDto,String selectedValue)
-    public void modifyUserdata(String selectedValue, String modifysell){
-        System.out.println(selectedValue);
-        System.out.println(modifysell);
+
+    public void modifyUserdata(String selectedValue, String modifysell) {
         String line;
         String fileName = "data/UserData.txt";
         File file = new File(fileName);
@@ -158,5 +157,30 @@ public class ResCheckController {
             ex.printStackTrace();
             System.out.println("예약정보 수정 중 오류가 발생했습니다.");
         }
+    }
+
+    public boolean checkEmptyRoom(String roomnum) {//점유중이지 않은 객실
+        String line;
+        String fileName = "data/UserData.txt";
+        File file = new File(fileName);
+        List<String> lines = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            while ((line = br.readLine()) != null) {
+                String[] row = line.split(",");
+                if (!roomnum.equals(row[3])) {
+                    return true;
+                }
+                if (roomnum.equals(row[3])) {
+                    if ("empty room".equals(row[10])) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 }

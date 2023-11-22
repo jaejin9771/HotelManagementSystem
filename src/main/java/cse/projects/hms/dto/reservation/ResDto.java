@@ -20,14 +20,15 @@ public class ResDto {
     private String money;
     private String selectedpayment;
     private String cardnumbers;
+    private String occupation;
     //private String userdata; //유저정보모음
 
     @Override
     public String toString() {
-        return name + ',' + phonenumber + ',' + roomtype + ',' + roomnum + ',' + peoplenum + ',' + checkin + ',' + checkout + ','+ money + ',' + selectedpayment + ',' + cardnumbers;
+        return name + ',' + phonenumber + ',' + roomtype + ',' + roomnum + ',' + peoplenum + ',' + checkin + ',' + checkout + ','+ money + ',' + selectedpayment + ',' + cardnumbers+','+occupation;
     }
 
-    public ResDto(String name, String phonenumber, String roomtype, String roomnum, String peoplenum, String checkin, String checkout,String selectedpayment,String cardnumbers, String money) {
+    public ResDto(String name, String phonenumber, String roomtype, String roomnum, String peoplenum, String checkin, String checkout,String selectedpayment,String cardnumbers, String money,String occupation) {
         this.name = name;
         this.phonenumber = phonenumber;
         this.roomtype = roomtype;
@@ -38,6 +39,7 @@ public class ResDto {
         this.selectedpayment=selectedpayment;
         this.cardnumbers=cardnumbers;
         this.money = money;
+        this.occupation=occupation;
         //this.userdata = name +',' + phonenumber + ','+roomtype+','+ roomnum+','+peoplenum+','+checkin+','+checkout+'\n';
     }
 //    public String getUserdata() {
@@ -46,6 +48,30 @@ public class ResDto {
 
     public String getMoney() {
         return money;
+    }
+
+    public String getSelectedpayment() {
+        return selectedpayment;
+    }
+
+    public void setSelectedpayment(String selectedpayment) {
+        this.selectedpayment = selectedpayment;
+    }
+
+    public String getCardnumbers() {
+        return cardnumbers;
+    }
+
+    public void setCardnumbers(String cardnumbers) {
+        this.cardnumbers = cardnumbers;
+    }
+
+    public String getOccupation() {
+        return occupation;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
     }
 
     public void setMoney(String money) {
