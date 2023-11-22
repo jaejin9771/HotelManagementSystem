@@ -92,7 +92,7 @@ public class ReportScreen extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("굴림", 0, 18)); // NOI18N
         jLabel7.setText("개");
 
-        goBack.setText("goback");
+        goBack.setText("뒤로가기");
         goBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 goBackActionPerformed(evt);
@@ -106,7 +106,7 @@ public class ReportScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(190, 190, 190)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(goBack)
                 .addGap(55, 55, 55))
             .addGroup(layout.createSequentialGroup()
