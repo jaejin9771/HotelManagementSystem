@@ -6,6 +6,8 @@
 package cse.projects.hms.view;
 
 import cse.projects.hms.controller.CheckInController;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,6 +26,18 @@ public class CheckInScreen extends javax.swing.JFrame {
     private String name;
     private String phone;
     private String roomnum;
+
+    private static boolean isCheckinTimeValid() {
+        // 현재 시간 가져오기
+        LocalTime currentTime = LocalTime.now();
+
+        // 체크인 가능한 시간 범위 설정 (아침 9시부터 24시까지)
+        LocalTime checkinStartTime = LocalTime.of(9, 0);
+        LocalTime checkinEndTime = LocalTime.of(23, 59);
+
+        // 현재 시간이 체크인 가능한 범위에 있는지 확인
+        return currentTime.isAfter(checkinStartTime) && currentTime.isBefore(checkinEndTime);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -156,12 +170,28 @@ public class CheckInScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_BUTT_gobackActionPerformed
 
     private void BUTT_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_okActionPerformed
+
         name = txtname.getText();
         phone = txtphone.getText();
         roomnum = txtroomnum.getText();
-        CheckInController check = new CheckInController(name, phone, roomnum);
-        check.modifyFullroom();
-        JOptionPane.showMessageDialog(null, "체크인되었습니다.");
+         CheckInController check = new CheckInController(name, phone, roomnum);
+        if (txtname.getText() != null && txtphone.getText() != null && txtroomnum.getText() != null) {
+            if (check.checkResroom() == true) {
+                if (isCheckinTimeValid()) {
+                    if (check.checkFullroom() == true) {
+                        check.modifyFullroom();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "이미 체크인 되었습니다.");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "체크인 시간이 마감되었습니다.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "예약된 객실정보가 아닙니다.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "모든 정보를 입력해주세요.");
+        }
     }//GEN-LAST:event_BUTT_okActionPerformed
 
     /**
