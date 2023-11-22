@@ -288,7 +288,7 @@ public class RoomServiceScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         RoomServiceController res = new RoomServiceController();
         boolean check = res.checkRoomService(RoomNumber.getText());
-        if (check == true) { //예약자 이름과 예약된 객실로 바꿔야 함
+        if (check == false) { //예약자 이름과 예약된 객실로 바꿔야 함
 
             DefaultTableModel Model = (DefaultTableModel) ServiceMenu.getModel();
             DefaultTableModel model = (DefaultTableModel) order.getModel();
@@ -319,23 +319,29 @@ public class RoomServiceScreen extends javax.swing.JFrame {
 
     private void BUTT_laterpaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_laterpaymentActionPerformed
         // TODO add your handling code here:
-        PaymentController pay = new PaymentController();
+        if (ServiceMenu.getSelectedRow() != -1) {
+            PaymentController pay = new PaymentController();
 
-        pay.payLaterRoomservice(RoomNumber.getText(), Integer.toString(sum));
+            pay.payLaterRoomservice(RoomNumber.getText(), Integer.toString(sum));
 
-        JOptionPane aa = new JOptionPane();
-        aa.showMessageDialog(null, "룸서비스 결제금액이 추가되었습니다.");
+            JOptionPane aa = new JOptionPane();
+            aa.showMessageDialog(null, "룸서비스 결제금액이 추가되었습니다.");
+        }
+        else
+            JOptionPane.showMessageDialog(null, "추가할 메뉴를 선택해주세요.");
     }//GEN-LAST:event_BUTT_laterpaymentActionPerformed
 
     private void BUTT_enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_enterActionPerformed
         RoomServiceController room = new RoomServiceController();
         if (RoomNumber.getText() != null) {
-            if (room.checkRoomService(RoomNumber.getText())) {
-                String[] result = room.sendRoomService(RoomNumber.getText());
-                String data = "이름 : " + result[0] + " 객실 등급 : " + result[2] + " 객실 호수 : " + result[3];
-                userdata.setText(data);
-            } else {
-                JOptionPane.showMessageDialog(null, "예약된 객실이 아닙니다.");
+            if (!room.checkRoomService(RoomNumber.getText())) {
+                if (room.sendRoomService(RoomNumber.getText()) != null) {
+                    String[] result = room.sendRoomService(RoomNumber.getText());
+                    String data = "이름 : " + result[0] + " 객실 등급 : " + result[2] + " 객실 호수 : " + result[3];
+                    userdata.setText(data);
+                } else {
+                    JOptionPane.showMessageDialog(null, "예약된 객실이 아닙니다.");
+                }
             }
         } else
             JOptionPane.showMessageDialog(null, "객실호수를 입력해주세요.");
