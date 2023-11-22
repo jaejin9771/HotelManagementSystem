@@ -6,6 +6,7 @@
 package cse.projects.hms.view;
 
 import cse.projects.hms.controller.PaymentController;
+import cse.projects.hms.controller.ResCheckController;
 import cse.projects.hms.controller.RoomController;
 import cse.projects.hms.dao.reservation.ResDao;
 import cse.projects.hms.dto.reservation.ResDto;
@@ -403,9 +404,10 @@ public class ReservationScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BUTT_insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_insertActionPerformed
-
+        String cardnumbers;
         RoomController room = new RoomController();
-        if (room.isEmptyRoom(roomnum) == true) {//빈방인지 확인하는 메서드 호출
+        ResCheckController check = new ResCheckController();
+        if (check.checkEmptyRoom(roomnum)==true) {
             if (name.getText() != null && phoneNumber.getText() != null && checkinTime.getDate() != null && checkoutTime.getDate() != null) {//모든 정보가 입력되었으면 if문 들어감
                 if (calculateDate() <= 5) {//체크인 날짜와 체크아웃 날짜의 차이를 계산했을 때 5이거나 5보다 작을 때 
                     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -415,9 +417,14 @@ public class ReservationScreen extends javax.swing.JFrame {
                     String checkintime = dateFormat.format(checkinTime.getDate());
                     String checkouttime = dateFormat.format(checkoutTime.getDate());
                     String selectedpayment = paymentmethod.getSelectedItem().toString();
-                    String cardnumbers = cardnumber.getText();
+                    if (!"".equals(cardnumber.getText())) {
+                        cardnumbers = cardnumber.getText();
+                    } else {
+                        cardnumbers = "현금결제";
+                    }
+                    String occupation = "empty room";
                     ResDto res;
-                    res = new ResDto(username, phonenumber, roomtype, roomnum, selectedpeopleNumber, checkintime, checkouttime, selectedpayment, cardnumbers, calculateRoomMoney());
+                    res = new ResDto(username, phonenumber, roomtype, roomnum, selectedpeopleNumber, checkintime, checkouttime, selectedpayment, cardnumbers, calculateRoomMoney(), occupation);
                     resdao.insert(res);
                     JOptionPane.showMessageDialog(null, "기본객실요금은 " + calculateRoomMoney() + "원입니다.");
                     ReservationModifyScreen ress = new ReservationModifyScreen(calculateDate());
@@ -428,7 +435,7 @@ public class ReservationScreen extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "예약정보를 입력해주세요.");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "이미 예약된 객실입니다.");
+            JOptionPane.showMessageDialog(null, "점유중인 객실입니다.");
         }
 
     }//GEN-LAST:event_BUTT_insertActionPerformed

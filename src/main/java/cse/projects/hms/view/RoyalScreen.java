@@ -23,7 +23,6 @@ public class RoyalScreen extends javax.swing.JFrame implements ActionListener {
      */
     public RoyalScreen() {
         initComponents();
-        initializeRoomButtons();
         setLocationRelativeTo(null);
     }
 
@@ -41,17 +40,17 @@ public class RoyalScreen extends javax.swing.JFrame implements ActionListener {
             roomButton.addActionListener(this);
         }
 
-        // 각 버튼에 대해 예약 상태 확인 및 비활성화 처리
-        for (int i = 0; i < roomButtons.length; i++) {
-            int tensDigit = i / 5;
-            // 101부터 시작하도록 수정
-            int roomNumber = 201 + tensDigit * 10 + i % 5;
-            if (rc.isEmptyRoom(Integer.toString(roomNumber))) { 
-                roomButtons[i].setEnabled(true);
-            } else {
-               roomButtons[i].setEnabled(false);
-           }
-        }
+//        // 각 버튼에 대해 예약 상태 확인 및 비활성화 처리
+//        for (int i = 0; i < roomButtons.length; i++) {
+//            int tensDigit = i / 5;
+//            // 101부터 시작하도록 수정
+//            int roomNumber = 201 + tensDigit * 10 + i % 5;
+//            if (rc.isEmptyRoom(Integer.toString(roomNumber))) { 
+//                roomButtons[i].setEnabled(true);
+//            } else {
+//               roomButtons[i].setEnabled(false);
+//           }
+//        }
     }
 
     /**
@@ -136,11 +135,6 @@ public class RoyalScreen extends javax.swing.JFrame implements ActionListener {
         R_223.setText("223");
 
         R_224.setText("224");
-        R_224.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                R_224ActionPerformed(evt);
-            }
-        });
 
         R_225.setText("225");
 
@@ -281,10 +275,6 @@ public class RoyalScreen extends javax.swing.JFrame implements ActionListener {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void R_224ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R_224ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_R_224ActionPerformed
-
     private void BUTT_gobackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_gobackActionPerformed
         // TODO add your handling code here:
         RoomScreen reservationScreen = new RoomScreen();
@@ -298,18 +288,11 @@ public class RoyalScreen extends javax.swing.JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton clickedButton = (JButton) e.getSource();
-
-        if (!clickedButton.isEnabled()) {
-            // 버튼이 비활성화되어 있으면(이미 예약된 방)
-            // 아무 동작도 하지 않음
-            return;
-        }
         String roomtype = "Royal";
         String roomnum = clickedButton.getText();
         ReservationScreen reservationscreen = new ReservationScreen(roomtype,roomnum);
         reservationscreen.setVisible(true);
         dispose();
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
