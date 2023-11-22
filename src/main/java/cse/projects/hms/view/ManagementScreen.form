@@ -61,7 +61,7 @@
                   <Component id="reportBtn" alignment="3" min="-2" pref="81" max="-2" attributes="0"/>
                   <Component id="changePwBtn" alignment="3" min="-2" pref="81" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="53" max="32767" attributes="0"/>
+              <EmptySpace pref="55" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -88,7 +88,10 @@
     </Component>
     <Component class="javax.swing.JButton" name="goback">
       <Properties>
-        <Property name="text" type="java.lang.String" value="goback"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="&#xad74;&#xb9bc;" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gobackActionPerformed"/>

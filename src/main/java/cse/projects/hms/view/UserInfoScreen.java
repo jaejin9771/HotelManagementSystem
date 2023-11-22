@@ -6,6 +6,8 @@ package cse.projects.hms.view;
 
 import cse.projects.hms.controller.UserController;
 import cse.projects.hms.dao.user.UserDao;
+import cse.projects.hms.dto.user.UserDto;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -13,9 +15,12 @@ import javax.swing.table.DefaultTableModel;
  * @author 재진
  */
 public class UserInfoScreen extends javax.swing.JFrame {
+
     private UserController userController = UserController.getInstance();
     private DefaultTableModel dtm; // 테이블 모델 변수
     private UserDao userDao = new UserDao();
+    private UserDto userDto;
+
     /**
      * Creates new form pwChangeScreen
      */
@@ -24,18 +29,18 @@ public class UserInfoScreen extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         initTable();
     }
-    
+
     private void initTable() {
-        String [] col={"ID", "Password", "UserType"};   // 컬럼 정보
-        dtm = new DefaultTableModel(col,0){
-            public boolean isCellEditable(int i,int c) {  // 셀 수정 불가 메서드
+        String[] col = {"ID", "Password", "UserType"};   // 컬럼 정보
+        dtm = new DefaultTableModel(col, 0) {
+            public boolean isCellEditable(int i, int c) {  // 셀 수정 불가 메서드
                 return false;
             }
         };
         userTable.setModel(dtm);   // userTalbe에 dtm 설정
         userDao.readAll(dtm);  //  모든 유저 데이터 가져와서 dtm에 저장
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -139,11 +144,18 @@ public class UserInfoScreen extends javax.swing.JFrame {
 
     private void modifyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBtnActionPerformed
         // TODO add your handling code here:
-        String[] userData = userDao.selectRow(userTable.getSelectedRow());
-        System.out.println("userData :" + userData[0] + "," + userData[1]+ "," + userData[2]);
-        UserModifyScreen userModifyScreen = new UserModifyScreen(userData);
-        userModifyScreen.setVisible(true);
+
+        int index = userTable.getSelectedRow();
+        String[] userData = userDao.selectRow(index);
         
+        if (userData != null) {  // 아무 값도 선택하지 않았을 때의 예외 처리
+            dispose();
+            UserModifyScreen userModifyScreen = new UserModifyScreen(userData, index);
+            userModifyScreen.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "변경할 사용자 정보를 선택해주세요.");
+        }
+
     }//GEN-LAST:event_modifyBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed

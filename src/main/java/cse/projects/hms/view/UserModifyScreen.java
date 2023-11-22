@@ -4,26 +4,40 @@
  */
 package cse.projects.hms.view;
 
+import cse.projects.hms.dao.user.UserDao;
+import cse.projects.hms.dto.user.UserDto;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 재진
  */
 public class UserModifyScreen extends javax.swing.JFrame {
+
     private String[] userData;
+    private int index;
+    private UserDto userDto;
+    private UserDao userDao = new UserDao();
+
     /**
      * Creates new form UserModifyScreen
      */
     public UserModifyScreen() {
         initComponents();
+        setLocationRelativeTo(null);
     }
-    
-    public UserModifyScreen(String[] userData) {
+
+    public UserModifyScreen(String[] userData, int index) {
         initComponents();
+        setLocationRelativeTo(null);
         this.userData = userData;
         idField.setText(userData[0]);
         pwField.setText(userData[1]);
         posField.setText(userData[2]);
+        this.index = index;
+        this.userDto = new UserDto(userData[0], userData[1], userData[2]);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -106,7 +120,7 @@ public class UserModifyScreen extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
+                .addContainerGap(12, Short.MAX_VALUE)
                 .addComponent(backBtn)
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1)
@@ -122,7 +136,7 @@ public class UserModifyScreen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(posField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(okBtn)
                 .addGap(41, 41, 41))
         );
@@ -132,7 +146,17 @@ public class UserModifyScreen extends javax.swing.JFrame {
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
         // TODO add your handling code here:
-        
+
+        if (posField.getText().equals("manager") || posField.getText().equals("staff")) { // userType을 잘못 입력했을 때, 예외 처리
+            userDto = new UserDto(idField.getText(), pwField.getText(), posField.getText());
+            userDao.modify(userDto, index);
+            
+            dispose();
+            UserInfoScreen userInfoScreen = new UserInfoScreen();
+            userInfoScreen.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Position을 다시 입력 해주세요.");
+        }
     }//GEN-LAST:event_okBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed

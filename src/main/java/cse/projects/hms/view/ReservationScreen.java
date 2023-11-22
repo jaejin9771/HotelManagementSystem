@@ -25,13 +25,13 @@ import javax.swing.*;
  * @author ij944
  */
 public class ReservationScreen extends javax.swing.JFrame {
-
+    
     private int money = 0;
     private String roomnum;
     private String roomtype;
     private ResDao resdao = new ResDao();
     boolean isOtherButtonClicked = false;
-
+    
     /**
      * Creates new form ReservationScreen
      */

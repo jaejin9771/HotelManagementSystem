@@ -49,7 +49,8 @@ public class ManagementScreen extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("굴림", 1, 36)); // NOI18N
         jLabel1.setText("Management");
 
-        goback.setText("goback");
+        goback.setFont(new java.awt.Font("굴림", 1, 12)); // NOI18N
+        goback.setText("Back");
         goback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gobackActionPerformed(evt);
@@ -107,7 +108,7 @@ public class ManagementScreen extends javax.swing.JFrame {
                     .addComponent(registerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(reportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(changePwBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         pack();
@@ -137,8 +138,8 @@ public class ManagementScreen extends javax.swing.JFrame {
     private void changePwBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePwBtnActionPerformed
         // TODO add your handling code here:
         dispose();
-        UserInfoScreen pwChangeScreen = new UserInfoScreen();
-        pwChangeScreen.setVisible(true);
+        UserInfoScreen userInfoScreen = new UserInfoScreen();
+        userInfoScreen.setVisible(true);
     }//GEN-LAST:event_changePwBtnActionPerformed
 
     /**
