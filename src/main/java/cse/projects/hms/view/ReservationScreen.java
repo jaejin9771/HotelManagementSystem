@@ -30,8 +30,11 @@ public class ReservationScreen extends javax.swing.JFrame {
     private String roomnum;
     private String roomtype;
     private ResDao resdao = new ResDao();
+
     boolean isOtherButtonClicked = false;
-    
+    private boolean isButtonClicked = false;
+
+
     /**
      * Creates new form ReservationScreen
      */
@@ -407,7 +410,7 @@ public class ReservationScreen extends javax.swing.JFrame {
         String cardnumbers;
         RoomController room = new RoomController();
         ResCheckController check = new ResCheckController();
-        if (check.checkEmptyRoom(roomnum)==true) {
+        if (check.checkEmptyRoom(roomnum) == true) {
             if (name.getText() != null && phoneNumber.getText() != null && checkinTime.getDate() != null && checkoutTime.getDate() != null) {//모든 정보가 입력되었으면 if문 들어감
                 if (calculateDate() <= 5) {//체크인 날짜와 체크아웃 날짜의 차이를 계산했을 때 5이거나 5보다 작을 때 
                     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -426,6 +429,7 @@ public class ReservationScreen extends javax.swing.JFrame {
                     ResDto res;
                     res = new ResDto(username, phonenumber, roomtype, roomnum, selectedpeopleNumber, checkintime, checkouttime, selectedpayment, cardnumbers, calculateRoomMoney(), occupation);
                     resdao.insert(res);
+                    isButtonClicked = true;
                     JOptionPane.showMessageDialog(null, "기본객실요금은 " + calculateRoomMoney() + "원입니다.");
                     ReservationModifyScreen ress = new ReservationModifyScreen(calculateDate());
                 } else {
@@ -437,7 +441,6 @@ public class ReservationScreen extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "점유중인 객실입니다.");
         }
-
     }//GEN-LAST:event_BUTT_insertActionPerformed
 
     private void BUTT_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_cancelActionPerformed
@@ -447,14 +450,8 @@ public class ReservationScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_BUTT_cancelActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        BUTT_insert.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // 다른 버튼이 클릭되면 변수 값을 변경
-                isOtherButtonClicked = true;
-            }
-        });
-        if (isOtherButtonClicked) {
+        if (isButtonClicked) {
+            // 버튼이 클릭되었을 때의 동작
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String selectedpeopleNumber = TEXT_peopleNumber.getSelectedItem().toString();
             String username = name.getText();
@@ -462,11 +459,14 @@ public class ReservationScreen extends javax.swing.JFrame {
             String checkintime = dateFormat.format(checkinTime.getDate());
             String checkouttime = dateFormat.format(checkoutTime.getDate());
             String userdata = username + ',' + phonenumber + ',' + roomtype + ',' + roomnum + ',' + selectedpeopleNumber + ',' + checkintime + ',' + checkouttime;
+
             PaymentScreen pay = new PaymentScreen(userdata, roomnum, calculateRoomMoney());
             pay.setVisible(true);
             dispose();
-        } else
-            JOptionPane.showMessageDialog(null, "예약버튼을 클릭해주세요.");
+        } else {
+            // 버튼이 클릭되지 않았을 때의 동작
+            JOptionPane.showMessageDialog(null, "예약 버튼을 클릭해주세요.");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

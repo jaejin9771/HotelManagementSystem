@@ -140,6 +140,7 @@ public class ManagementScreen extends javax.swing.JFrame {
         dispose();
         UserInfoScreen userInfoScreen = new UserInfoScreen();
         userInfoScreen.setVisible(true);
+
     }//GEN-LAST:event_changePwBtnActionPerformed
 
     /**

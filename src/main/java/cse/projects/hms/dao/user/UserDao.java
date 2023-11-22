@@ -9,6 +9,7 @@ import cse.projects.hms.dto.user.UserDto.UserBuilder;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -89,6 +90,7 @@ public class UserDao {
         return false;
     }
 
+
     public void readAll(DefaultTableModel dtm) {
         String file = "data/user.txt";
 
@@ -155,4 +157,5 @@ public class UserDao {
         }
         
     }
+
 }

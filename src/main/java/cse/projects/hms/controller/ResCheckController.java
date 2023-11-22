@@ -167,15 +167,8 @@ public class ResCheckController {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
-                if (!roomnum.equals(row[3])) {
-                    return true;
-                }
-                if (roomnum.equals(row[3])) {
-                    if ("empty room".equals(row[10])) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                if ("full room".equals(row[10])) {
+                    return false;
                 }
             }
         } catch (IOException e) {

@@ -4,6 +4,7 @@
  */
 package cse.projects.hms.view;
 
+
 import cse.projects.hms.dao.user.UserDao;
 import cse.projects.hms.dto.user.UserDto;
 import javax.swing.JOptionPane;
@@ -37,6 +38,7 @@ public class UserModifyScreen extends javax.swing.JFrame {
         this.index = index;
         this.userDto = new UserDto(userData[0], userData[1], userData[2]);
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.

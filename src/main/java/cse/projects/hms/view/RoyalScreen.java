@@ -23,6 +23,7 @@ public class RoyalScreen extends javax.swing.JFrame implements ActionListener {
      */
     public RoyalScreen() {
         initComponents();
+        initializeRoomButtons();
         setLocationRelativeTo(null);
     }
 

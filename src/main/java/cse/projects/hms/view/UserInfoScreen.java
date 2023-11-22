@@ -6,8 +6,10 @@ package cse.projects.hms.view;
 
 import cse.projects.hms.controller.UserController;
 import cse.projects.hms.dao.user.UserDao;
+
 import cse.projects.hms.dto.user.UserDto;
 import javax.swing.JOptionPane;
+
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
  * @author 재진
  */
 public class UserInfoScreen extends javax.swing.JFrame {
+
 
     private UserController userController = UserController.getInstance();
     private DefaultTableModel dtm; // 테이블 모델 변수
@@ -30,10 +33,18 @@ public class UserInfoScreen extends javax.swing.JFrame {
         initTable();
     }
 
+
     private void initTable() {
         String[] col = {"ID", "Password", "UserType"};   // 컬럼 정보
         dtm = new DefaultTableModel(col, 0) {
             public boolean isCellEditable(int i, int c) {  // 셀 수정 불가 메서드
+
+    
+    private void initTable() {
+        String [] col={"ID", "Password", "UserType"};   // 컬럼 정보
+        dtm = new DefaultTableModel(col,0){
+            public boolean isCellEditable(int i,int c) {  // 셀 수정 불가 메서드
+
                 return false;
             }
         };
@@ -144,6 +155,7 @@ public class UserInfoScreen extends javax.swing.JFrame {
 
     private void modifyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBtnActionPerformed
         // TODO add your handling code here:
+
 
         int index = userTable.getSelectedRow();
         String[] userData = userDao.selectRow(index);
