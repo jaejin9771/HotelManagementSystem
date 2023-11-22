@@ -53,7 +53,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="190" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" pref="153" max="-2" attributes="0"/>
-              <EmptySpace pref="69" max="32767" attributes="0"/>
+              <EmptySpace pref="63" max="32767" attributes="0"/>
               <Component id="goBack" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
           </Group>
@@ -224,7 +224,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="goBack">
       <Properties>
-        <Property name="text" type="java.lang.String" value="goback"/>
+        <Property name="text" type="java.lang.String" value="&#xb4a4;&#xb85c;&#xac00;&#xae30;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="goBackActionPerformed"/>
