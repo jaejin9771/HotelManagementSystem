@@ -7,6 +7,7 @@ package cse.projects.hms.dao.user;
 import cse.projects.hms.dto.user.*;
 import cse.projects.hms.dto.user.UserDto.UserBuilder;
 import java.io.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -83,5 +84,38 @@ public class UserDao {
             System.out.println("UserDao.insert() 오류");
         }
         return false;
+    }
+    
+    public void readAll(DefaultTableModel dtm){
+        String file = "data/user.txt";
+        
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] userInfo = line.split(",");
+                dtm.addRow(userInfo);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public String[] selectRow(int index) {  // user.txt 파일에서 데이터 찾아서 row 반환
+        String[] userInfo = null;
+        int i = 0 ;
+        String file = "data/user.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if(i == index){
+                 userInfo = line.split(",");   
+                 break;
+                }
+                i++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return userInfo;
     }
 }
