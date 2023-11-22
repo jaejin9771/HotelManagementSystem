@@ -17,10 +17,10 @@ import java.util.Set;
  * @author ij944
  */
 public class LoginScreen extends javax.swing.JFrame {
-    
+
     private UserController userController = UserController.getInstance();
     private UserDto user;
-    
+
     /**
      * Creates new form login
      */
@@ -114,26 +114,28 @@ public class LoginScreen extends javax.swing.JFrame {
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
-        System.out.println("Today is " + LocalDateTime.now());
 
         String inputId = ID.getText(); // 입력한 ID
         String inputPw = new String(Password.getPassword()); // 입력한 PW
-        
-        this.user = userController.login(inputId, inputPw);
-        
-        if (this.user == null) {
-            JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호가 일치하지 않습니다."); 
-            return;
-        } else { 
-            if(this.user.getUsertype().equals("manager")){
-                userController.setUserType("manager");
+        if ((inputId .equals("")) || (inputPw.equals(""))) {
+            JOptionPane.showMessageDialog(null, "공백이 있습니다. 다시 입력해주세요.");
+        } else {
+            this.user = userController.login(inputId, inputPw);
+
+            if (this.user == null) {
+                JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호가 일치하지 않습니다.");
+                return;
             } else {
-                userController.setUserType("staff");
+                if (this.user.getUsertype().equals("manager")) {
+                    userController.setUserType("manager");
+                } else {
+                    userController.setUserType("staff");
+                }
+                JOptionPane.showMessageDialog(null, "로그인 성공!"); // 로그인 성공
+                dispose();
+                MainScreen ms = new MainScreen();
+                ms.setVisible(true);
             }
-            JOptionPane.showMessageDialog(null, "로그인 성공!"); // 로그인 성공
-            dispose();
-            MainScreen ms = new MainScreen();
-            ms.setVisible(true);
         }
     }//GEN-LAST:event_loginBtnActionPerformed
 
