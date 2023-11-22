@@ -1,5 +1,4 @@
 test,1234,manager
 gayoung,1234,staff
 jaejin,1234,staff
-test123,1234,staff
-test2,1234,staff
+test123,123,manager

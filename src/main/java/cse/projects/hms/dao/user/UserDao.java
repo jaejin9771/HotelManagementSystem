@@ -7,6 +7,9 @@ package cse.projects.hms.dao.user;
 import cse.projects.hms.dto.user.*;
 import cse.projects.hms.dto.user.UserDto.UserBuilder;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,10 +18,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class UserDao {
 
+    private String fileName = "data/user.txt";
+
     public UserDto findByIdAndPw(UserLoginDto loginDto) {
         UserDto userDto = new UserDto();
 
-        String fileName = "data/user.txt";
         File file = new File(fileName);
 
         try {
@@ -52,7 +56,7 @@ public class UserDao {
     }
 
     public boolean findById(String id) {
-        String fileName = "data/user.txt";
+
         File file = new File(fileName);
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -69,13 +73,13 @@ public class UserDao {
         }
         return false;
     }
-    
+
     public boolean insert(UserDto userDto) {
-        String fileName = "data/user.txt";
+
         File file = new File(fileName);
-        
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file,true))) {
-            String line = userDto.getId() +","+ userDto.getPw() +","+ userDto.getUsertype();
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
+            String line = userDto.getId() + "," + userDto.getPw() + "," + userDto.getUsertype();
             bw.newLine();
             bw.write(line);
             return true;
@@ -85,10 +89,11 @@ public class UserDao {
         }
         return false;
     }
-    
-    public void readAll(DefaultTableModel dtm){
+
+
+    public void readAll(DefaultTableModel dtm) {
         String file = "data/user.txt";
-        
+
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -99,17 +104,16 @@ public class UserDao {
             e.printStackTrace();
         }
     }
-    
+
     public String[] selectRow(int index) {  // user.txt 파일에서 데이터 찾아서 row 반환
         String[] userInfo = null;
-        int i = 0 ;
-        String file = "data/user.txt";
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+        int i = 0; // 인덱스 값을 카운트할 변수.
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                if(i == index){
-                 userInfo = line.split(",");   
-                 break;
+                if (i == index) {
+                    userInfo = line.split(",");
+                    break;
                 }
                 i++;
             }
@@ -118,4 +122,40 @@ public class UserDao {
         }
         return userInfo;
     }
+
+    public void modify(UserDto modifyDto, int index) {
+        
+        String line;
+        String modifyLine = "";
+        int count = -1;
+        List<String> lines = new ArrayList<>();
+        // 수정할 값 빼고 나머지 lines에 저장.
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            while ((line = br.readLine()) != null) {
+                count++;
+                if(count == index){
+                    continue;
+                }
+                lines.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
+            for (String lineToWrite : lines) { // lines에 넣은 값들 다시 쓰기.
+                bw.write(lineToWrite);
+                bw.newLine();
+            }
+            // 수정 값 추가하기
+            line = modifyDto.getId() + "," +  modifyDto.getPw() + "," + modifyDto.getUsertype(); // 수정한 값 저장
+            
+            bw.write(line);
+            bw.newLine();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
+    }
+
 }
