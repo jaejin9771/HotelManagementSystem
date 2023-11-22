@@ -51,6 +51,7 @@ public class ReservationScreen extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         blockCardnumber();
     }
+
     private void blockCardnumber() {
         paymentmethod.addItemListener(new ItemListener() {
             @Override
@@ -89,7 +90,7 @@ public class ReservationScreen extends javax.swing.JFrame {
             money = 150000;
         } else if (TEXT_roomtype.getText().equals("Suite")) {
             money = 250000;
-        } else if (TEXT_roomtype.getText().equals("Royal Suite")) {
+        } else if (TEXT_roomtype.getText().equals("RoyalSuite")) {
             money = 400000;
         }
 
@@ -118,7 +119,6 @@ public class ReservationScreen extends javax.swing.JFrame {
                 break;
             case 4:
                 money += 150000;
-
                 break;
             case 5:
                 money += 200000;
@@ -420,6 +420,7 @@ public class ReservationScreen extends javax.swing.JFrame {
                     res = new ResDto(username, phonenumber, roomtype, roomnum, selectedpeopleNumber, checkintime, checkouttime, selectedpayment, cardnumbers, calculateRoomMoney());
                     resdao.insert(res);
                     JOptionPane.showMessageDialog(null, "기본객실요금은 " + calculateRoomMoney() + "원입니다.");
+                    ReservationModifyScreen ress = new ReservationModifyScreen(calculateDate());
                 } else {
                     JOptionPane.showMessageDialog(null, "객실이용제한은 5일입니다.");
                 }
