@@ -17,30 +17,27 @@ public class PaymentScreen extends javax.swing.JFrame {
     /**
      * Creates new form PaymentScreen
      */
-    public String roomnum;
-    public String userdata;
+    private String roomnum;
+    private String userdata;
+    private String phonenumber;
+    private String username;
 
     public PaymentScreen() {
         initComponents();
         setLocationRelativeTo(null);
     }
 
-//    public PaymentScreen(String userdata) {
-//        initComponents();
-//        setLocationRelativeTo(null);
-//        this.userdata = userdata;
-//    }
-
-    public PaymentScreen(String userdata, String roomnum, String money) {
-        this.userdata=userdata;
-        this.roomnum = roomnum;
+    public PaymentScreen(String userdata, String roomnum, String money, String phonenumber, String name) {
         initComponents();
         setLocationRelativeTo(null);
+        this.userdata = userdata;
+        this.roomnum = roomnum;
+        this.username = name;
+        this.phonenumber = phonenumber;
         TEXT_money.setText(money);
         TEXT_roomnum.setText(roomnum);
-
     }
-    private int money;
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,15 +137,14 @@ public class PaymentScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BUTT_paymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_paymentActionPerformed
-        // TODO add your handling code here:
-        money = 0;
         PaymentController pay = new PaymentController();
-        pay.changeMoney(userdata,roomnum, Integer.toString(money));
+        pay.changeMoney(userdata, roomnum, username, phonenumber);
         JOptionPane.showMessageDialog(null, "결제되었습니다.");
+        new MainScreen().setVisible(true);
+        dispose();
     }//GEN-LAST:event_BUTT_paymentActionPerformed
 
     private void BUTT_gobackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_gobackActionPerformed
-        // TODO add your handling code here:
         new MainScreen().setVisible(true);
         dispose();
     }//GEN-LAST:event_BUTT_gobackActionPerformed

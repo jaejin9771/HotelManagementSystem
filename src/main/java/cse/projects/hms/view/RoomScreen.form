@@ -35,7 +35,7 @@
                       <Component id="BUTT_goback" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <EmptySpace pref="12" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -60,7 +60,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="BUTT_goback">
       <Properties>
-        <Property name="text" type="java.lang.String" value="go back"/>
+        <Property name="text" type="java.lang.String" value="&#xb4a4;&#xb85c; &#xac00;&#xae30;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUTT_gobackActionPerformed"/>

@@ -446,6 +446,7 @@ public class ReservationScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_BUTT_cancelActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String cardnumbers;
         if (isButtonClicked) {
             // 버튼이 클릭되었을 때의 동작
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -454,9 +455,16 @@ public class ReservationScreen extends javax.swing.JFrame {
             String phonenumber = phoneNumber.getText();
             String checkintime = dateFormat.format(checkinTime.getDate());
             String checkouttime = dateFormat.format(checkoutTime.getDate());
-            String userdata = username + ',' + phonenumber + ',' + roomtype + ',' + roomnum + ',' + selectedpeopleNumber + ',' + checkintime + ',' + checkouttime;
-
-            PaymentScreen pay = new PaymentScreen(userdata, roomnum, calculateRoomMoney());
+            String selectedpayment = paymentmethod.getSelectedItem().toString();
+            
+            if (!"".equals(cardnumber.getText())) {
+                    cardnumbers = cardnumber.getText();
+                } else {
+                    cardnumbers = "현금결제";
+                }
+            String occupation = "empty room";
+            String userdata = username + ',' + phonenumber + ',' + roomtype + ',' + roomnum + ',' + selectedpeopleNumber + ',' + checkintime + ',' + checkouttime+','+calculateRoomMoney()+','+selectedpayment+','+cardnumbers+','+occupation;
+            PaymentScreen pay = new PaymentScreen(userdata, roomnum, calculateRoomMoney(),phonenumber,username);
             pay.setVisible(true);
             dispose();
         } else {

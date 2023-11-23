@@ -211,7 +211,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="BUTT_goback">
       <Properties>
-        <Property name="text" type="java.lang.String" value="goback"/>
+        <Property name="text" type="java.lang.String" value="&#xb4a4;&#xb85c; &#xac00;&#xae30;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUTT_gobackActionPerformed"/>
@@ -227,7 +227,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="BUTT_reset">
       <Properties>
-        <Property name="text" type="java.lang.String" value="reset"/>
+        <Property name="text" type="java.lang.String" value="&#xc7ac;&#xc124;&#xc815;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUTT_resetActionPerformed"/>
