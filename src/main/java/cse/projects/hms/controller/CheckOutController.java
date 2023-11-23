@@ -108,18 +108,6 @@ public class CheckOutController {
             case -4:
                 money += 200000;
                 break;
-            case 1:
-                money -= 50000;
-                break;
-            case 2:
-                money -= 100000;
-                break;
-            case 3:
-                money -= 150000;
-                break;
-            case 4:
-                money -= 200000;
-                break;
             default:
                 break;
         }

@@ -327,13 +327,10 @@ public class RoomServiceScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_BUTT_gobackActionPerformed
 
     private void BUTT_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_okActionPerformed
-
-
-
         RoomServiceController res = new RoomServiceController();
         boolean check = res.checkRoomService(RoomNumber.getText(), Name.getText(), PhoneNumber.getText());
-        if (!"".equals(userdata.getText())) { 
-        if (check == true) {
+        if (!"".equals(userdata.getText())) {
+            if (check == true) {
                 DefaultTableModel Model = (DefaultTableModel) ServiceMenu.getModel();
                 DefaultTableModel model = (DefaultTableModel) order.getModel();
                 int rowcount = ServiceMenu.getSelectedRow();
@@ -341,7 +338,6 @@ public class RoomServiceScreen extends javax.swing.JFrame {
                 result1 = Model.getValueAt(rowcount, 1).toString();
                 Object[] resultArray = {result, result1};
                 model.addRow(resultArray);
-
                 sum += Integer.parseInt(ServiceMenu.getValueAt(rowcount, 1).toString()); //룸서비스 취소기능은 cancel버튼 눌렀을 때
                 resultmoney.setText("" + sum);
             } else {
@@ -368,42 +364,38 @@ public class RoomServiceScreen extends javax.swing.JFrame {
         if (ServiceMenu.getSelectedRow() != -1) {
             PaymentController pay = new PaymentController();
 
-            pay.payLaterRoomservice(RoomNumber.getText(), Integer.toString(sum));
-            
+            pay.payLaterRoomservice(RoomNumber.getText(), Integer.toString(sum),Name.getText(), PhoneNumber.getText());
             JOptionPane aa = new JOptionPane();
             aa.showMessageDialog(null, "룸서비스 결제금액이 추가되었습니다.");
-            
         } else
-            
+
             JOptionPane.showMessageDialog(null, "추가할 메뉴를 선택해주세요.");
     }//GEN-LAST:event_BUTT_laterpaymentActionPerformed
 
     private void BUTT_enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_enterActionPerformed
         RoomServiceController room = new RoomServiceController();
-
         if (!"".equals(RoomNumber.getText()) && !"".equals(Name.getText()) && !"".equals(PhoneNumber.getText())) {
-
-            if (room.checkRoomService(RoomNumber.getText(), Name.getText(), PhoneNumber.getText())) {
+            if (room.checkRoomService(RoomNumber.getText(), Name.getText(), PhoneNumber.getText()) == true) {
                 String[] result = room.sendRoomService(RoomNumber.getText(), Name.getText(), PhoneNumber.getText());
-                
+
+
                 String data = "이름 : " + result[0] + " 객실 등급 : " + result[2] + " 객실 호수 : " + result[3];
                 userdata.setText(data);
             } else {
                 JOptionPane.showMessageDialog(null, "점유중인 객실이 아닙니다.");
-
             }
         } else
             JOptionPane.showMessageDialog(null, "예약정보를 모두 입력해주세요.");
     }//GEN-LAST:event_BUTT_enterActionPerformed
 
     private void BUTT_allcancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_allcancelActionPerformed
-        if(order.getRowCount()!=0){
-        DefaultTableModel model = (DefaultTableModel) order.getModel();
-        model.setRowCount(0);
-        sum = 0;
-        resultmoney.setText("" + sum);
-        JOptionPane.showMessageDialog(null, "주문이 전체 삭제되었습니다");
-        }else
+        if (order.getRowCount() != 0) {
+            DefaultTableModel model = (DefaultTableModel) order.getModel();
+            model.setRowCount(0);
+            sum = 0;
+            resultmoney.setText("" + sum);
+            JOptionPane.showMessageDialog(null, "주문이 전체 삭제되었습니다");
+        } else
             JOptionPane.showMessageDialog(null, "서비스메뉴가 비어있습니다.");
     }//GEN-LAST:event_BUTT_allcancelActionPerformed
 
