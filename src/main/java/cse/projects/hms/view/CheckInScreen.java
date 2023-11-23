@@ -179,12 +179,20 @@ public class CheckInScreen extends javax.swing.JFrame {
         name = txtname.getText();
         phone = txtphone.getText();
         roomnum = txtroomnum.getText();
-         CheckInController check = new CheckInController(name, phone, roomnum);
+
+        CheckInController check = new CheckInController(name, phone, roomnum);
+
         if (txtname.getText() != null && txtphone.getText() != null && txtroomnum.getText() != null) {
             if (check.checkResroom() == true) {
                 if (isCheckinTimeValid()) {
                     if (check.checkFullroom() == true) {
                         check.modifyFullroom();
+
+                        JOptionPane.showMessageDialog(null, "체크인이 완료되었습니다.");
+                        MainScreen mainscreen = new MainScreen();
+                        mainscreen.setVisible(true);
+                        dispose();
+
                     } else {
                         JOptionPane.showMessageDialog(null, "이미 체크인 되었습니다.");
                     }

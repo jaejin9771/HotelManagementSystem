@@ -1,1 +1,18 @@
-test,111-1111-1111,Standard,101,1,2023-11-24,2023-11-25,0
+
+�Ƿη�,010-6666-6666,Suite,301,4,2023-11-24,2023-11-25,532000,CreditCard,4444-4444-4444-4444,full room
+
+
+�Ƿη�,010-6666-6666,Suite,301,4,2023-11-28,2023-11-30,360000,CreditCard,4444-4444-4444-4444,empty room
+������,010-6865-7521,Standard,101,1,2023-11-23,2023-11-24,455000,Cash,���ݰ���,empty room
+������,010-7877-7766,Standard,101,1,2023-11-23,2023-11-24,100000,Cash,���ݰ���,empty room
+������,010-7877-7766,Standard,101,1,2023-11-23,2023-11-24,100000,Cash,���ݰ���,empty room
+tlqkf,010-5555-5555,Standard,104,1,2023-11-23,2023-11-24,100000,Cash,���ݰ���,empty room
+������,010-7777-7777,Standard,101,1,2023-11-23,2023-11-24,100000,Cash,���ݰ���,empty room
+fdf,dfsdfd,Standard,103,1,2023-11-23,2023-11-24,100000,Cash,���ݰ���,empty room
+fdf,fdf,Standard,113,1,2023-11-24,2023-11-25,100000,Cash,���ݰ���,empty room
+dfsdf,dfdfdsf,Standard,103,1,2023-11-21,2023-11-23,150000,Cash,���ݰ���,empty room
+dfsdf,dfdfdsf,Standard,103,1,2023-11-21,2023-11-23,150000,Cash,���ݰ���,empty room
+fdfs,fdsfsdf,Standard,102,1,2023-11-24,2023-11-25,100000,Cash,���ݰ���,empty room
+fdfs,fdsfsdf,Standard,102,1,2023-11-24,2023-11-25,100000,Cash,���ݰ���,empty room
+dfdf,fsfdf,Standard,101,1,2023-11-21,2023-11-23,150000,Cash,���ݰ���,empty room
+dfdd,fdfs,Standard,103,1,2023-11-24,2023-11-25,100000,Cash,���ݰ���,full room
