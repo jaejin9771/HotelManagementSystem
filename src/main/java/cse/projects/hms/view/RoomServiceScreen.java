@@ -363,10 +363,12 @@ public class RoomServiceScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (ServiceMenu.getSelectedRow() != -1) {
             PaymentController pay = new PaymentController();
+
             pay.payLaterRoomservice(RoomNumber.getText(), Integer.toString(sum),Name.getText(), PhoneNumber.getText());
             JOptionPane aa = new JOptionPane();
             aa.showMessageDialog(null, "룸서비스 결제금액이 추가되었습니다.");
         } else
+
             JOptionPane.showMessageDialog(null, "추가할 메뉴를 선택해주세요.");
     }//GEN-LAST:event_BUTT_laterpaymentActionPerformed
 
@@ -375,6 +377,8 @@ public class RoomServiceScreen extends javax.swing.JFrame {
         if (!"".equals(RoomNumber.getText()) && !"".equals(Name.getText()) && !"".equals(PhoneNumber.getText())) {
             if (room.checkRoomService(RoomNumber.getText(), Name.getText(), PhoneNumber.getText()) == true) {
                 String[] result = room.sendRoomService(RoomNumber.getText(), Name.getText(), PhoneNumber.getText());
+
+
                 String data = "이름 : " + result[0] + " 객실 등급 : " + result[2] + " 객실 호수 : " + result[3];
                 userdata.setText(data);
             } else {
