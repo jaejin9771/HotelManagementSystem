@@ -43,25 +43,10 @@ public class RoomController {
                 String[] row = line.split(",");
                 linecount++;
                 if (txtsearchroomnum.equals(row[3]) && txtsearchname.equals(row[0])) {
-                    break;
+                    userDataList.add(line);
                 }
             }
         } catch (IOException ex) {
-        }
-
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                currentLineNumber++;
-                String[] row = line.split(",");
-                // 현재 라인 번호가 읽고자 하는 라인 번호와 일치하는 경우
-                if (currentLineNumber == linecount) {
-                    userDataList.add(line);
-                    break;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         return userDataList.toArray(new String[0]);
     }
