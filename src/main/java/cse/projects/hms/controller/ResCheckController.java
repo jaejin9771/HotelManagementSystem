@@ -92,9 +92,13 @@ public class ResCheckController {
     }
 
     private String selectedRoomnum;
+    private String selectedname;
+    private String selectedphone;
 
-    public void CancelSelectedcell(String roomnum) {
-        selectedRoomnum = roomnum;
+    public void CancelSelectedcell(String roomnum, String name, String phone) {
+        this.selectedRoomnum = roomnum;
+        this.selectedname = name;
+        this.selectedphone = phone;
     }
 
     public boolean cancelData() {
@@ -105,7 +109,7 @@ public class ResCheckController {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
-                if (selectedRoomnum.equals(row[3])) {
+                if (selectedRoomnum.equals(row[3])&&selectedname.equals(row[0])&&selectedphone.equals(row[1])) {
                     continue;
                 }
                 lines.add(line);

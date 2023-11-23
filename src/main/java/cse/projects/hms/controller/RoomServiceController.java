@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class RoomServiceController {
 
-    public boolean checkRoomService(String roomnum) {
+    public boolean checkRoomService(String roomnum, String name, String phonenumber) {
         String fileName = "data/UserData.txt";
         File file = new File(fileName);
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -22,7 +22,7 @@ public class RoomServiceController {
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
 
-                if (roomnum.equals(row[3]) && "full room".equals(row[10])) {
+                if (roomnum.equals(row[3]) && "full room".equals(row[10]) && name.equals(row[0]) && phonenumber.equals(row[1])) {
                     return true;
                 }
             }
@@ -33,8 +33,7 @@ public class RoomServiceController {
         return false;
     }
 
-    public String[] sendRoomService(String roomnum) { //룸서비스화면에서 받은 객실호수와 데이터파일이 같은지 확인한 후 고객정보 리턴
-        String[] roomdataList = null;
+    public String[] sendRoomService(String roomnum,String name, String phonenumber) { //룸서비스화면에서 받은 객실호수와 데이터파일이 같은지 확인한 후 고객정보 리턴
         String fileName = "data/UserData.txt";
         File file = new File(fileName);
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {

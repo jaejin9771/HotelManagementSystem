@@ -25,7 +25,7 @@ import javax.swing.*;
  * @author ij944
  */
 public class ReservationScreen extends javax.swing.JFrame {
-    
+
     private int money = 0;
     private String roomnum;
     private String roomtype;
@@ -33,7 +33,6 @@ public class ReservationScreen extends javax.swing.JFrame {
 
     boolean isOtherButtonClicked = false;
     private boolean isButtonClicked = false;
-
 
     /**
      * Creates new form ReservationScreen
@@ -408,38 +407,35 @@ public class ReservationScreen extends javax.swing.JFrame {
 
     private void BUTT_insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_insertActionPerformed
         String cardnumbers;
-        RoomController room = new RoomController();
-        ResCheckController check = new ResCheckController();
-        if (check.checkEmptyRoom(roomnum) == true) {
-            if (name.getText() != null && phoneNumber.getText() != null && checkinTime.getDate() != null && checkoutTime.getDate() != null) {//모든 정보가 입력되었으면 if문 들어감
-                if (calculateDate() <= 5) {//체크인 날짜와 체크아웃 날짜의 차이를 계산했을 때 5이거나 5보다 작을 때 
-                    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                    String selectedpeopleNumber = TEXT_peopleNumber.getSelectedItem().toString();
-                    String username = name.getText();
-                    String phonenumber = phoneNumber.getText();
-                    String checkintime = dateFormat.format(checkinTime.getDate());
-                    String checkouttime = dateFormat.format(checkoutTime.getDate());
-                    String selectedpayment = paymentmethod.getSelectedItem().toString();
-                    if (!"".equals(cardnumber.getText())) {
-                        cardnumbers = cardnumber.getText();
-                    } else {
-                        cardnumbers = "현금결제";
-                    }
-                    String occupation = "empty room";
-                    ResDto res;
-                    res = new ResDto(username, phonenumber, roomtype, roomnum, selectedpeopleNumber, checkintime, checkouttime, selectedpayment, cardnumbers, calculateRoomMoney(), occupation);
-                    resdao.insert(res);
-                    isButtonClicked = true;
-                    JOptionPane.showMessageDialog(null, "기본객실요금은 " + calculateRoomMoney() + "원입니다.");
-                    ReservationModifyScreen ress = new ReservationModifyScreen(calculateDate());
+        //RoomController room = new RoomController();
+        //ResCheckController check = new ResCheckController();
+        if (name.getText() != null && phoneNumber.getText() != null && checkinTime.getDate() != null && checkoutTime.getDate() != null) {//모든 정보가 입력되었으면 if문 들어감
+            if (calculateDate() <= 5) {//체크인 날짜와 체크아웃 날짜의 차이를 계산했을 때 5이거나 5보다 작을 때 
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                String selectedpeopleNumber = TEXT_peopleNumber.getSelectedItem().toString();
+                String username = name.getText();
+                String phonenumber = phoneNumber.getText();
+                String checkintime = dateFormat.format(checkinTime.getDate());
+                String checkouttime = dateFormat.format(checkoutTime.getDate());
+                String selectedpayment = paymentmethod.getSelectedItem().toString();
+                if (!"".equals(cardnumber.getText())) {
+                    cardnumbers = cardnumber.getText();
                 } else {
-                    JOptionPane.showMessageDialog(null, "객실이용제한은 5일입니다.");
+                    cardnumbers = "현금결제";
                 }
+                String occupation = "empty room";
+                ResDto res;
+                res = new ResDto(username, phonenumber, roomtype, roomnum, selectedpeopleNumber, checkintime, checkouttime, selectedpayment, cardnumbers, calculateRoomMoney(), occupation);
+                resdao.insert(res);
+                isButtonClicked = true;
+                JOptionPane.showMessageDialog(null, "기본객실요금은 " + calculateRoomMoney() + "원입니다.");
+                ReservationModifyScreen ress = new ReservationModifyScreen(calculateDate());
+                BUTT_insert.setEnabled(false);
             } else {
-                JOptionPane.showMessageDialog(null, "예약정보를 입력해주세요.");
+                JOptionPane.showMessageDialog(null, "객실이용제한은 5일입니다.");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "점유중인 객실입니다.");
+            JOptionPane.showMessageDialog(null, "예약정보를 입력해주세요.");
         }
     }//GEN-LAST:event_BUTT_insertActionPerformed
 
