@@ -60,12 +60,9 @@ public class CheckInController {
         }
     }
 
-<<<<<<< HEAD
-    public boolean checkFullroom() { //체크인 되었는지 확인하는 메서드
-=======
 
-    public boolean checkFullroom() {
->>>>>>> 46b58ea871a23015e2bcfa801f6053b48a5b0a9f
+    public boolean checkFullroom() { //체크인 되었는지 확인하는 메서드
+
         String line;
         String fileName = "data/UserData.txt";
         File file = new File(fileName);
@@ -81,7 +78,9 @@ public class CheckInController {
         }
         return true;
     }
+
     public boolean checkResroom(){ //입력된 값이 예약되었는지 확인
+
         String line;
         String fileName = "data/UserData.txt";
         File file = new File(fileName);
