@@ -327,25 +327,27 @@ public class RoomServiceScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_BUTT_gobackActionPerformed
 
     private void BUTT_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_okActionPerformed
-        // TODO add your handling code here:
+
         RoomServiceController res = new RoomServiceController();
-        boolean check = res.checkRoomService(RoomNumber.getText(),Name.getText(),PhoneNumber.getText());
-        if (check == true) { //예약자 이름과 예약된 객실로 바꿔야 함
+        boolean check = res.checkRoomService(RoomNumber.getText(), Name.getText(), PhoneNumber.getText());
+        if (!"".equals(userdata.getText())) { 
+        if (check == true) {
+                DefaultTableModel Model = (DefaultTableModel) ServiceMenu.getModel();
+                DefaultTableModel model = (DefaultTableModel) order.getModel();
+                int rowcount = ServiceMenu.getSelectedRow();
+                result = Model.getValueAt(rowcount, 0).toString();
+                result1 = Model.getValueAt(rowcount, 1).toString();
+                Object[] resultArray = {result, result1};
+                model.addRow(resultArray);
 
-            DefaultTableModel Model = (DefaultTableModel) ServiceMenu.getModel();
-            DefaultTableModel model = (DefaultTableModel) order.getModel();
-            int rowcount = ServiceMenu.getSelectedRow();
-            result = Model.getValueAt(rowcount, 0).toString();
-            result1 = Model.getValueAt(rowcount, 1).toString();
-            Object[] resultArray = {result, result1};
-            model.addRow(resultArray);
-
-            sum += Integer.parseInt(ServiceMenu.getValueAt(rowcount, 1).toString()); //룸서비스 취소기능은 cancel버튼 눌렀을 때
-            resultmoney.setText("" + sum);
+                sum += Integer.parseInt(ServiceMenu.getValueAt(rowcount, 1).toString()); //룸서비스 취소기능은 cancel버튼 눌렀을 때
+                resultmoney.setText("" + sum);
+            } else {
+                JOptionPane.showMessageDialog(null, "점유중인 객실이 아니거나 예약정보가 일치하지 않습니다.");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "점유중인 객실이 아닙니다.");
+            JOptionPane.showMessageDialog(null, "enter 버튼을 클릭해주세요.");
         }
-
     }//GEN-LAST:event_BUTT_okActionPerformed
 
     private void BUTT_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_cancelActionPerformed
@@ -376,10 +378,10 @@ public class RoomServiceScreen extends javax.swing.JFrame {
 
     private void BUTT_enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_enterActionPerformed
         RoomServiceController room = new RoomServiceController();
-        if (RoomNumber.getText() != null && Name.getText() != null && PhoneNumber.getText() != null) {
+        if (!"".equals(RoomNumber.getText()) && !"".equals(Name.getText()) && !"".equals(PhoneNumber.getText())) {
 
-            if (room.checkRoomService(RoomNumber.getText(),Name.getText(),PhoneNumber.getText())) {
-                String[] result = room.sendRoomService(RoomNumber.getText(),Name.getText(),PhoneNumber.getText());
+            if (room.checkRoomService(RoomNumber.getText(), Name.getText(), PhoneNumber.getText())) {
+                String[] result = room.sendRoomService(RoomNumber.getText(), Name.getText(), PhoneNumber.getText());
                 String data = "이름 : " + result[0] + " 객실 등급 : " + result[2] + " 객실 호수 : " + result[3];
                 userdata.setText(data);
             } else {
@@ -391,11 +393,14 @@ public class RoomServiceScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_BUTT_enterActionPerformed
 
     private void BUTT_allcancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_allcancelActionPerformed
+        if(order.getRowCount()!=0){
         DefaultTableModel model = (DefaultTableModel) order.getModel();
         model.setRowCount(0);
         sum = 0;
         resultmoney.setText("" + sum);
         JOptionPane.showMessageDialog(null, "주문이 전체 삭제되었습니다");
+        }else
+            JOptionPane.showMessageDialog(null, "서비스메뉴가 비어있습니다.");
     }//GEN-LAST:event_BUTT_allcancelActionPerformed
 
     /**

@@ -300,6 +300,8 @@ public class ReservationModifyScreen extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("맑은 고딕", 0, 18)); // NOI18N
         jLabel11.setText("누적요금:");
 
+        txtmoney.setEditable(false);
+
         txtpayment.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
         txtpayment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CreditCard", "Cash" }));
 
@@ -428,7 +430,7 @@ public class ReservationModifyScreen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBox1)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(BUTT_mofify, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -464,7 +466,7 @@ public class ReservationModifyScreen extends javax.swing.JFrame {
                 modifysell = m_name + ',' + m_phone + ',' + m_roomtype + ',' + m_roomnumber + ',' + m_people + ',' + m_checkin + ',' + m_checkout + ',' + m_money + ',' + m_payment + ',' + m_cardnum+','+m_roomstate;
                 ResCheckController res = new ResCheckController();
                 res.modifyUserdata(roomnumber, modifysell);
-                JOptionPane.showMessageDialog(null, "예약정보가 성공적으로 수정되었습니다.  "+"결제요금은"+m_money+"입니다.");
+                JOptionPane.showMessageDialog(null, "예약정보가 성공적으로 수정되었습니다.  "+"결제요금은 "+m_money+" 입니다.");
 
             } else {
                 JOptionPane.showMessageDialog(null, "객실이용제한은 5일입니다.");
