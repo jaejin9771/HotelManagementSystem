@@ -21,14 +21,15 @@ public class ResDto {
     private String selectedpayment;
     private String cardnumbers;
     private String occupation;
+    private String totalFee;
     //private String userdata; //유저정보모음
 
     @Override
     public String toString() {
-        return name + ',' + phonenumber + ',' + roomtype + ',' + roomnum + ',' + peoplenum + ',' + checkin + ',' + checkout + ','+ money + ',' + selectedpayment + ',' + cardnumbers+','+occupation;
+        return name + ',' + phonenumber + ',' + roomtype + ',' + roomnum + ',' + peoplenum + ',' + checkin + ',' + checkout + ','+ money + ',' + selectedpayment + ',' + cardnumbers+','+occupation+ ',' + totalFee;
     }
 
-    public ResDto(String name, String phonenumber, String roomtype, String roomnum, String peoplenum, String checkin, String checkout,String selectedpayment,String cardnumbers, String money,String occupation) {
+    public ResDto(String name, String phonenumber, String roomtype, String roomnum, String peoplenum, String checkin, String checkout,String selectedpayment,String cardnumbers, String money,String occupation,String totalFee) {
         this.name = name;
         this.phonenumber = phonenumber;
         this.roomtype = roomtype;
@@ -38,8 +39,9 @@ public class ResDto {
         this.checkout = checkout;
         this.selectedpayment=selectedpayment;
         this.cardnumbers=cardnumbers;
-        this.money = money;
+        this.money = money; // 현재 요금
         this.occupation=occupation;
+        this.totalFee = totalFee; // 총 요금
         //this.userdata = name +',' + phonenumber + ','+roomtype+','+ roomnum+','+peoplenum+','+checkin+','+checkout+'\n';
     }
 //    public String getUserdata() {
@@ -134,4 +136,12 @@ public class ResDto {
         this.checkout = checkout;
     }
 
+    public String getTotalFee() {
+        return totalFee;
+    }
+
+    public void setTotalFee(String totalFee) {
+        this.totalFee = totalFee;
+    }
+    
 }
