@@ -17,10 +17,12 @@ public class CheckInController {
     private String name;
     private String phone;
     private String roomnum;
+
     
     public CheckInController(){
         
     }
+
 
     public CheckInController(String name, String phone, String roomnum) {
         this.name = name;
@@ -58,7 +60,12 @@ public class CheckInController {
         }
     }
 
+<<<<<<< HEAD
     public boolean checkFullroom() { //체크인 되었는지 확인하는 메서드
+=======
+
+    public boolean checkFullroom() {
+>>>>>>> 46b58ea871a23015e2bcfa801f6053b48a5b0a9f
         String line;
         String fileName = "data/UserData.txt";
         File file = new File(fileName);
@@ -91,4 +98,5 @@ public class CheckInController {
         }
         return false;
     }
+
 }

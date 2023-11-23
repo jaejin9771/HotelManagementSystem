@@ -6,8 +6,10 @@
 package cse.projects.hms.view;
 
 import cse.projects.hms.controller.CheckInController;
+
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -27,6 +29,7 @@ public class CheckInScreen extends javax.swing.JFrame {
     private String phone;
     private String roomnum;
 
+
     private static boolean isCheckinTimeValid() {
         // 현재 시간 가져오기
         LocalTime currentTime = LocalTime.now();
@@ -38,6 +41,7 @@ public class CheckInScreen extends javax.swing.JFrame {
         // 현재 시간이 체크인 가능한 범위에 있는지 확인
         return currentTime.isAfter(checkinStartTime) && currentTime.isBefore(checkinEndTime);
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -171,6 +175,7 @@ public class CheckInScreen extends javax.swing.JFrame {
 
     private void BUTT_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_okActionPerformed
 
+
         name = txtname.getText();
         phone = txtphone.getText();
         roomnum = txtroomnum.getText();
@@ -196,6 +201,7 @@ public class CheckInScreen extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "모든 정보를 입력해주세요.");
         }
+
     }//GEN-LAST:event_BUTT_okActionPerformed
 
     /**
