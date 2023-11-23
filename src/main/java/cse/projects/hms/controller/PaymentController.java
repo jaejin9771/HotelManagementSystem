@@ -43,7 +43,7 @@ public class PaymentController {
         }
     }
 
-    public void payLaterRoomservice(String roomnum, String sum) { //룸서비스 나중에 결제 메서드
+    public void payLaterRoomservice(String roomnum, String sum,String name, String phone) { //룸서비스 나중에 결제 메서드
         List<String> lines = new ArrayList<>();
         String fileName = "data/UserData.txt";
         String userdata = null;
@@ -53,7 +53,7 @@ public class PaymentController {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] row = line.split(",");
-                if (roomnum.equals(row[3])) {
+                if (roomnum.equals(row[3])&& name.equals(row[0]) && phone.equals(row[1])) {
                     userdata = line;
                     continue;
                 }

@@ -183,7 +183,6 @@ public class CheckInScreen extends javax.swing.JFrame {
         CheckInController check = new CheckInController(name, phone, roomnum);
 
         if (txtname.getText() != null && txtphone.getText() != null && txtroomnum.getText() != null) {
-            if (check.checkResroom() == true) {
                 if (isCheckinTimeValid()) {
                     if (check.checkFullroom() == true) {
                         check.modifyFullroom();
@@ -199,10 +198,7 @@ public class CheckInScreen extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(null, "체크인 시간이 마감되었습니다.");
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "예약된 객실정보가 아닙니다.");
-            }
-        } else {
+            }else {
             JOptionPane.showMessageDialog(null, "모든 정보를 입력해주세요.");
         }
 

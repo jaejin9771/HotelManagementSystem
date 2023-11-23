@@ -25,6 +25,7 @@ public class CheckOutScreen extends javax.swing.JFrame {
     private String phone;
     private String roomnum;
     private String rescheckout;
+
     public CheckOutScreen() {
         initComponents();
         setLocationRelativeTo(null);
@@ -246,37 +247,33 @@ public class CheckOutScreen extends javax.swing.JFrame {
         LocalDate now = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String formatedNow = now.format(formatter);
-        if (isCheckinTimeValid()) {
-            if (!"".equals(txtname.getText()) && !"".equals(txtphone.getText()) & !"".equals(txtroomnum.getText())) {
-                if (Check.checkResroom() == true) {
-                    if (Check.checkFullroom() == false) {
-                        if (check.sendCheckoutData() != null) {
-                            String[] result = check.sendCheckoutData();
-                            rescheckout = result[6];
-                            CheckOutController over = new CheckOutController(rescheckout, formatedNow);
-                            txtcheckout.append("예상 체크인 날짜: " + result[5] + "\n");
-                            txtcheckout.append("예상 체크아웃 날짜: " + result[6] + "\n");
-                            txtcheckout.append("현재 체크아웃 날짜: " + formatedNow + "\n");
-                            txtcheckout.append("객실타입: " + result[2] + "\n");
-                            txtcheckout.append("객실인원: " + result[4] + "\n");
-                            txtcheckout.append("결제수단: " + result[8] + "\n");
-                            txtcheckout.append("카드번호: " + result[9] + "\n");
-                            txtmoney.setText(result[7]);
-                            txtaddmoney.setText(over.calculateMoney(over.calculateDate()));
-                        } else {
-                            JOptionPane.showMessageDialog(null, "입력하신 예약 정보가 일치하지 않습니다.");
-                        }
+        if (!"".equals(txtname.getText()) && !"".equals(txtphone.getText()) & !"".equals(txtroomnum.getText())) {
+            if (isCheckinTimeValid()) {
+                if (Check.checkFullroom() == false) {
+                    if (check.sendCheckoutData() != null) {
+                        String[] result = check.sendCheckoutData();
+                        rescheckout = result[6];
+                        CheckOutController over = new CheckOutController(rescheckout, formatedNow);
+                        txtcheckout.append("예상 체크인 날짜: " + result[5] + "\n");
+                        txtcheckout.append("예상 체크아웃 날짜: " + result[6] + "\n");
+                        txtcheckout.append("현재 체크아웃 날짜: " + formatedNow + "\n");
+                        txtcheckout.append("객실타입: " + result[2] + "\n");
+                        txtcheckout.append("객실인원: " + result[4] + "\n");
+                        txtcheckout.append("결제수단: " + result[8] + "\n");
+                        txtcheckout.append("카드번호: " + result[9] + "\n");
+                        txtmoney.setText(result[7]);
+                        txtaddmoney.setText(over.calculateMoney(over.calculateDate()));
                     } else {
-                        JOptionPane.showMessageDialog(null, "예약된 정보가 체크인이 되어있지 않습니다.");
+                        JOptionPane.showMessageDialog(null, "입력하신 예약 정보가 일치하지 않습니다.");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "입력된 정보가 예약되어있지 않습니다.");
+                    JOptionPane.showMessageDialog(null, "예약된 정보가 체크인이 되어있지 않습니다.");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "예약정보를 모두 입력해주세요.");
+                JOptionPane.showMessageDialog(null, "체크아웃 시간이 마감되었습니다.");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "체크아웃 시간이 마감되었습니다.");
+            JOptionPane.showMessageDialog(null, "예약정보를 모두 입력해주세요.");
         }
     }//GEN-LAST:event_BUTT_checkoutActionPerformed
 

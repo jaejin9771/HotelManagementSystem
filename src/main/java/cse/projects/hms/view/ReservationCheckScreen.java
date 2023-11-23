@@ -55,39 +55,18 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
         }
     }
 
-    private boolean roomDataCheck() {
-        ResCheckController res = new ResCheckController();
-        String roomnum = null;
-        if (searchdata.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "빈 객실입니다.");
-            return false;
-        }
-
-        for (int i = 0; i < res.checkResroom().size(); i++) {
-            if (res.checkResroom().get(i).equals(searchdata.getText())) {
-                roomnum = searchdata.getText();
-                return true;
-            }
-        }
-
-        JOptionPane.showMessageDialog(null, "해당 객실이 없습니다.");
-        return false;
-    }
-
     private void settable_searchdata() {
         String txtsearchroomnum = searchdata.getText();
-        ResCheckController res = new ResCheckController(txtsearchroomnum);
+        String txtsearchname = name.getText();
+        RoomController res = new RoomController(txtsearchroomnum, txtsearchname);
         DefaultTableModel Model = (DefaultTableModel) customerdatatable.getModel();
-        if (roomDataCheck() == true) {
-            Model.setRowCount(0);
-            String[] Line = res.searchRoomdata();
-            for (int i = 0; i < Line.length; i++) {
-                String[] dataRow = Line[i].toString().split(",");
-                Model.addRow(dataRow);
-            }
+        String[] Line = res.searchRoomdata();
+        Model.setRowCount(0);
+        for (int i = 0; i < Line.length; i++) {
+            String[] dataRow = Line[i].toString().split(",");
+            Model.addRow(dataRow);
         }
     }
-//--------------------------------------------------------------------------------------------------- 예약취소기능
 
     // JTable 객체를 반환하는 Getter 메서드
     public JTable getCustomerDataTable() {
@@ -113,6 +92,8 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
         BUTT_enter = new javax.swing.JButton();
         BUTT_reset = new javax.swing.JButton();
         BUTT_modify = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        name = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -177,6 +158,8 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("예약자:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -192,9 +175,13 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addComponent(searchdata, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(searchdata, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                    .addComponent(name))
                 .addGap(18, 18, 18)
                 .addComponent(BUTT_enter)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -208,17 +195,26 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(BUTT_goback)
+                                    .addComponent(BUTT_reset)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(searchdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(BUTT_goback)
-                            .addComponent(BUTT_reset)))
+                            .addComponent(jLabel2)
+                            .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(searchdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(BUTT_enter))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addGap(21, 21, 21)
+                        .addComponent(BUTT_enter, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -243,7 +239,7 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
         if (customerdatatable.getSelectedRow() != -1) {
             ResCheckController res = new ResCheckController();
             int rowcount = customerdatatable.getSelectedRow();
-            res.CancelSelectedcell(customerdatatable.getValueAt(rowcount, 3).toString(),customerdatatable. getValueAt(rowcount, 0).toString(), customerdatatable. getValueAt(rowcount, 1).toString());
+            res.CancelSelectedcell(customerdatatable.getValueAt(rowcount, 3).toString(), customerdatatable.getValueAt(rowcount, 0).toString(), customerdatatable.getValueAt(rowcount, 1).toString());
             res.cancelData();
             JOptionPane.showMessageDialog(null, "예약이 성공적으로 취소 되었습니다.");
         } else
@@ -258,10 +254,7 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_BUTT_gobackActionPerformed
 
     private void BUTT_enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_enterActionPerformed
-        if (!"".equals(searchdata.getText())) {
-            String txtsearchroomnum = searchdata.getText();
-            RoomController res = new RoomController(txtsearchroomnum);
-            roomDataCheck();
+        if (!"".equals(searchdata.getText()) && !"".equals(name.getText())) {
             settable_searchdata();
         } else
             JOptionPane.showMessageDialog(null, "객실호수를 입력해주세요.");
@@ -312,7 +305,9 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
     private javax.swing.JButton BUTT_reset;
     private javax.swing.JTable customerdatatable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField name;
     private javax.swing.JTextField searchdata;
     // End of variables declaration//GEN-END:variables
 

@@ -19,34 +19,50 @@ import javax.swing.JButton;
 public class RoomController {
 
     private String txtsearchroomnum;
+    private String txtsearchname;
 
     public RoomController() {
 
     }
 
-    public RoomController(String txtsearchroomnum) {
+    public RoomController(String txtsearchroomnum, String txtsearchname) {
         this.txtsearchroomnum = txtsearchroomnum;
+        this.txtsearchname = txtsearchname;
     }
 
-    public boolean isEmptyRoom(String e) { //e가 방 번호 string
-        ResDao res = new ResDao();
+    public String[] searchRoomdata() { //검색된 객실호수의 고객정보 찾기 
+        int linecount = -1;
+        int currentLineNumber = -1;
+        List<String> userDataList = new ArrayList<>();
         String fileName = "data/UserData.txt";
         File file = new File(fileName);
+
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-
             String line;
-
-            while ((line = br.readLine()) != null) {//줄단위로 읽기
-                String[] userInfo = line.split(",");
-                if (e.equals(userInfo[3])) {
-                    return false;
+            while ((line = br.readLine()) != null) {
+                String[] row = line.split(",");
+                linecount++;
+                if (txtsearchroomnum.equals(row[3]) && txtsearchname.equals(row[0])) {
+                    break;
                 }
             }
-
         } catch (IOException ex) {
-            ex.printStackTrace();
-            System.out.println("roomcontroller 오류");
         }
-        return true;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                currentLineNumber++;
+                String[] row = line.split(",");
+                // 현재 라인 번호가 읽고자 하는 라인 번호와 일치하는 경우
+                if (currentLineNumber == linecount) {
+                    userDataList.add(line);
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return userDataList.toArray(new String[0]);
     }
 }
