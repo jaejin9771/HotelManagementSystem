@@ -28,7 +28,7 @@ public class CheckInController {
         this.roomnum = roomnum;
     }
 
-    public void modifyFullroom() {
+    public void modifyFullroom() { //입력된 값의 라인을 fullroom으로 수정
         String line;
         String fileName = "data/UserData.txt";
         File file = new File(fileName);
@@ -58,7 +58,7 @@ public class CheckInController {
         }
     }
 
-    public boolean checkFullroom() {
+    public boolean checkFullroom() { //체크인 되었는지 확인하는 메서드
         String line;
         String fileName = "data/UserData.txt";
         File file = new File(fileName);
@@ -74,7 +74,7 @@ public class CheckInController {
         }
         return true;
     }
-    public boolean checkResroom(){
+    public boolean checkResroom(){ //입력된 값이 예약되었는지 확인
         String line;
         String fileName = "data/UserData.txt";
         File file = new File(fileName);
