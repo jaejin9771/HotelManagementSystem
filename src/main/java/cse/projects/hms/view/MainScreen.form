@@ -32,17 +32,17 @@
                   <Component id="BUTT_checkin" max="32767" attributes="0"/>
                   <Component id="BUTT_reservation" min="-2" pref="149" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="BUTT_reservationview" max="32767" attributes="0"/>
                   <Component id="BUTT_checkout" min="-2" pref="149" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="BUTT_service" max="32767" attributes="0"/>
                   <Component id="BUTT_management" min="-2" pref="149" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="187" max="32767" attributes="0"/>
+              <EmptySpace pref="159" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
@@ -56,7 +56,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Component id="logOutBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="BUTT_service" max="32767" attributes="0"/>
                   <Component id="BUTT_reservationview" max="32767" attributes="0"/>
@@ -68,7 +68,7 @@
                   <Component id="BUTT_checkout" max="32767" attributes="0"/>
                   <Component id="BUTT_management" min="-2" pref="90" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="193" max="32767" attributes="0"/>
+              <EmptySpace pref="150" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
