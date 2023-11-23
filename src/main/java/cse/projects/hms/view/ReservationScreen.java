@@ -96,39 +96,42 @@ public class ReservationScreen extends javax.swing.JFrame {
         } else if (TEXT_roomtype.getText().equals("RoyalSuite")) {
             money = 400000;
         }
-
-        switch (TEXT_peopleNumber.getSelectedIndex()) {//인원수에 따른 추가요금 설정
-            case 2:
-                money += 30000;
-                break;
-            case 3:
-                money += 60000;
-                break;
-            case 4:
-                money += 90000;
-                break;
-            case 5:
-                money += 120000;
-                break;
-            default:
-                break;
-        }
-        switch (calculateDate()) { //체크인 날짜와 체크아웃 날짜 간의 차이 계산 후 추가요금 설정
-            case 2:
-                money += 50000;
-                break;
-            case 3:
-                money += 100000;
-                break;
-            case 4:
-                money += 150000;
-                break;
-            case 5:
-                money += 200000;
-                break;
-            default:
-                break;
-        }
+        int addPeople = TEXT_peopleNumber.getSelectedIndex() - 1;
+        money += addPeople * 30000; 
+//        switch (people) {//인원수에 따른 추가요금 설정
+//            case 2:
+//                money += 30000;
+//                break;
+//            case 3:
+//                money += 60000;
+//                break;
+//            case 4:
+//                money += 90000;
+//                break;
+//            case 5:
+//                money += 120000;
+//                break;
+//            default:
+//                break;
+//        }
+        int calDate = calculateDate() - 1;
+        money += calDate * 50000;
+//        switch (calculateDate()) { //체크인 날짜와 체크아웃 날짜 간의 차이 계산 후 추가요금 설정
+//            case 2:
+//                money += 50000;
+//                break;
+//            case 3:
+//                money += 100000;
+//                break;
+//            case 4:
+//                money += 150000;
+//                break;
+//            case 5:
+//                money += 200000;
+//                break;
+//            default:
+//                break;
+//        }
         return Integer.toString(money);//총 결제금액 반환(예약이 완료되었을 때 메시지로 뜸)
     }
 

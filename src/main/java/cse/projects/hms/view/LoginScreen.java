@@ -117,7 +117,7 @@ public class LoginScreen extends javax.swing.JFrame {
 
         String inputId = ID.getText(); // 입력한 ID
         String inputPw = new String(Password.getPassword()); // 입력한 PW
-        if ((inputId .equals("")) || (inputPw.equals(""))) {
+        if ((inputId .equals("")) || (inputPw.equals(""))) {   // 공백 예외 처리
             JOptionPane.showMessageDialog(null, "공백이 있습니다. 다시 입력해주세요.");
         } else {
             this.user = userController.login(inputId, inputPw);
