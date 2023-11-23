@@ -328,6 +328,8 @@ public class RoomServiceScreen extends javax.swing.JFrame {
 
     private void BUTT_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_okActionPerformed
 
+
+
         RoomServiceController res = new RoomServiceController();
         boolean check = res.checkRoomService(RoomNumber.getText(), Name.getText(), PhoneNumber.getText());
         if (!"".equals(userdata.getText())) { 
@@ -378,10 +380,12 @@ public class RoomServiceScreen extends javax.swing.JFrame {
 
     private void BUTT_enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_enterActionPerformed
         RoomServiceController room = new RoomServiceController();
+
         if (!"".equals(RoomNumber.getText()) && !"".equals(Name.getText()) && !"".equals(PhoneNumber.getText())) {
 
             if (room.checkRoomService(RoomNumber.getText(), Name.getText(), PhoneNumber.getText())) {
                 String[] result = room.sendRoomService(RoomNumber.getText(), Name.getText(), PhoneNumber.getText());
+
                 String data = "이름 : " + result[0] + " 객실 등급 : " + result[2] + " 객실 호수 : " + result[3];
                 userdata.setText(data);
             } else {
