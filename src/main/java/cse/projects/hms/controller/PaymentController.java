@@ -15,8 +15,7 @@ import java.util.logging.Logger;
  * @author ij944
  */
 public class PaymentController {
-
-    public void changeMoney(String userdata,String roomnum, String money) {//요금 0으로 바꾸기 
+    public void changeMoney(String userdata, String roomnum,String username, String phonenumber) {//요금 0으로 바꾸기 
         String line;
         String fileName = "data/UserData.txt";
         File file = new File(fileName);
@@ -24,8 +23,9 @@ public class PaymentController {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
-                if (roomnum.equals(row[3])) {
-                    continue;
+                if (roomnum.equals(row[3]) && username.equals(row[0]) && phonenumber.equals(row[1])) {
+                    row[7] = Integer.toString(0);
+                    line = String.join(",", row);// 변경된 배열을 다시 문자열로 조합
                 }
                 lines.add(line);
             }
@@ -37,7 +37,6 @@ public class PaymentController {
                 writer.write(lineToWrite);
                 writer.newLine();
             }
-            writer.write(userdata+','+money);
         } catch (IOException ex) {
             ex.printStackTrace();
             System.out.println("선결제 요금 수정 중 오류가 발생했습니다.");
@@ -77,36 +76,6 @@ public class PaymentController {
                 writer.write(updatedUserData);
                 writer.newLine();
             }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    public void payAlreadyRoomservice(String roomnum, String sum) {//룸서비스 선결제 메서드 
-        List<String> lines = new ArrayList<>();
-        String fileName = "data/UserData.txt";
-        String userdata = null;
-        File file = new File(fileName);
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] row = line.split(",");
-                if (roomnum.equals(row[3])) {
-                    userdata = line;
-                    continue;
-                }
-                lines.add(line);
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            for (String lineToWrite : lines) {
-                writer.write(lineToWrite);
-                writer.newLine();
-            }
-            writer.write(userdata);
         } catch (IOException ex) {
             ex.printStackTrace();
         }

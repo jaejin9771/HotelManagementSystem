@@ -64,14 +64,14 @@ public class CheckOutScreen extends javax.swing.JFrame {
         BUTT_payment = new javax.swing.JButton();
         txtmoney = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        BUTT_checkout = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         jTextField4.setText("jTextField3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        BUTT_goback.setText("goback");
+        BUTT_goback.setText("뒤로 가기");
         BUTT_goback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BUTT_gobackActionPerformed(evt);
@@ -108,11 +108,11 @@ public class CheckOutScreen extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
         jLabel10.setText("총 결제금액:");
 
-        jButton1.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
-        jButton1.setText("check-out");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BUTT_checkout.setFont(new java.awt.Font("맑은 고딕", 0, 14)); // NOI18N
+        BUTT_checkout.setText("check-out");
+        BUTT_checkout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BUTT_checkoutActionPerformed(evt);
             }
         });
 
@@ -134,7 +134,7 @@ public class CheckOutScreen extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(BUTT_checkout, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(144, 144, 144))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -193,7 +193,7 @@ public class CheckOutScreen extends javax.swing.JFrame {
                             .addComponent(txtroomnum, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addGap(28, 28, 28)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BUTT_checkout, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtmoney, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -223,7 +223,7 @@ public class CheckOutScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BUTT_paymentActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BUTT_checkoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_checkoutActionPerformed
         // TODO add your handling code here:
         name = txtname.getText();
         phone = txtphone.getText();
@@ -258,16 +258,16 @@ public class CheckOutScreen extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "예약정보를 모두 입력해주세요.");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BUTT_checkoutActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BUTT_checkout;
     private javax.swing.JButton BUTT_goback;
     private javax.swing.JButton BUTT_payment;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

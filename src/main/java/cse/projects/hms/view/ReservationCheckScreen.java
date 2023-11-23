@@ -148,7 +148,7 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
             }
         });
 
-        BUTT_goback.setText("goback");
+        BUTT_goback.setText("뒤로 가기");
         BUTT_goback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BUTT_gobackActionPerformed(evt);
@@ -162,7 +162,7 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
             }
         });
 
-        BUTT_reset.setText("reset");
+        BUTT_reset.setText("재설정");
         BUTT_reset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BUTT_resetActionPerformed(evt);
