@@ -80,7 +80,9 @@ public class ResCheckController {
         String line;
         String fileName = "data/UserData.txt";
         File file = new File(fileName);
+
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file,true))) {
+
             writer.write(modifysell);
         } catch (IOException ex) {
             System.out.println("예약정보 수정 중 오류가 발생했습니다.");
