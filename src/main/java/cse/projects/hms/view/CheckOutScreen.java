@@ -26,12 +26,14 @@ public class CheckOutScreen extends javax.swing.JFrame {
     private String phone;
     private String roomnum;
     private String rescheckout;
-
+    private String sum;
     public CheckOutScreen() {
         initComponents();
         setLocationRelativeTo(null);
     }
-
+    public CheckOutScreen(String sum){
+        this.sum =sum;
+    }
     private static boolean isCheckinTimeValid() {
         // 현재 시간 가져오기
         LocalTime currentTime = LocalTime.now();
@@ -249,7 +251,6 @@ public class CheckOutScreen extends javax.swing.JFrame {
                 if (Check.checkFullroom() == false) {
                     if (check.sendCheckoutData() != null) {
                         String[] result = check.sendCheckoutData();
-                        String[] menu = check.showRoomService(name, phone, roomnum);
                         rescheckout = result[6];
                         CheckOutController over = new CheckOutController(rescheckout, formatedNow);
                         txtcheckout.append("예상 체크인 날짜: " + result[5] + "\n");
@@ -259,7 +260,6 @@ public class CheckOutScreen extends javax.swing.JFrame {
                         txtcheckout.append("객실인원: " + result[4] + "\n");
                         txtcheckout.append("결제수단: " + result[8] + "\n");
                         txtcheckout.append("카드번호: " + result[9] + "\n");
-                        txtcheckout.append("룸서비스 이용내역: " + Arrays.toString(menu) + "\n");
                         txtmoney.setText(result[7]);
                         txtaddmoney.setText(over.calculateMoney(over.calculateDate()));
                     } else {

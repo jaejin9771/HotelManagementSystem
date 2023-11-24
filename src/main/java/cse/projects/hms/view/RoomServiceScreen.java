@@ -7,7 +7,6 @@ package cse.projects.hms.view;
 
 import cse.projects.hms.controller.PaymentController;
 import cse.projects.hms.controller.RoomServiceController;
-import cse.projects.hms.controller.RoomServiceDataController;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -359,29 +358,14 @@ public class RoomServiceScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_BUTT_cancelActionPerformed
 
     private void BUTT_laterpaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_laterpaymentActionPerformed
-        // TODO add your handling code here:
-        String servicemenu = null;
-        String menuprice = null;
-        StringBuilder dataBuilder = new StringBuilder();
+        
         if (ServiceMenu.getSelectedRow() != -1) {
             PaymentController pay = new PaymentController();
             pay.payLaterRoomservice(RoomNumber.getText(), Integer.toString(sum), Name.getText(), PhoneNumber.getText());
             JOptionPane.showMessageDialog(null, "룸서비스 결제금액이 추가되었습니다.");
-            for (int i = 0; i < order.getRowCount(); i++) {
-                servicemenu = order.getValueAt(i, 0).toString();
-                menuprice = order.getValueAt(i, 1).toString();
-                // 각 행의 데이터를 추가
-                dataBuilder.append(servicemenu)
-                        .append(menuprice)
-                        .append("|");
-            }
-            RoomServiceDataController roomservice = new RoomServiceDataController();
-            String data = Name.getText() + "," + PhoneNumber.getText() + "," + RoomNumber.getText() + "," + dataBuilder.toString() + "," + "null";
-            if (roomservice.checkData(Name.getText(), PhoneNumber.getText(), RoomNumber.getText())) {
-                roomservice.addRoomServiceData(dataBuilder.toString(), Name.getText(), PhoneNumber.getText(), RoomNumber.getText());
-            } else {
-                roomservice.putRoomServiceDate(data);
-            }
+            MainScreen main = new MainScreen();
+            main.setVisible(true);
+            dispose();
         } else
             JOptionPane.showMessageDialog(null, "추가할 메뉴를 선택해주세요.");
     }//GEN-LAST:event_BUTT_laterpaymentActionPerformed
@@ -391,7 +375,6 @@ public class RoomServiceScreen extends javax.swing.JFrame {
         if (!"".equals(RoomNumber.getText()) && !"".equals(Name.getText()) && !"".equals(PhoneNumber.getText())) {
             if (room.checkRoomService(RoomNumber.getText(), Name.getText(), PhoneNumber.getText()) == true) {
                 String[] result = room.sendRoomService(RoomNumber.getText(), Name.getText(), PhoneNumber.getText());
-
                 String data = "이름 : " + result[0] + " 객실 등급 : " + result[2] + " 객실 호수 : " + result[3];
                 userdata.setText(data);
             } else {
