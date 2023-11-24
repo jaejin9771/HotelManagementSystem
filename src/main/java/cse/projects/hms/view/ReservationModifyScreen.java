@@ -475,11 +475,13 @@ public class ReservationModifyScreen extends javax.swing.JFrame {
         }
         ResCheckController check = new ResCheckController();
         if (checkin != null && checkout != null) {
+            ResCheckController res = new ResCheckController();
+            res.CancelSelectedcell(txtroomnum.getText(), txtname.getText(), txtphone.getText());
+            res.cancelData();
             if (overlap(check.checkDataDate(m_roomnumber), check.checkResDate(m_checkin, m_checkout))) {
                 if (calculateDate() <= 5) {
                     String modifysell;
                     modifysell = m_name + ',' + m_phone + ',' + m_roomtype + ',' + m_roomnumber + ',' + m_people + ',' + m_checkin + ',' + m_checkout + ',' + m_money + ',' + m_payment + ',' + m_cardnum + ',' + m_roomstate;
-                    ResCheckController res = new ResCheckController();
                     res.modifyUserdata(roomnumber, modifysell, txtphone.getText(), txtname.getText());
                     JOptionPane.showMessageDialog(null, "예약정보가 성공적으로 수정되었습니다.  " + "결제요금은 " + m_money + " 입니다.");
 
