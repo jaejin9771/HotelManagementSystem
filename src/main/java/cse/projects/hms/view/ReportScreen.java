@@ -204,11 +204,13 @@ public class ReportScreen extends javax.swing.JFrame {
         System.out.println("startDate : " + startDate);
         int[] result = managementController.searchReservation(startDate, endDate);
         System.out.println("receipt = " +resDao.readReceipt(startDate,endDate));
-        ePeopleField.setText(Integer.toString(result[0]));
-        eRoomField.setText(Integer.toString(result[1]));
-        receiptField.setText(resDao.readReceipt(startDate,endDate));
+        
+        String[] receipt = resDao.readReceipt(startDate,endDate);
+        eRoomField.setText(receipt[1]);
+        receiptField.setText(receipt[0]);
+        ePeopleField.setText(receipt[2]);
     }//GEN-LAST:event_okBtnActionPerformed
-
+    
     private void goBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goBackActionPerformed
         // TODO add your handling code here:
         ManagementScreen managementScreen = new ManagementScreen();

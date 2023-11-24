@@ -19,6 +19,7 @@ import java.util.*;
  * @author 재진
  */
 public class ResDao {
+
     public void insert(ResDto resDto) {
         // 예약 정보 저장하는 파일 입출력 코드
         String fileName = "data/UserData.txt";
@@ -46,43 +47,42 @@ public class ResDao {
         }
         return userDataList.toArray(new String[0]);
     }
-    
-    public int checkPeopleInDate(LocalDate startDate,LocalDate endDate) {
-        
+
+    public int checkPeopleInDate(LocalDate startDate, LocalDate endDate) {
+
         int peopleNum = 0;
         try (BufferedReader reader = new BufferedReader(new FileReader("data/UserData.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] reservation = line.split(",");
-                
+
                 LocalDate reservationCheckin = LocalDate.parse(reservation[5], DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 LocalDate reservationCheckout = LocalDate.parse(reservation[6], DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                
-                
+
                 if (reservationCheckin.isBefore(endDate) && reservationCheckout.isAfter(startDate)) {
                     peopleNum += Integer.parseInt(reservation[4]);
                 }
             }
-            System.out.println("예상 인원수 : "+peopleNum);
+            System.out.println("예상 인원수 : " + peopleNum);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return peopleNum;
     }
-    
-    public int checkRoomInDate(LocalDate startDate,LocalDate endDate) {
-        
+
+    public int checkRoomInDate(LocalDate startDate, LocalDate endDate) {
+
         int num = 0; // 사용 방 갯수
         try (BufferedReader reader = new BufferedReader(new FileReader("data/UserData.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] reservation = line.split(",");
-                
+
                 LocalDate reservationCheckin = LocalDate.parse(reservation[5], DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 LocalDate reservationCheckout = LocalDate.parse(reservation[6], DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 System.out.println("reservationCheckin : " + reservationCheckin);
                 System.out.println("reservationCheckout : " + reservationCheckout);
-                
+
                 if (reservationCheckin.isBefore(endDate) && reservationCheckout.isAfter(startDate)) {
                     num++;
                 }
@@ -92,10 +92,10 @@ public class ResDao {
         }
         return num;
     }
-    
-    public void insertReceipt(String cInDate, String cOutDate,String totalFee) {
+
+    public void insertReceipt(String cInDate, String cOutDate, String totalFee, String people) {
         String fileName = "data/receipt.txt";
-        String receipt = cInDate +","+ cOutDate + "," + totalFee;
+        String receipt = cInDate + "," + cOutDate + "," + totalFee + "," + people;
         File file = new File(fileName);
         try (BufferedWriter output = new BufferedWriter(new FileWriter(file, true))) {
             output.write(receipt);
@@ -105,10 +105,12 @@ public class ResDao {
             System.out.println("insertReceipt 오류");
         }
     }
-    
-    public String readReceipt(LocalDate startDate, LocalDate endDate) {
+
+    public String[] readReceipt(LocalDate startDate, LocalDate endDate) {
         int sum = 0;
-        
+        int num = 0;
+        int people = 0;
+        String[] resultReceipt = new String[3];
         try (BufferedReader reader = new BufferedReader(new FileReader("data/receipt.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -121,11 +123,18 @@ public class ResDao {
                 
                 if (receiptCheckIn.isBefore(endDate) && receiptCheckOut.isAfter(startDate)) {
                     sum += Integer.parseInt(receipt[2]);
+                    num++;
+                    people += Integer.parseInt(receipt[3]);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return Integer.toString(sum);
+        
+        resultReceipt[0] = Integer.toString(sum);
+        System.out.println("ResDao resultReceipt[0] : " +resultReceipt[0]);
+        resultReceipt[1] = Integer.toString(num);
+        resultReceipt[2] = Integer.toString(people);
+        return resultReceipt;
     }
 }

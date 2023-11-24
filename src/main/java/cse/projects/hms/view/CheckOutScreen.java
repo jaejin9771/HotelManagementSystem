@@ -266,7 +266,7 @@ public class CheckOutScreen extends javax.swing.JFrame {
                         txtmoney.setText(result[7]);
                         txtaddmoney.setText(over.calculateMoney(over.calculateDate()));
                         totalFee = Integer.parseInt(result[11]) + Integer.parseInt(txtaddmoney.getText());
-                        resDao.insertReceipt(result[5], result[6], Integer.toString(totalFee));
+                        resDao.insertReceipt(result[5], result[6], Integer.toString(totalFee),result[4]);
                     } else {
                         JOptionPane.showMessageDialog(null, "입력하신 예약 정보가 일치하지 않습니다.");
                     }
