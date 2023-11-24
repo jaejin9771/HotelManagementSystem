@@ -62,6 +62,7 @@ public class RoomServiceScreen extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         PhoneNumber = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        alreadypay = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -190,6 +191,13 @@ public class RoomServiceScreen extends javax.swing.JFrame {
 
         jLabel9.setText("*010-0000-0000");
 
+        alreadypay.setText("결제");
+        alreadypay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alreadypayActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -243,11 +251,14 @@ public class RoomServiceScreen extends javax.swing.JFrame {
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel5)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(BUTT_laterpayment, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(resultmoney, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(resultmoney, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(alreadypay, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BUTT_laterpayment, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -310,7 +321,9 @@ public class RoomServiceScreen extends javax.swing.JFrame {
                                 .addGap(6, 6, 6))
                             .addComponent(resultmoney, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(BUTT_laterpayment, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(BUTT_laterpayment, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                            .addComponent(alreadypay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
 
@@ -395,6 +408,13 @@ public class RoomServiceScreen extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "서비스메뉴가 비어있습니다.");
     }//GEN-LAST:event_BUTT_allcancelActionPerformed
 
+    private void alreadypayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alreadypayActionPerformed
+        JOptionPane.showMessageDialog(null, "룸서비스 결제금액: "+Integer.toString(sum)+"원이 결제되었습니다.");
+        MainScreen main = new MainScreen();
+        main.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_alreadypayActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -409,6 +429,7 @@ public class RoomServiceScreen extends javax.swing.JFrame {
     private javax.swing.JTextField PhoneNumber;
     private javax.swing.JTextField RoomNumber;
     private javax.swing.JTable ServiceMenu;
+    private javax.swing.JButton alreadypay;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
