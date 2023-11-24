@@ -34,9 +34,7 @@ public class CheckOutScreen extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
-    public CheckOutScreen(String sum){
-        this.sum =sum;
-    }
+    
     private static boolean isCheckinTimeValid() {
         // 현재 시간 가져오기
         LocalTime currentTime = LocalTime.now();
