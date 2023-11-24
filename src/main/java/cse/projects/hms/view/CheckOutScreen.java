@@ -7,6 +7,7 @@ package cse.projects.hms.view;
 
 import cse.projects.hms.controller.CheckInController;
 import cse.projects.hms.controller.CheckOutController;
+import cse.projects.hms.dao.reservation.ResDao;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -25,7 +26,8 @@ public class CheckOutScreen extends javax.swing.JFrame {
     private String phone;
     private String roomnum;
     private String rescheckout;
-
+    private int totalFee; // 총 요금
+    private ResDao resDao = new ResDao();
     public CheckOutScreen() {
         initComponents();
         setLocationRelativeTo(null);
@@ -229,7 +231,8 @@ public class CheckOutScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_BUTT_gobackActionPerformed
 
     private void BUTT_paymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_paymentActionPerformed
-        CheckOutController check = new CheckOutController(name, phone, roomnum);
+        CheckOutController check = new CheckOutController(name, phone, roomnum,totalFee);
+        // 합산된 총 요금(totalFee) 다른 파일에 저장하는 로직 구현 해아함.
         if (check.deleteData()) {
             JOptionPane.showMessageDialog(null, "결제되었습니다.");
             MainScreen mainscreen = new MainScreen();
@@ -242,7 +245,8 @@ public class CheckOutScreen extends javax.swing.JFrame {
         name = txtname.getText();
         phone = txtphone.getText();
         roomnum = txtroomnum.getText();
-        CheckOutController check = new CheckOutController(name, phone, roomnum);
+        
+        CheckOutController check = new CheckOutController(name, phone, roomnum,totalFee);
         CheckInController Check = new CheckInController(name, phone, roomnum);
         LocalDate now = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -263,6 +267,8 @@ public class CheckOutScreen extends javax.swing.JFrame {
                         txtcheckout.append("카드번호: " + result[9] + "\n");
                         txtmoney.setText(result[7]);
                         txtaddmoney.setText(over.calculateMoney(over.calculateDate()));
+                        totalFee = Integer.parseInt(result[11]) + Integer.parseInt(txtaddmoney.getText());
+                        resDao.insertReceipt(result[5], result[6], Integer.toString(totalFee));
                     } else {
                         JOptionPane.showMessageDialog(null, "입력하신 예약 정보가 일치하지 않습니다.");
                     }

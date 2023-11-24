@@ -57,8 +57,7 @@ public class ResDao {
                 
                 LocalDate reservationCheckin = LocalDate.parse(reservation[5], DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 LocalDate reservationCheckout = LocalDate.parse(reservation[6], DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                System.out.println("reservationCheckin : " + reservationCheckin);
-                System.out.println("reservationCheckout : " + reservationCheckout);
+                
                 
                 if (reservationCheckin.isBefore(endDate) && reservationCheckout.isAfter(startDate)) {
                     peopleNum += Integer.parseInt(reservation[4]);
@@ -92,5 +91,41 @@ public class ResDao {
             e.printStackTrace();
         }
         return num;
+    }
+    
+    public void insertReceipt(String cInDate, String cOutDate,String totalFee) {
+        String fileName = "data/receipt.txt";
+        String receipt = cInDate +","+ cOutDate + "," + totalFee;
+        File file = new File(fileName);
+        try (BufferedWriter output = new BufferedWriter(new FileWriter(file, true))) {
+            output.write(receipt);
+            output.newLine();
+        } catch (Exception e) {
+            e.getStackTrace();
+            System.out.println("insertReceipt 오류");
+        }
+    }
+    
+    public String readReceipt(LocalDate startDate, LocalDate endDate) {
+        int sum = 0;
+        
+        try (BufferedReader reader = new BufferedReader(new FileReader("data/receipt.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] receipt = line.split(",");
+                
+                LocalDate receiptCheckIn = LocalDate.parse(receipt[0], DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                LocalDate receiptCheckOut = LocalDate.parse(receipt[1], DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                System.out.println("receiptCheckin : " + receiptCheckIn);
+                System.out.println("receiptCheckout : " + receiptCheckOut);
+                
+                if (receiptCheckIn.isBefore(endDate) && receiptCheckOut.isAfter(startDate)) {
+                    sum += Integer.parseInt(receipt[2]);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return Integer.toString(sum);
     }
 }
