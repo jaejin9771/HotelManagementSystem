@@ -80,22 +80,22 @@ public class ResCheckController {
         String line;
         String fileName = "data/UserData.txt";
         File file = new File(fileName);
-        List<String> lines = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            while ((line = br.readLine()) != null) {
-                String[] row = line.split(",");
-                if (selectedValue.equals(row[3]) && name.equals(row[0]) && phone.equals(row[1])) {
-                    continue;
-                }
-                lines.add(line);
-            }
-        } catch (IOException e) {
-        }
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            for (String lineToWrite : lines) {
-                writer.write(lineToWrite);
-                writer.newLine();
-            }
+//        List<String> lines = new ArrayList<>();
+//        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+//            while ((line = br.readLine()) != null) {
+//                String[] row = line.split(",");
+//                if (selectedValue.equals(row[3]) && name.equals(row[0]) && phone.equals(row[1])) {
+//                    continue;
+//                }
+//                lines.add(line);
+//            }
+//        } catch (IOException e) {
+//        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file,true))) {
+//            for (String lineToWrite : lines) {
+//                writer.write(lineToWrite);
+//                writer.newLine();
+//            }
             writer.write(modifysell);
         } catch (IOException ex) {
             System.out.println("예약정보 수정 중 오류가 발생했습니다.");
