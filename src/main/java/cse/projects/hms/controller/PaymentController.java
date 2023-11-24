@@ -71,8 +71,11 @@ public class PaymentController {
                 String[] row = userdata.split(",");
                 int oldSum = Integer.parseInt(row[7]); // 기존 합계 값
                 int newSum = oldSum + Integer.parseInt(sum); // 새로운 합계 값
+                int Total = Integer.parseInt(row[11]) + Integer.parseInt(sum); // 바뀐 총 요금 값
                 row[7] = String.valueOf(newSum); // 업데이트된 합계 값으로 변경
+                row[11] = String.valueOf(Total);
                 String updatedUserData = String.join(",", row);
+                
                 writer.write(updatedUserData);
                 writer.newLine();
             }

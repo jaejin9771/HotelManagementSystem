@@ -164,6 +164,8 @@ public class UserModifyScreen extends javax.swing.JFrame {
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         dispose();
+        UserInfoScreen userInfoScreen = new UserInfoScreen();
+        userInfoScreen.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
 
     /**

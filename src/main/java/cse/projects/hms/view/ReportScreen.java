@@ -5,6 +5,7 @@
 package cse.projects.hms.view;
 
 import cse.projects.hms.controller.ManagementController;
+import cse.projects.hms.dao.reservation.ResDao;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -17,6 +18,7 @@ import java.time.ZoneId;
 public class ReportScreen extends javax.swing.JFrame {
     private ManagementController managementController = ManagementController.getInstance();
     private int ePeople; // 예상 사용 인원
+    private ResDao resDao = new ResDao();
     /**
      * Creates new form NewJFrame
      */
@@ -50,6 +52,9 @@ public class ReportScreen extends javax.swing.JFrame {
         eRoomField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         goBack = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        receiptField = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -99,6 +104,14 @@ public class ReportScreen extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("굴림", 0, 18)); // NOI18N
+        jLabel8.setText("수익 :");
+
+        receiptField.setEditable(false);
+
+        jLabel9.setFont(new java.awt.Font("굴림", 0, 18)); // NOI18N
+        jLabel9.setText("원");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,6 +122,10 @@ public class ReportScreen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(goBack)
                 .addGap(55, 55, 55))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(okBtn)
+                .addGap(145, 145, 145))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -121,25 +138,22 @@ public class ReportScreen extends javax.swing.JFrame {
                             .addComponent(endDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(startDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
+                        .addGap(115, 115, 115)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel8))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(ePeopleField)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(eRoomField, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7)))))
+                            .addComponent(receiptField, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                            .addComponent(eRoomField)
+                            .addComponent(ePeopleField))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel9))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(okBtn)
-                .addGap(145, 145, 145))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,7 +175,7 @@ public class ReportScreen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(endDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(ePeopleField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,7 +185,12 @@ public class ReportScreen extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(eRoomField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addGap(40, 40, 40))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(receiptField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -184,9 +203,10 @@ public class ReportScreen extends javax.swing.JFrame {
         LocalDate endDate = endDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         System.out.println("startDate : " + startDate);
         int[] result = managementController.searchReservation(startDate, endDate);
-        
+        System.out.println("receipt = " +resDao.readReceipt(startDate,endDate));
         ePeopleField.setText(Integer.toString(result[0]));
         eRoomField.setText(Integer.toString(result[1]));
+        receiptField.setText(resDao.readReceipt(startDate,endDate));
     }//GEN-LAST:event_okBtnActionPerformed
 
     private void goBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goBackActionPerformed
@@ -213,9 +233,12 @@ public class ReportScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton okBtn;
+    private javax.swing.JTextField receiptField;
     private com.toedter.calendar.JDateChooser startDateChooser;
     // End of variables declaration//GEN-END:variables
 }

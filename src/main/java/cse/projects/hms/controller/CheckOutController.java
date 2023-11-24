@@ -21,11 +21,13 @@ public class CheckOutController {
     private String roomnum;
     private String rescheckout;
     private String formatedNow;
+    private int totalFee;
 
-    public CheckOutController(String name, String phone, String roomnum) {
+    public CheckOutController(String name, String phone, String roomnum,int totalFee) {
         this.name = name;
         this.phone = phone;
         this.roomnum = roomnum;
+        this.totalFee = totalFee;
     }
 
     public CheckOutController(String rescheckout, String formatedNow) {
@@ -55,10 +57,12 @@ public class CheckOutController {
         String fileName = "data/UserData.txt";
         File file = new File(fileName);
         List<String> lines = new ArrayList<>();
+        
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
                 if (row[0].equals(name) && row[1].equals(phone) && row[3].equals(roomnum) && row[10].equals("full room")) {
+                    String receipt = row[5]+","+row[6]+","+ Integer.toString(totalFee);
                     continue;
                 }
                 lines.add(line);
