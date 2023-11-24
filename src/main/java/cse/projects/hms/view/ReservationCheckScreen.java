@@ -257,7 +257,7 @@ public class ReservationCheckScreen extends javax.swing.JFrame {
         if (!"".equals(searchdata.getText()) && !"".equals(name.getText())) {
             settable_searchdata();
         } else
-            JOptionPane.showMessageDialog(null, "객실호수를 입력해주세요.");
+            JOptionPane.showMessageDialog(null, "예약정보를 모두 입력해주세요.");
     }//GEN-LAST:event_BUTT_enterActionPerformed
 
     private void BUTT_resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_resetActionPerformed
