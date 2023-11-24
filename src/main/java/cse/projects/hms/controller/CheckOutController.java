@@ -113,4 +113,24 @@ public class CheckOutController {
         }
         return Integer.toString(money);
     }
+    public String[] showRoomService(String name, String phone, String roomnum){
+        String line;
+        String fileName = "data/RoomServiceData.txt";
+        File file = new File(fileName);
+        List<String> lines = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            while ((line = br.readLine()) != null) {
+                String[] row = line.split(",");
+                if (name.equals(row[0]) && phone.equals(row[1]) && roomnum.equals(row[2])) {
+                    String[] menuAndPrices = row[3].split("\\|");
+                    for (String menuAndPrice : menuAndPrices) {
+                        lines.add(menuAndPrice);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lines.toArray(new String[0]);
+    }
 }
