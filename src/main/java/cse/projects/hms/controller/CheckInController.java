@@ -18,11 +18,9 @@ public class CheckInController {
     private String phone;
     private String roomnum;
 
-    
-    public CheckInController(){
-        
-    }
+    public CheckInController() {
 
+    }
 
     public CheckInController(String name, String phone, String roomnum) {
         this.name = name;
@@ -60,7 +58,6 @@ public class CheckInController {
         }
     }
 
-
     public boolean checkFullroom() { //체크인 되었는지 확인하는 메서드
 
         String line;
@@ -69,7 +66,7 @@ public class CheckInController {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
-                if ("full room".equals(row[10])&&row[0].equals(name) && row[1].equals(phone) && row[3].equals(roomnum)) {
+                if ("full room".equals(row[10]) && row[0].equals(name) && row[1].equals(phone) && row[3].equals(roomnum)) {
                     return false;
                 }
             }
@@ -79,23 +76,23 @@ public class CheckInController {
         return true;
     }
 
-//    public boolean checkResroom(){ //입력된 값이 예약되었는지 확인
-//
-//        String line;
-//        String fileName = "data/UserData.txt";
-//        File file = new File(fileName);
-//        System.out.println(name + "," + phone + "," + roomnum);
-//        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-//            while ((line = br.readLine()) != null) {
-//                String[] row = line.split(",");
-//                if (row[0].equals(name) && row[1].equals(phone) && row[3].equals(roomnum)) {
-//                    return true;
-//                }
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return false;
-//    }
+    public boolean checkResroom() { //입력된 값이 예약되었는지 확인
+
+        String line;
+        String fileName = "data/UserData.txt";
+        File file = new File(fileName);
+        System.out.println(name + "," + phone + "," + roomnum);
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            while ((line = br.readLine()) != null) {
+                String[] row = line.split(",");
+                if (row[0].equals(name) && row[1].equals(phone) && row[3].equals(roomnum)) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 }
