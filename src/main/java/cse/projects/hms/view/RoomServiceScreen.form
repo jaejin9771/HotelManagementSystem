@@ -84,11 +84,15 @@
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               <Component id="jScrollPane3" min="-2" pref="424" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="BUTT_laterpayment" alignment="1" min="-2" pref="102" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="resultmoney" min="-2" pref="132" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="alreadypay" min="-2" pref="98" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="BUTT_laterpayment" min="-2" pref="102" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -172,7 +176,10 @@
                           <Component id="resultmoney" min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="BUTT_laterpayment" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="BUTT_laterpayment" pref="42" max="32767" attributes="0"/>
+                          <Component id="alreadypay" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -464,6 +471,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="*010-0000-0000"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="alreadypay">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xacb0;&#xc81c;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="alreadypayActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

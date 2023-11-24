@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import javax.swing.*;
 
 /**
@@ -96,7 +97,7 @@ public class ReservationScreen extends javax.swing.JFrame {
         } else if (TEXT_roomtype.getText().equals("RoyalSuite")) {
             money = 400000;
         }
-       
+
         switch (TEXT_peopleNumber.getSelectedIndex()) {//인원수에 따른 추가요금 설정
             case 2:
                 money += 30000;
@@ -113,7 +114,7 @@ public class ReservationScreen extends javax.swing.JFrame {
             default:
                 break;
         }
-        
+
         switch (calculateDate()) { //체크인 날짜와 체크아웃 날짜 간의 차이 계산 후 추가요금 설정
             case 2:
                 money += 50000;
@@ -148,6 +149,12 @@ public class ReservationScreen extends javax.swing.JFrame {
         long daysDifference = Math.abs(localDate2.toEpochDay() - localDate1.toEpochDay());
         System.out.println(daysDifference);
         return (int) daysDifference;
+    }
+
+    public boolean overlap(List<String> datadate, List<String> resdate) {
+
+        return !datadate.stream().anyMatch(resdate::contains);
+
     }
 
     /**
@@ -275,27 +282,6 @@ public class ReservationScreen extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(271, 271, 271)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BUTT_cancel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel10)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TEXT_peopleNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(212, 212, 212)
-                                .addComponent(payBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(BUTT_insert, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
@@ -327,7 +313,28 @@ public class ReservationScreen extends javax.swing.JFrame {
                                 .addComponent(jLabel14)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(cardnumber, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(19, 19, 19)))
+                        .addGap(19, 19, 19))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(168, 168, 168)
+                                .addComponent(BUTT_cancel))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(38, 38, 38)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel9)
+                                        .addComponent(jLabel10)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(TEXT_peopleNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(212, 212, 212)
+                                    .addComponent(payBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(BUTT_insert, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(0, 26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -392,35 +399,50 @@ public class ReservationScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BUTT_insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_insertActionPerformed
+
+        String checkintime = "";
+        String checkouttime = "";
+
         String cardnumbers;
-        //RoomController room = new RoomController();
-        //ResCheckController check = new ResCheckController();
-        if (name.getText() != null && phoneNumber.getText() != null && checkinTime.getDate() != null && checkoutTime.getDate() != null) {//모든 정보가 입력되었으면 if문 들어감
-            if (calculateDate() <= 5) {//체크인 날짜와 체크아웃 날짜의 차이를 계산했을 때 5이거나 5보다 작을 때 
-                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                String selectedpeopleNumber = TEXT_peopleNumber.getSelectedItem().toString();
-                String username = name.getText();
-                String phonenumber = phoneNumber.getText();
-                String checkintime = dateFormat.format(checkinTime.getDate());
-                String checkouttime = dateFormat.format(checkoutTime.getDate());
-                String selectedpayment = paymentmethod.getSelectedItem().toString();
-                if (!"".equals(cardnumber.getText())) {
-                    cardnumbers = cardnumber.getText();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String selectedpeopleNumber = TEXT_peopleNumber.getSelectedItem().toString();
+        String username = name.getText();
+        String phonenumber = phoneNumber.getText();
+
+        if (checkinTime.getDate() != null) {
+            checkintime = dateFormat.format(checkinTime.getDate());
+        }
+        if (checkoutTime.getDate() != null) {
+            checkouttime = dateFormat.format(checkoutTime.getDate());
+        }
+
+        String selectedpayment = paymentmethod.getSelectedItem().toString();
+        if (!"".equals(cardnumber.getText())) {
+            cardnumbers = cardnumber.getText();
+        } else {
+            cardnumbers = "현금결제";
+        }
+        String occupation = "empty room";
+        ResCheckController check = new ResCheckController();
+
+        if (!"".equals(name.getText()) && !"".equals(phoneNumber.getText()) && !"".equals(checkintime) && !"".equals(checkouttime)) {//모든 정보가 입력되었으면 if문 들어감
+            if (overlap(check.checkDataDate(roomnum), check.checkResDate(checkintime, checkouttime))) {
+
+                if (calculateDate() <= 5) {//체크인 날짜와 체크아웃 날짜의 차이를 계산했을 때 5이거나 5보다 작을 때 
+                    ResDto res;
+                    res = new ResDto(username, phonenumber, roomtype, roomnum, selectedpeopleNumber, checkintime, checkouttime, selectedpayment, cardnumbers, calculateRoomMoney(), occupation, calculateRoomMoney());
+                    resdao.insert(res);
+                    isButtonClicked = true;
+                    JOptionPane.showMessageDialog(null, "기본객실요금은 " + calculateRoomMoney() + "원입니다.");
+                    BUTT_insert.setEnabled(false);
                 } else {
-                    cardnumbers = "현금결제";
+                    JOptionPane.showMessageDialog(null, "객실이용제한은 5일입니다.");
                 }
-                String occupation = "empty room";
-                ResDto res;
-                res = new ResDto(username, phonenumber, roomtype, roomnum, selectedpeopleNumber, checkintime, checkouttime, selectedpayment, cardnumbers, calculateRoomMoney(), occupation,calculateRoomMoney());
-                resdao.insert(res);
-                isButtonClicked = true;
-                JOptionPane.showMessageDialog(null, "기본객실요금은 " + calculateRoomMoney() + "원입니다.");                
-                BUTT_insert.setEnabled(false);
             } else {
-                JOptionPane.showMessageDialog(null, "객실이용제한은 5일입니다.");
+                JOptionPane.showMessageDialog(null, "이미 예약된 날짜입니다.");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "예약정보를 입력해주세요.");
+            JOptionPane.showMessageDialog(null, "예약정보를 모두 입력해주세요.");
         }
     }//GEN-LAST:event_BUTT_insertActionPerformed
 
@@ -432,24 +454,24 @@ public class ReservationScreen extends javax.swing.JFrame {
 
     private void payBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payBtnActionPerformed
         String cardnumbers;
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String selectedpeopleNumber = TEXT_peopleNumber.getSelectedItem().toString();
+        String username = name.getText();
+        String phonenumber = phoneNumber.getText();
+        String checkintime = dateFormat.format(checkinTime.getDate());
+        String checkouttime = dateFormat.format(checkoutTime.getDate());
+        String selectedpayment = paymentmethod.getSelectedItem().toString();
+
+        if (!"".equals(cardnumber.getText())) {
+            cardnumbers = cardnumber.getText();
+        } else {
+            cardnumbers = "현금결제";
+        }
+        String occupation = "empty room";
         if (isButtonClicked) {
             // 버튼이 클릭되었을 때의 동작
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String selectedpeopleNumber = TEXT_peopleNumber.getSelectedItem().toString();
-            String username = name.getText();
-            String phonenumber = phoneNumber.getText();
-            String checkintime = dateFormat.format(checkinTime.getDate());
-            String checkouttime = dateFormat.format(checkoutTime.getDate());
-            String selectedpayment = paymentmethod.getSelectedItem().toString();
-            
-            if (!"".equals(cardnumber.getText())) {
-                    cardnumbers = cardnumber.getText();
-                } else {
-                    cardnumbers = "현금결제";
-                }
-            String occupation = "empty room";
-            String userdata = username + ',' + phonenumber + ',' + roomtype + ',' + roomnum + ',' + selectedpeopleNumber + ',' + checkintime + ',' + checkouttime+','+calculateRoomMoney()+','+selectedpayment+','+cardnumbers+','+occupation;
-            PaymentScreen pay = new PaymentScreen(userdata, roomnum, calculateRoomMoney(),phonenumber,username);
+            String userdata = username + ',' + phonenumber + ',' + roomtype + ',' + roomnum + ',' + selectedpeopleNumber + ',' + checkintime + ',' + checkouttime + ',' + calculateRoomMoney() + ',' + selectedpayment + ',' + cardnumbers + ',' + occupation;
+            PaymentScreen pay = new PaymentScreen(userdata, roomnum, calculateRoomMoney(), phonenumber, username);
             pay.setVisible(true);
             dispose();
         } else {
