@@ -116,7 +116,19 @@ public class ResCheckController {
         System.out.println(lines);
         return lines;
     }
+    public List<String> checkmodifiedDate(String checkintime, String checkouttime) {//예약수정화면에서 체크인 체크아웃 날짜 간격 구하기
+        LocalDate currentDate = LocalDate.now();
+        List<String> lines = new ArrayList<>();
+        DateTimeFormatter checkinFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate rescheckin = LocalDate.parse(checkintime, checkinFormatter);
+        LocalDate rescheckout = LocalDate.parse(checkouttime, checkinFormatter);
 
+        while (!rescheckin.isAfter(rescheckout)) {
+            lines.add(rescheckin.toString());
+            rescheckin = rescheckin.plusDays(1);
+        }
+        return lines;
+    }
     public List<String> checkDataDate(String roomnum) {//데이터파일에서 방번호가 같은 체크인 체크아웃 날짜 간격 구하기
         String line;
         String fileName = "data/UserData.txt";
@@ -141,7 +153,6 @@ public class ResCheckController {
             }
         } catch (IOException e) {
         }
-        System.out.println(lines);
         return lines;
     }
 }
