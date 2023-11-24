@@ -152,11 +152,9 @@ public class ReservationScreen extends javax.swing.JFrame {
     }
 
     public boolean overlap(List<String> datadate, List<String> resdate) {
-        if (datadate.containsAll(resdate)) {
-            return true;
-        } else {
-            return false;
-        }
+
+        return !datadate.stream().anyMatch(resdate::contains);
+
     }
 
     /**
@@ -402,13 +400,22 @@ public class ReservationScreen extends javax.swing.JFrame {
 
     private void BUTT_insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_insertActionPerformed
 
+        String checkintime = "";
+        String checkouttime = "";
+
         String cardnumbers;
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String selectedpeopleNumber = TEXT_peopleNumber.getSelectedItem().toString();
         String username = name.getText();
         String phonenumber = phoneNumber.getText();
-        String checkintime = dateFormat.format(checkinTime.getDate());
-        String checkouttime = dateFormat.format(checkoutTime.getDate());
+
+        if (checkinTime.getDate() != null) {
+            checkintime = dateFormat.format(checkinTime.getDate());
+        }
+        if (checkoutTime.getDate() != null) {
+            checkouttime = dateFormat.format(checkoutTime.getDate());
+        }
+
         String selectedpayment = paymentmethod.getSelectedItem().toString();
         if (!"".equals(cardnumber.getText())) {
             cardnumbers = cardnumber.getText();
@@ -417,8 +424,10 @@ public class ReservationScreen extends javax.swing.JFrame {
         }
         String occupation = "empty room";
         ResCheckController check = new ResCheckController();
-        if (!"".equals(username) && !"".equals(phonenumber) && !"".equals(checkintime) && !"".equals(checkouttime)) {//모든 정보가 입력되었으면 if문 들어감
-            if (!overlap(check.checkDataDate(roomnum), check.checkResDate(checkintime, checkouttime))) {
+
+        if (!"".equals(name.getText()) && !"".equals(phoneNumber.getText()) && !"".equals(checkintime) && !"".equals(checkouttime)) {//모든 정보가 입력되었으면 if문 들어감
+            if (overlap(check.checkDataDate(roomnum), check.checkResDate(checkintime, checkouttime))) {
+
                 if (calculateDate() <= 5) {//체크인 날짜와 체크아웃 날짜의 차이를 계산했을 때 5이거나 5보다 작을 때 
                     ResDto res;
                     res = new ResDto(username, phonenumber, roomtype, roomnum, selectedpeopleNumber, checkintime, checkouttime, selectedpayment, cardnumbers, calculateRoomMoney(), occupation, calculateRoomMoney());
@@ -433,7 +442,7 @@ public class ReservationScreen extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "이미 예약된 날짜입니다.");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "예약정보를 입력해주세요.");
+            JOptionPane.showMessageDialog(null, "예약정보를 모두 입력해주세요.");
         }
     }//GEN-LAST:event_BUTT_insertActionPerformed
 

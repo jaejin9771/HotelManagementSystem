@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  *
@@ -107,11 +108,14 @@ public class ReservationModifyScreen extends javax.swing.JFrame {
     private String m_payment;
     private String m_cardnum;
     private String m_roomstate;
-            
+
     private String roomnumber; // 수정전 호수
     private int people; //수정전 인원수
     private int moneydata; //수정전 누적요금
     private int calculate;
+
+    private String checkin = "";
+    private String checkout = "";
 
     public String getroomnum() {
         String vau = txtroomnum.getText();
@@ -206,6 +210,10 @@ public class ReservationModifyScreen extends javax.swing.JFrame {
         int money = moneydata;
         money += modifymoney() + calculateDateMoney();
         return Integer.toString(money);
+    }
+
+    public boolean overlap(List<String> datadate, List<String> resdate) {
+        return !datadate.stream().anyMatch(resdate::contains);
     }
 
     /**
@@ -447,30 +455,39 @@ public class ReservationModifyScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_BUTT_gobackActionPerformed
 
     private void BUTT_mofifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_mofifyActionPerformed
-        if (txtcheckin.getDate() != null && txtcheckout.getDate() != null) {
-            if (calculateDate() <= 5) {
-                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                m_name = txtname.getText();
-                m_phone = txtphone.getText();
-                m_roomtype = txtroomtype.getText();
-                m_roomnumber = txtroomnum.getText();
-                m_people = txtpeople.getSelectedItem().toString();
-                m_checkin = dateFormat.format(txtcheckin.getDate());
-                m_checkout = dateFormat.format(txtcheckout.getDate());
-                m_money = calculateMoney();
-                m_payment = txtpayment.getSelectedItem().toString();
-                m_cardnum = txtcardnum.getText();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        m_name = txtname.getText();
+        m_phone = txtphone.getText();
+        m_roomtype = txtroomtype.getText();
+        m_roomnumber = txtroomnum.getText();
+        m_people = txtpeople.getSelectedItem().toString();
+        m_checkin = dateFormat.format(txtcheckin.getDate());
+        m_checkout = dateFormat.format(txtcheckout.getDate());
+        m_money = calculateMoney();
+        m_payment = txtpayment.getSelectedItem().toString();
+        m_cardnum = txtcardnum.getText();
+        m_roomstate = jComboBox1.getSelectedItem().toString();
+        if (txtcheckin.getDate() != null) {
+            checkin = dateFormat.format(txtcheckin.getDate());
+        }
+        if (txtcheckout.getDate() != null) {
+            checkout = dateFormat.format(txtcheckout.getDate());
+        }
+        ResCheckController check = new ResCheckController();
+        if (checkin != null && checkout != null) {
+            if (overlap(check.checkDataDate(m_roomnumber), check.checkResDate(m_checkin, m_checkout))) {
+                if (calculateDate() <= 5) {
+                    String modifysell;
+                    modifysell = m_name + ',' + m_phone + ',' + m_roomtype + ',' + m_roomnumber + ',' + m_people + ',' + m_checkin + ',' + m_checkout + ',' + m_money + ',' + m_payment + ',' + m_cardnum + ',' + m_roomstate;
+                    ResCheckController res = new ResCheckController();
+                    res.modifyUserdata(roomnumber, modifysell, txtphone.getText(), txtname.getText());
+                    JOptionPane.showMessageDialog(null, "예약정보가 성공적으로 수정되었습니다.  " + "결제요금은 " + m_money + " 입니다.");
 
-                m_roomstate = jComboBox1.getSelectedItem().toString();
-                
-                String modifysell;
-                modifysell = m_name + ',' + m_phone + ',' + m_roomtype + ',' + m_roomnumber + ',' + m_people + ',' + m_checkin + ',' + m_checkout + ',' + m_money + ',' + m_payment + ',' + m_cardnum+','+m_roomstate;
-                ResCheckController res = new ResCheckController();
-                res.modifyUserdata(roomnumber, modifysell,txtphone.getText(),txtname.getText());
-                JOptionPane.showMessageDialog(null, "예약정보가 성공적으로 수정되었습니다.  "+"결제요금은 "+m_money+" 입니다.");
-
+                } else {
+                    JOptionPane.showMessageDialog(null, "객실이용제한은 5일입니다.");
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "객실이용제한은 5일입니다.");
+                JOptionPane.showMessageDialog(null, "이미 예약된 날짜가 있습니다.");
             }
         } else
             JOptionPane.showMessageDialog(null, "체크인과 체크아웃 시간을 설정해주세요.");
