@@ -23,7 +23,7 @@ public class CheckOutController {
     private String formatedNow;
     private int totalFee;
 
-    public CheckOutController(String name, String phone, String roomnum,int totalFee) {
+    public CheckOutController(String name, String phone, String roomnum, int totalFee) {
         this.name = name;
         this.phone = phone;
         this.roomnum = roomnum;
@@ -57,12 +57,12 @@ public class CheckOutController {
         String fileName = "data/UserData.txt";
         File file = new File(fileName);
         List<String> lines = new ArrayList<>();
-        
+
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
                 if (row[0].equals(name) && row[1].equals(phone) && row[3].equals(roomnum) && row[10].equals("full room")) {
-                    String receipt = row[5]+","+row[6]+","+ Integer.toString(totalFee);
+                    String receipt = row[5] + "," + row[6] + "," + Integer.toString(totalFee);
                     continue;
                 }
                 lines.add(line);
@@ -96,24 +96,8 @@ public class CheckOutController {
 
     public String calculateMoney(int difference) {
         int money = 0;
-        switch (difference) { //오버체크아웃에 따른 추가요금 설정
-            case 0:
-                money = 0;
-                break;
-            case -1:
-                money += 50000;
-                break;
-            case -2:
-                money += 100000;
-                break;
-            case -3:
-                money += 150000;
-                break;
-            case -4:
-                money += 200000;
-                break;
-            default:
-                break;
+        for (int i = difference; i < 0; i++) {
+            money += 50000;
         }
         return Integer.toString(money);
     }
