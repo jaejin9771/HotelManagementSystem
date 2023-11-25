@@ -57,6 +57,12 @@ public class RegisterScreen extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("굴림", 1, 48)); // NOI18N
         jLabel1.setText("Register");
 
+        idField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idFieldActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("ID :");
 
         jLabel3.setText("CheckPassword :");
@@ -178,6 +184,9 @@ public class RegisterScreen extends javax.swing.JFrame {
         if (userDao.findById(inputId)==true) {
             JOptionPane.showMessageDialog(null, "이미 존재하는 아이디입니다.");
         }
+        else if(inputId.equals("")) {
+            System.out.println("아이디를 입력해주세요");
+        }
         else {
             JOptionPane.showMessageDialog(null, "사용 가능한 아이디입니다.");
             isOkId = true;
@@ -226,6 +235,10 @@ public class RegisterScreen extends javax.swing.JFrame {
         managementscreen.setVisible(true);
         dispose();
     }//GEN-LAST:event_gobackActionPerformed
+
+    private void idFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idFieldActionPerformed
 
     /**
      * @param args the command line arguments

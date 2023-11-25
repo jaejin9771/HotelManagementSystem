@@ -2,3 +2,4 @@ test,1234,manager
 gayoung,1234,staff
 jaejin,1234,staff
 test123,1234,manager
+test55,12345,manager
