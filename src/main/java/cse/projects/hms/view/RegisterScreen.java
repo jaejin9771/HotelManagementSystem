@@ -197,11 +197,13 @@ public class RegisterScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         String inputPw = new String(pwField.getPassword());
         String checkPw = new String(checkPwField.getPassword());
-        
+        if(inputPw.equals("")||checkPw.equals("")) {
+            JOptionPane.showMessageDialog(null, "공백이 있습니다.");
+        }
         if(inputPw.equals(checkPw)) {
             JOptionPane.showMessageDialog(null, "비밀번호가 일치합니다");
             isOkPw = true;
-        }
+        } 
         else {
             JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다.");
         }
