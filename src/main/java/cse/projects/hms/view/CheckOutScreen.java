@@ -29,12 +29,13 @@ public class CheckOutScreen extends javax.swing.JFrame {
     private String rescheckout;
     private int totalFee; // 총 요금
     private ResDao resDao = new ResDao();
+    private boolean isButtonClicked = false;
 
     public CheckOutScreen() {
         initComponents();
         setLocationRelativeTo(null);
     }
-    
+
     private static boolean isCheckinTimeValid() {
         // 현재 시간 가져오기
         LocalTime currentTime = LocalTime.now();
@@ -229,13 +230,17 @@ public class CheckOutScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_BUTT_gobackActionPerformed
 
     private void BUTT_paymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_paymentActionPerformed
-        CheckOutController check = new CheckOutController(name, phone, roomnum,totalFee);
+        CheckOutController check = new CheckOutController(name, phone, roomnum, totalFee);
         // 합산된 총 요금(totalFee) 다른 파일에 저장하는 로직 구현 해아함.
-        if (check.deleteData()) {
-            JOptionPane.showMessageDialog(null, "결제되었습니다.");
-            MainScreen mainscreen = new MainScreen();
-            mainscreen.setVisible(true);
-            dispose();
+        if (isButtonClicked) {
+            if (check.deleteData()) {
+                JOptionPane.showMessageDialog(null, "결제되었습니다.");
+                MainScreen mainscreen = new MainScreen();
+                mainscreen.setVisible(true);
+                dispose();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "체크아웃 버튼을 클릭해주세요.");
         }
     }//GEN-LAST:event_BUTT_paymentActionPerformed
 
@@ -243,8 +248,8 @@ public class CheckOutScreen extends javax.swing.JFrame {
         name = txtname.getText();
         phone = txtphone.getText();
         roomnum = txtroomnum.getText();
-        
-        CheckOutController check = new CheckOutController(name, phone, roomnum,totalFee);
+
+        CheckOutController check = new CheckOutController(name, phone, roomnum, totalFee);
         CheckInController Check = new CheckInController(name, phone, roomnum);
         LocalDate now = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -266,7 +271,8 @@ public class CheckOutScreen extends javax.swing.JFrame {
                         txtmoney.setText(result[7]);
                         txtaddmoney.setText(over.calculateMoney(over.calculateDate()));
                         totalFee = Integer.parseInt(result[11]) + Integer.parseInt(txtaddmoney.getText());
-                        resDao.insertReceipt(result[5], result[6], Integer.toString(totalFee),result[4]);
+                        resDao.insertReceipt(result[5], result[6], Integer.toString(totalFee), result[4]);
+                        isButtonClicked = true;
                     } else {
                         JOptionPane.showMessageDialog(null, "입력하신 예약 정보가 일치하지 않습니다.");
                     }
