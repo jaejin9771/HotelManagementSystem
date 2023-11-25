@@ -150,7 +150,7 @@ public class UserInfoScreen extends javax.swing.JFrame {
 
         int index = userTable.getSelectedRow();
         String[] userData = userDao.selectRow(index);
-
+        
         if (userData != null) {  // 아무 값도 선택하지 않았을 때의 예외 처리
             dispose();
             UserModifyScreen userModifyScreen = new UserModifyScreen(userData, index);
